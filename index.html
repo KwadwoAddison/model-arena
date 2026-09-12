@@ -361,7 +361,7 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
   const notes={
    "deepseek-v4.1-flash":[["Fastest correct model in the family (9.6s avg, 100%).","Clean minimal code under tight budget (~350 tok on code task)."],["Verbose on arithmetic when the prompt under-specifies (~1.8K tok avg).","Newest member — sample size still thin; rank pending 5 graded runs."]],
    "gpt-5.6-sol-pro":[["Token efficiency king: 100% at ~126 tok avg.","The only model whose prose stays disciplined at high effort."],["Slowest of the 100% tier (23.6s avg).","Astra-family quirk: trade arithmetic missed at low effort."]],
-   "gpt-6-astra":[["Cheapest correct model (~117 tok avg).","Highest latency in the family (22.1s) — patience costs.","Missed the composition-arithmetic task (67%)."]],
+   "gpt-6-astra":[["Cheapest correct model (~117 tok avg).","Ran the full suite without a single route failure."],["Highest latency in the family (22.1s).","Missed the composition-arithmetic task (67%)."]],
    "kimi-k3":[["Fast on vision-class tasks (6.7s on medicine)."],["Missed the composition-arithmetic task (67%).","2.6K tokens when it struggled — burn without gain."]],
    "gemini-3.8-flash":[["Second-cheapest prose (184 tok avg)."],["Missed the composition-arithmetic task (67%).","Route fragility: zen REST 500s; CLI-only."]]
   };
@@ -372,6 +372,25 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
     d.innerHTML=`<h3>${DISP[m]}</h3><ul>${n[0].map(x=>`<li class="plus"><b>Strength.</b> ${x}</li>`).join('')}${n[1].map(x=>`<li class="minus"><b>Watch.</b> ${x}</li>`).join('')}</ul>`;
     duels.appendChild(d);
   });
+  // ladder: low vs high per model (waits for high sweep)
+  const lad=document.getElementById('ladder'); lad.innerHTML='';
+  const low=(live&&live.low)||{}, high=(live&&live.high)||{};
+  if(!Object.keys(high).length){
+    lad.innerHTML='<div class="step"><div class="who">Reasoning sweep in progress</div><div class="lv">Low-effort run landed for all 8; high-effort sweep is running now. Deltas appear when both legs are in.</div></div>';
+  } else {
+    Object.keys(low).forEach(m=>{
+      const lo=low[m]? Math.round(low[m].corr/Math.max(1,low[m].n)*100):0;
+      const hi=high[m]? Math.round(high[m].corr/Math.max(1,high[m].n)*100):lo;
+      const d=hi-lo;
+      const cls = d>0?'pos':d<0?'neg':'zero';
+      const div=document.createElement('div'); div.className='step';
+      div.innerHTML=`<div class="who">${DISP[m]||m}</div>
+        <div class="lv"><span>low</span><span>${lo}</span></div><div class="bar"><i style="width:${lo}%"></i></div>
+        <div class="lv"><span>high</span><span>${hi}</span></div><div class="bar hi"><i style="width:${hi}%"></i></div>
+        <div class="delta ${cls}">${d>0?'+':''}${d}<small>pts low → high</small></div>`;
+      lad.appendChild(div);
+    });
+  }
   // hero meta
   document.getElementById('hero-n').textContent=entries.length;
   if(live) document.getElementById('boardNote').textContent='Live from latest.json · '+live.generated+' · every bench.py run refreshes this board.';
