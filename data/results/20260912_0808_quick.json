@@ -1,0 +1,87 @@
+{
+ "suite": "quick",
+ "reasoning": "default",
+ "stamp": "20260912_0808",
+ "runs": [
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "code_b1",
+   "text": "def solve(s):\n    k = 2\n    counts = {}\n    left = 0\n    best = 0\n\n    for right, ch in enumerate(s):\n        counts[ch] = counts.get(ch, 0) + 1\n\n        while len(counts) > k:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "latency_s": 2.5,
+   "thinking_chars": 928,
+   "tokens_est": 331,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "trade_b1",
+   "text": "Assuming all non-wins are losses and no breakeven trades:\n\n- Win rate \\(p = 46.3\\% = 0.463\\)\n- Loss rate \\(q = 1 - 0.463 = 0.537\\)\n- Avg win \\(= +0.459R\\)\n- Avg loss \\(= -0.416R\\)\n\n### Expectancy per trade\n\n\\[\nE = p(\\text{avg win}) + q(\\text{avg loss})\n\\]\n\n\\[\nE = 0.463(0.459) + 0.537(-0.416)\n\\]\n\n\\[\nE = 0.212517 - 0.223392 = -0.010875R\n\\]\n\nSo expectancy is:\n\n\\[\n\\boxed{-0.0109R \\text{ per trade}}\n\\]\n\nTotal over 123 trades:\n\n\\[\n-0.010875 \\times 123 = -1.3376R\n\\]\n\n---\n\n### Profit factor\n\nProfit factor = gross profit / gross loss.\n\nUsing per-trade rates:\n\n\\[\n\\text{Gross win contribution} = 0.463 \\times 0.459 = 0.212517\n\\]\n\n\\[\n\\text{Gross loss contribution} = 0.537 \\times 0.416 = 0.223392\n\\]\n\n\\[\nPF = \\frac{0.212517}{0.223392} = 0.9513\n\\]\n\n\\[\n\\boxed{PF \\approx 0.951}\n\\]\n\nSo the system is negative expectancy and profit factor is below 1.0.\n\nNote: If 46.3% is rounded from \\(57/123\\), then using integer trades gives \u001b[K\nexpectancy \\(\\approx -0.0105R\\) and PF \\(\\approx 0.953\\).",
+   "latency_s": 18.9,
+   "thinking_chars": 10869,
+   "tokens_est": 2962,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "med_b1",
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\nThe abdominal X-ray finding of a **double bubble with no distal gas** is cl\u001b[2D\u001b[K\nclassic for **duodenal atresia**. Management includes:\n\n- NPO\n- Orogastric/nasogastric decompression (OGT/NGT)\n- IV fluids and stabilization\n- Evaluation for associated anomalies (e.g., Down syndrome, cardiac, renal)\u001b[6D\u001b[K\nrenal)\n- Surgical repair with **duodenoduodenostomy**\n\nUrgent laparotomy would be more concerning for malrotation with volvulus, b\u001b[1D\u001b[K\nbut the classic double-bubble without distal gas points to duodenal atresia\u001b[7D\u001b[K\natresia.",
+   "latency_s": 14.0,
+   "thinking_chars": 10827,
+   "tokens_est": 2850,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "long_b1",
+   "text": "A 24-week gestational age baby who died on March 4 is a quasi-identifier in\u001b[2D\u001b[K\nin a small NICU audit because the combination of rare clinical features and\u001b[3D\u001b[K\nand exact date narrows the group to one. Even without name or NHS number, s\u001b[1D\u001b[K\nstaff cross-check the unit\u2019s admissions, gestational ages, and deaths to re\u001b[2D\u001b[K\nrecognise the infant. In a small NICU, the exact date and rare GA leave one\u001b[3D\u001b[K\none matching infant. Linking these facts re-identifies the patient and brea\u001b[4D\u001b[K\nbreaches confidentiality. Treat the date, GA, and death status as identifia\u001b[9D\u001b[K\nidentifiable data. Aggregate, suppress, or generalise them before sharing.",
+   "latency_s": 6.6,
+   "thinking_chars": 5119,
+   "tokens_est": 1443,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s, k=2):\n    \"\"\"Return the length of the longest substring of s with at most k disti\u001b[5D\u001b[K\ndistinct characters.\"\"\"\n    counts = {}\n    left = 0\n    best = 0\n    for right, ch in enumerate(s):\n        counts[ch] = counts.get(ch, 0) + 1\n        while len(counts) > k:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "latency_s": 13.5,
+   "thinking_chars": 8027,
+   "tokens_est": 2133,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "trade_b1",
+   "text": "## Expectancy per trade\n\nFormula: E = (WR \u00d7 avg win) + ((1 \u2212 WR) \u00d7 avg loss)\n\n- Loss rate = 1 \u2212 0.463 = 0.537\n- Win component: 0.463 \u00d7 0.459 = **0.212517R**\n- Loss component: 0.537 \u00d7 (\u22120.416) = **\u22120.223392R**\n- E = 0.212517 \u2212 0.223392 = **\u22120.010875R \u2248 \u22120.011R per trade**\n\n## Profit factor\n\nFormula: PF = gross profit / gross loss = (WR \u00d7 avg win) / (LR \u00d7 |avg loss|\u001b[5D\u001b[K\nloss|)\n\n- PF = 0.212517 / 0.223392 = **0.9513 \u2248 0.95**\n\n## Sanity check with integer trade counts\n\n46.3% of 123 \u2248 57 wins, 66 losses:\n\n- Gross profit = 57 \u00d7 0.459 = 26.163R\n- Gross loss = 66 \u00d7 0.416 = 27.456R\n- Net = **\u22121.293R** over the sample\n- E = \u22121.293 / 123 = \u22120.0105R \u2713\n- PF = 26.163 / 27.456 = 0.953 \u2713\n\nBoth methods agree within rounding.\n\n## Interpretation\n\nThe system is running **marginally below breakeven** \u2014 roughly \u22121.3R over 1\u001b[1D\u001b[K\n123 trades. To flip positive you'd need one of:\n\n- **WR \u2265 47.5%** at current payoff: breakeven WR = 0.416 / (0.459 + 0.416) \u001b[K\n= 0.416 / 0.875 = 0.4754\n- **Avg win \u2265 0.483R** at current WR: breakeven avg win = 0.223392 / 0.463 \u001b[K\n= 0.4825R\n\nSo you're about 1.2 percentage points of WR or 0.024R of average winner awa\u001b[3D\u001b[K\naway from flat. Small tweaks to either exit efficiency or entry selectivity\u001b[11D\u001b[K\nselectivity would tip it positive.",
+   "latency_s": 14.8,
+   "thinking_chars": 5015,
+   "tokens_est": 1570,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "med_b1",
+   "text": "## Answer: **B) OG tube decompression + workup + duodenoduodenostomy**\n\n## Reasoning\n\n**The diagnosis is duodenal atresia:**\n- **Bilious vomiting** = obstruction distal to the ampulla of Vater (~85% o\u001b[1D\u001b[K\nof duodenal atresias)\n- **Double bubble** = dilated stomach + dilated proximal duodenum\n- **No distal gas** = *complete* obstruction \u2192 classic for duodenal atresia\u001b[7D\u001b[K\natresia (if distal gas were present, think partial obstruction: web, stenos\u001b[6D\u001b[K\nstenosis, or malrotation/volvulus)\n- Normal perineum (no anorectal malformation/fistula) rules out ARM\n\n**The correct sequence (option B):**\n1. **Stabilize**: IV fluids, correct electrolytes/dehydration, orogastric t\u001b[1D\u001b[K\ntube decompression\n2. **Workup before anesthesia** \u2014 this is the key step:\n   - **Echocardiogram** (~30% have congenital heart disease)\n   - **Chromosome analysis** (~30% have trisomy 21)\n   - Renal ultrasound, spine/limb survey (VACTERL association)\n3. **Surgical repair**: diamond-shaped (Kimura) **duodenoduodenostomy**, ch\u001b[2D\u001b[K\nchecking for malrotation (add Ladd's procedure if found)\n\n## Why not the others\n\n| Option | Why it's wrong |\n|--------|----------------|\n| **A) Contrast enema** | Evaluates *distal* colon (Hirschsprung transition\u001b[10D\u001b[K\ntransition zone, microcolon in ileal atresia) \u2014 useless for a proximal obst\u001b[4D\u001b[K\nobstruction |\n| **C) Rectal biopsy** | Gold standard for **Hirschsprung disease** \u2014 but H\u001b[1D\u001b[K\nHD causes distal obstruction with multiple dilated loops, *not* a double bu\u001b[2D\u001b[K\nbubble |\n| **D) Urgent laparotomy** | For suspected **volvulus** (double bubble *wit\u001b[4D\u001b[K\n*with* distal gas, instability, peritonitis, bloody stools). Here the baby \u001b[K\nis stable and needs cardiac evaluation first \u2014 anesthesia without echo is d\u001b[1D\u001b[K\ndangerous given the CHD association |\n| **E) Observe 6h** | **Never** \u2014 bilious vomiting in a neonate is a surgic\u001b[6D\u001b[K\nsurgical emergency until proven otherwise |\n\n**Key exam pearl:** *Double bubble without distal gas = duodenal atresia (s\u001b[2D\u001b[K\n(stabilize \u2192 workup \u2192 repair). Double bubble with distal gas = incomplete o\u001b[1D\u001b[K\nobstruction \u2192 rule out malrotation/volvulus urgently.*",
+   "latency_s": 34.4,
+   "thinking_chars": 20087,
+   "tokens_est": 5557,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "long_b1",
+   "text": "Quasi-identifiers are fields that don't name anyone but identify in combina\u001b[7D\u001b[K\ncombination. In a small NICU, a 24-week gestation is rare; most units see a\u001b[1D\u001b[K\na handful of extreme preemies a year, and staff remember each one vividly. \u001b[K\nAdding the death date, March 4, pins the case to a specific shift, census b\u001b[1D\u001b[K\nboard, and a family the unit knows. Anyone with rosters, badge logs, or soc\u001b[3D\u001b[K\nsocial ties\u2014colleagues, ancillary staff, community members\u2014can join those f\u001b[1D\u001b[K\nfragments and recover the infant's identity and the parents behind it. Your\u001b[4D\u001b[K\nYour audit dataset has k=1: no other record shares that combination. Treat \u001b[K\ngestational age and date as identifying; aggregate dates to month or week a\u001b[1D\u001b[K\nand broaden GA bands before data leaves the unit.",
+   "latency_s": 11.8,
+   "thinking_chars": 7346,
+   "tokens_est": 2033,
+   "correctness": null,
+   "token_eff": null
+  }
+ ]
+}

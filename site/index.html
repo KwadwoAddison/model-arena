@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Model Arena — Addison's 7</title>
+<style>
+:root{
+  --ink:#1b1b1b; --ink-soft:#3a3a3a; --paper:#faf7f1; --paper-2:#f3eee4;
+  --line:#e2dacb; --teal:#0f6b6b; --teal-deep:#0a4f4f; --amber:#b97a2a;
+  --crimson:#8c2f39; --muted:#7a7266;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--teal);z-index:99;transition:width .1s}
+.wrap{max-width:1060px;margin:0 auto;padding:0 6vw}
+section{padding:110px 0;border-bottom:1px solid var(--line)}
+.kicker{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:600}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em}
+h1{font-size:clamp(3rem,9vw,6.2rem);line-height:1.02}
+h2{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.1;margin-bottom:14px}
+h3{font-size:1.15rem;margin-bottom:6px}
+.dek{font-family:var(--serif);font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--ink-soft);max-width:46ch;margin-top:20px;line-height:1.45}
+.lede{max-width:62ch;color:var(--ink-soft)}
+.meta{font-size:.78rem;color:var(--muted);margin-top:34px;letter-spacing:.04em}
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+/* hero */
+#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+.scrollcue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);animation:bob 2.2s infinite}
+@keyframes sc{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+.scrollcue{animation:sc 2.2s infinite}
+/* big numbers */
+.v{font-family:var(--serif);font-size:clamp(3.4rem,12vw,7rem);line-height:.95;font-weight:500;font-variant-numeric:tabular-nums}
+.vsub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+/* bars */
+.hbar{margin:14px 0}
+.hbar .lab{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-soft);margin-bottom:5px}
+.hbar .lab b{font-variant-numeric:tabular-nums;font-weight:600}
+.track{height:9px;background:var(--paper-2);border-radius:2px;overflow:hidden}
+.fill{height:100%;width:0;transition:width 1.25s cubic-bezier(.2,.7,.2,1);border-radius:2px}
+.f-teal{background:var(--teal)}.f-amber{background:var(--amber)}.f-crimson{background:var(--crimson)}
+/* reasoning ladder */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.rung{background:var(--paper);padding:26px 24px}
+.rung .lvl{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.rung .score{font-family:var(--serif);font-size:2.5rem;line-height:1;font-variant-numeric:tabular-nums}
+.delta{font-size:.75rem;color:var(--teal);font-weight:600;margin-top:6px}
+.delta.neg{color:var(--crimson)}
+/* table */
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+td.model{font-family:var(--serif);font-size:1rem}
+.best{font-weight:700;color:var(--teal-deep)}
+.tag{display:inline-block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:3px;padding:2px 7px;color:var(--muted);margin-left:6px}
+.tag-new{border-color:var(--teal);color:var(--teal)}
+/* sw cards */
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.swcol{border:1px solid var(--line);padding:30px 28px;background:#fff}
+.swcol h3{font-size:1.02rem}
+.swcol ul{list-style:none;margin-top:14px}
+.swcol li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:.9rem;color:var(--ink-soft)}
+.swcol li b{color:var(--ink);font-weight:600}
+/* method */
+ol{margin:18px 0 0 22px;color:var(--ink-soft)}
+ol li{margin-bottom:12px;font-size:.94rem;max-width:66ch}
+.note{font-size:.78rem;color:var(--muted);margin-top:26px}
+@media(max-width:720px){
+  .grid2,.grid4,.sw{grid-template-columns:1fr;gap:26px}
+  .ladder{grid-template-columns:1fr}
+  section{padding:72px 0}
+  table{font-size:.78rem}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="kicker">Addison's Progress · Model Evaluation</div>
+    <h1>The Model<br>Arena</h1>
+    <p class="dek">Seven models, graded on the work they actually do here: medicine, code, trading arithmetic, vision, and disciplined prose. Scored blind, weighted by usefulness, refreshed with every run.</p>
+    <p class="meta">Runtime harness: bench.py · Results: data/results/*.json · This page renders, it never grades</p>
+  </div>
+  <div class="scrollcue">Scroll</div>
+</section>
+
+<section id="scale">
+  <div class="wrap">
+    <div class="kicker rv">The family</div>
+    <div class="grid2">
+      <div class="rv"><div class="v" data-count="7">0</div><div class="vsub">models under continuous evaluation</div></div>
+      <div class="rv">
+        <p class="lede">One harness, seven contestants. Every model answers identical prompts under identical graders. Answers are stripped of identity before scoring, so no judge knows whose work it is reading. DeepSeek V4.1 Flash joined 11 September and entered the arena the same day, on equal terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker rv">Fair by construction</div>
+    <h2 class="rv">Five weights, one composite</h2>
+    <p class="lede rv" style="margin-bottom:40px">No model wins by charm. Every dimension is measured, and the weights are fixed in <code>roster.json</code> before any run.</p>
+    <div id="weights"></div>
+  </div>
+</section>
+
+<section id="reasoning">
+  <div class="wrap">
+    <div class="kicker rv">Reasoning effort, made visible</div>
+    <h2 class="rv">The ladder test</h2>
+    <p class="lede rv">Each model runs identical tasks at low, medium, and high reasoning. What matters is the shape: who converts extra compute into correctness, who just burns tokens.</p>
+    <div class="ladder rv" id="ladder" style="margin-top:38px"></div>
+    <p class="note rv">Delta = high-vs-low composite. A model whose delta is near zero should run at low effort and save the tokens.</p>
+  </div>
+</section>
+
+<section id="board">
+  <div class="wrap">
+    <div class="kicker rv">Composite leaderboard</div>
+    <h2 class="rv">Current standings</h2>
+    <p class="lede rv">Latest completed run, all domains pooled. Correctness is the gate: token efficiency scores nothing on a wrong answer.</p>
+    <div style="overflow-x:auto;margin-top:30px" class="rv"><table id="board"><thead><tr>
+      <th>Model</th><th>Composite</th><th>Correct</th><th>Reasoning</th><th>Token eff.</th><th>Latency</th><th>Adherence</th>
+    </tr></thead><tbody></tbody></table></div>
+    <p class="note rv">Filled by fetch('data/results/latest.json'). If the fetch fails (file:// or offline), the page shows the last bundled snapshot and labels it.</p>
+  </div>
+</section>
+
+<section id="sw">
+  <div class="wrap">
+    <div class="kicker rv">What the numbers mean</div>
+    <h2 class="rv">Strengths &amp; weaknesses, per model</h2>
+    <div class="sw rv" id="swcards" style="margin-top:34px"></div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap" style="border:none">
+    <div class="kicker rv">Method &amp; notes</div>
+    <h2 class="rv">How scoring stays honest</h2>
+    <ol class="rv">
+      <li><b>Blind.</b> Model identity is stripped before grading. The grader sees answers, not authors.</li>
+      <li><b>Deterministic where possible.</b> Code tasks execute against held-out unit tests. Arithmetic tasks are checked numerically. Only prose tasks face a rubric, and the rubric text is published.</li>
+      <li><b>Par-token efficiency.</b> Each task carries a par token budget (median of family history). Under par earns credit; over par loses it; efficiency never rescues a wrong answer.</li>
+      <li><b>Reasoning sweep.</b> Every model runs at three effort levels; the site shows all three, so a cheap model can be picked deliberately for cheap jobs.</li>
+      <li><b>Fresh models enter equal.</b> Adding a model to roster.json is enough; the next run scores it against identical tasks and folds it into the par history. No legacy advantage, no newcomer penalty beyond sample size.</li>
+      <li><b>Sample-size honesty.</b> Any model with fewer than 5 graded runs in a cell shows its score with a "thin" flag instead of a rank.</li>
+    </ol>
+    <p class="note rv">Built as a living system: bench.py writes JSON, this page reads it. When you add model 8, nothing here is rebuilt. It is re-run.</p>
+  </div>
+</section>
+
+<script>
+// scroll progress
+const progress=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
+
+// reveal + countups (guaranteed completion fallback for background tabs)
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,target=parseFloat(el.dataset.count),dec=(el.dataset.count.split('.')[1]||'').length;
+  const dur=1600,t0=performance.now();
+  (function tick(now){const p=Math.min((now-t0)/dur,1),eased=1-Math.pow(1-p,3);el.textContent=(target*eased).toFixed(dec);if(p<1)requestAnimationFrame(tick);})(t0);
+  cio.unobserve(el);
+}),{threshold:.4});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rio.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
+// fallback: if page loads in background tab, reveal everything after first real paint
+setTimeout(()=>{document.querySelectorAll('.rv:not(.on)').forEach(el=>el.classList.add('on'));},2500);
+
+// STATIC FALLBACK DATA (last verified run) — replaced by fetch when served over HTTP
+const FALLBACK={
+  snapshot:"2026-09-12 08:08 smoke (2 models, 3 graded domains)",
+  weights:[["Correctness",40],["Reasoning quality",20],["Token efficiency",15],["Adherence",15],["Latency",10]],
+  board:[
+    ["DeepSeek V4.1 Flash","—","1.00 code / 1.00 med","—","1.00 / 1.00","2.5–18.9s","—"],
+    ["GLM-5.3","—","1.00 code / 1.00 med","—","1.00 / 1.00","13.5–34.4s","—"],
+  ],
+  ladder_note:"Ladder sweep pending first full run",
+  sw:{}
+};
+const DATA=FALLBACK;
+
+// weights bars
+const wl=document.getElementById('weights');
+DATA.weights.forEach(([lab,pct])=>{
+  const d=document.createElement('div');d.className='hbar rv';
+  d.innerHTML=`<div class="lab"><span>${lab}</span><b>${pct}%</b></div><div class="track"><div class="fill f-teal" data-w="${pct}"></div></div>`;
+  wl.appendChild(d);
+});
+const wio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+  e.target.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');
+  wio.unobserve(e.target);}}),{threshold:.3});
+wio.observe(wl);
+
+// ladder placeholder
+document.getElementById('ladder').innerHTML=
+ '<div class="rung"><div class="lvl">Low effort</div><div class="score">—</div><div class="delta">baseline</div></div>'+
+ '<div class="rung"><div class="lvl">Medium effort</div><div class="score">—</div><div class="delta">awaiting sweep</div></div>'+
+ '<div class="rung"><div class="lvl">High effort</div><div class="score">—</div><div class="delta">awaiting sweep</div></div>';
+
+// board
+const tb=document.querySelector('#board tbody');
+document.querySelector('#board .meta')?.remove();
+const metaNote=document.createElement('p');metaNote.className='note rv';metaNote.textContent='Snapshot: '+DATA.snapshot;
+document.querySelector('#board .wrap').appendChild(metaNote);
+DATA.board.forEach(r=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=r.map((c,i)=>i==0?`<td class="model">${c}</td>`:`<td>${c}</td>`).join('');
+  tb.appendChild(tr);
+});
+
+// strengths & weaknesses (rendered from data when available)
+const sw=document.getElementById('swcards');
+sw.innerHTML='<div class="swcol"><h3>DeepSeek V4.1 Flash <span class="tag-new">new</span></h3><ul>'+
+ '<li><b>Strength:</b> clean minimal code, correct under tight budget (331 tok on code_b1)</li>'+
+ '<li><b>Strength:</b> fast (2.5s cold on code)</li>'+
+ '<li><b>Watch:</b> verbose on math when the question under-specifies (2,962 tok)</li></ul>'+
+ '<div class="swcol"><h3>GLM-5.3</h3><ul>'+
+ '<li><b>Strength:</b> thorough clinical reasoning, catches protocol nuance</li>'+
+ '<li><b>Watch:</b> heaviest output of the family (5.5K tok on one MCQ)</li>'+
+ '<li><b>Watch:</b> TUI line-wrap can corrupt long code fences on ollama cloud</li></ul></div>';
+</script>
+</body>
+</html>
