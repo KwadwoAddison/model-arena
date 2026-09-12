@@ -216,6 +216,38 @@ document.getElementById('ladder').innerHTML=
  '<div class="rung"><div class="lvl">Medium effort</div><div class="score">—</div><div class="delta">awaiting sweep</div></div>'+
  '<div class="rung"><div class="lvl">High effort</div><div class="score">—</div><div class="delta">awaiting sweep</div></div>';
 
+// LIVE data bridge: try fetch('data/results/latest.json') (works on Pages); fallback keeps bundled snapshot
+(async function(){
+  let live=null;
+  try{ const r=await fetch('data/results/latest.json'); if(r.ok) live=await r.json(); }catch(e){}
+  if(!live||!live.low)return;
+  const disp={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm-5.3":"GLM-5.3","glm-5.3-flash":"GLM-5.3 Flash","deepseek-v4-pro":"DeepSeek V4 Pro","deepseek-v4.1-flash":"DeepSeek V4.1 Flash","gemini-3.8-flash":"Gemini 3.8 Flash","kimi-k3":"Kimi K3"};
+  // composite per model per level: correctness fraction *100 (3 auto-graded tasks), plus avg tok/lat
+  const comp={};
+  for(const lvl of ["low","medium","high"]){
+    comp[lvl]={};
+    for(const [m,a] of Object.entries(live[lvl])) comp[lvl][m]={score:a.corr/a.n*100, tok:a.tok, lat:a.lat};
+  }
+  // board rows sorted by medium composite (or low if medium empty)
+  const lvlOrder=["medium","low","high"].find(l=>Object.keys(comp[l]).length)||"low";
+  const rows=Object.entries(comp[lvlOrder]||{}).sort((a,b)=>b[1].score-a[1].score);
+  const tb=document.querySelector('#board tbody'); tb.innerHTML='';
+  rows.forEach(([m,c])=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td class="model">${disp[m]||m}</td><td class="best">${c.score.toFixed(0)}%</td><td>${c.lat}s</td><td>~${c.tok} tok</td>`;
+    tb.appendChild(tr);
+  });
+  // ladder: per-model delta high vs low
+  const lad=document.getElementById('ladder'); lad.innerHTML='';
+  Object.keys(comp.low).forEach(m=>{
+    const lo=comp.low[m]?.score??0, hi=comp.high[m]?.score??0, d=hi-lo;
+    const div=document.createElement('div'); div.className='rung';
+    div.innerHTML=`<div class="lvl">${disp[m]||m}</div><div class="score">${lo.toFixed(0)}<span style="font-size:1.2rem;color:var(--muted)"> → </span>${hi.toFixed(0)}</div>
+    <div class="delta ${d<0?'neg':''}">${d>=0?'+':''}${d.toFixed(0)} pts low→high · ~${comp.low[m]?.tok??0}→${comp.high[m]?.tok??0} tok</div>`;
+    lad.appendChild(div);
+  });
+  const note=document.querySelector('#board .note'); if(note) note.textContent='Live results: '+live.generated+' · bench.py runs, aggregate.py builds this file';
+})();
 // board
 const tb=document.querySelector('#board tbody');
 document.querySelector('#board .meta')?.remove();

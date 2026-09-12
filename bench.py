@@ -56,6 +56,12 @@ TASKS = {
     grade="manual_heuristic"),
 }
 
+EFFORT_WRAPPERS = {
+  "low": "Answer concisely. Minimal verification. {p}",
+  "medium": "{p}",
+  "high": "Before answering: restate the constraint, solve, verify by an independent method, list one failure mode you avoided. Then give the final answer. {p}",
+}
+
 def call_ollama(model_tag, prompt, reasoning=None, image=None):
     if image:  # multimodal file-reference style for kimi/glm vision
         cmd = ["ollama", "run", model_tag, prompt + f"\n\n[Image attached at {image}]"]
@@ -156,8 +162,10 @@ def run(models=None, suite="quick", reasoning=None):
     for mid in (models or [m["id"] for m in ROSTER["models"]]):
         entry = next(m for m in ROSTER["models"] if m["id"] == mid)
         for tid in chosen:
-            t = TASKS[tid]
-            res = {"task": tid, "domain": t["domain"], "model": mid, "reasoning": reasoning}
+            t = dict(TASKS[tid])
+            eff = reasoning or "medium"
+            t["prompt"] = EFFORT_WRAPPERS.get(eff, "{p}").format(p=t["prompt"])
+            res = {"task": tid, "domain": t["domain"], "model": mid, "reasoning": eff}
             try:
                 prov = entry.get("provider", "")
                 if prov.startswith("openai"):

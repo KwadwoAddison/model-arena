@@ -1,0 +1,55 @@
+{
+ "generated": "2026-09-12T08:39:49",
+ "low": {},
+ "medium": {
+  "deepseek-v4.1-flash": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 9.6,
+   "tok": 1825
+  },
+  "glm-5.3": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 14.9,
+   "tok": 1942
+  },
+  "gpt-5.6-sol-pro": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 23.6,
+   "tok": 126
+  },
+  "gpt-6-astra": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 22.1,
+   "tok": 117
+  },
+  "glm-5.3-flash": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 12.3,
+   "tok": 1279
+  },
+  "deepseek-v4-pro": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 14.0,
+   "tok": 1773
+  },
+  "kimi-k3": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 15.8,
+   "tok": 1159
+  },
+  "gemini-3.8-flash": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 19.5,
+   "tok": 184
+  }
+ },
+ "high": {}
+}
