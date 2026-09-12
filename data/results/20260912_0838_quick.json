@@ -1,0 +1,327 @@
+{
+ "suite": "quick",
+ "reasoning": "low",
+ "stamp": "20260912_0838",
+ "runs": [
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "code_b1",
+   "text": "def solve(s):\n    left = 0\n    counts = {}\n    longest = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            left_char = s[left]\n            counts[left_char] -= 1\n            if counts[left_char] == 0:\n                del counts[left_char]\n            left += 1\n\n        longest = max(longest, right - left + 1)\n\n    return longest",
+   "latency_s": 16.6,
+   "thinking_chars": 0,
+   "tokens_est": 103,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "trade_b1",
+   "text": "- Gross wins: `(80 \u00d7 0.459R) + 0.44R = 37.16R`\n- Gross losses: `36 \u00d7 0.416R = 14.976R`\n- Net: `37.16R \u2212 14.976R = 22.184R`\n\n**Expectancy:** `22.184R \u00f7 151 = +0.147R per trade`\n\n**Profit factor:** `37.16R \u00f7 14.976R = 2.48`",
+   "latency_s": 25.3,
+   "thinking_chars": 0,
+   "tokens_est": 55,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "med_b1",
+   "text": "**B) OGT decompression + duodenoduodenostomy workup.**\n\nClassic **duodenal atresia**: bilious vomiting with a double bubble and no distal gas. Keep NPO, decompress, give IV fluids, assess associated anomalies, then repair. [Baylor guideline](https://www.bcm.edu/neonatology-intranet/intranet/clinical/guidelines/guidelines.pdf)",
+   "latency_s": 31.5,
+   "thinking_chars": 0,
+   "tokens_est": 82,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "long_b1",
+   "text": "\u201c24-week gestation baby who died on March 4\u201d is a quasi-identifier because neither detail directly names the infant, but their combination may uniquely identify them in a small NICU cohort. Staff, relatives, or someone with access to admission records could link those details to one baby. Replace exact dates and rare characteristics with broader categories, such as \u201cextremely preterm\u201d and \u201cdied during the audit period.\u201d",
+   "latency_s": 15.9,
+   "thinking_chars": 0,
+   "tokens_est": 106,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "code_b1",
+   "text": "def solve(s):\n    counts = {}\n    left = best = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            outgoing = s[left]\n            counts[outgoing] -= 1\n            if counts[outgoing] == 0:\n                del counts[outgoing]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "latency_s": 18.0,
+   "thinking_chars": 0,
+   "tokens_est": 97,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "trade_b1",
+   "text": "- **Gross profit:** \\(80(0.459R) + 0.44R = 37.16R\\)\n- **Gross loss:** \\(36(0.416R) = 14.976R\\)\n- **Net result:** \\(37.16R - 14.976R = 22.184R\\)\n\n**Expectancy per trade:**  \n\\[\n\\frac{22.184R}{151} = \\boxed{+0.1469R}\n\\]\n\n**Profit factor:**  \n\\[\n\\frac{37.16R}{14.976R} = \\boxed{2.4813}\n\\]\n\nThe 28 scratches count toward expectancy\u2019s denominator and contribute zero profit or loss.",
+   "latency_s": 21.4,
+   "thinking_chars": 0,
+   "tokens_est": 94,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "med_b1",
+   "text": "**B) OGT + duodenoduodenostomy workup.** Double bubble with **no distal gas** is classic for duodenal atresia. Keep NPO, decompress with an orogastric tube, give IV fluids, and arrange pediatric surgical repair after stabilization. [Source](https://pediatrics.jabsom.hawaii.edu/educational-resources/pedtext/s10c09.html)",
+   "latency_s": 20.9,
+   "thinking_chars": 0,
+   "tokens_est": 80,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "long_b1",
+   "text": "The baby\u2019s description is a quasi-identifier: \u201c24 weeks\u2019 gestation, died March 4\u201d identifies indirectly through a combination of details. In a small NICU audit, the precise gestational age and death date narrow the group sharply, allowing someone with ward knowledge or access to records to link the entry to a particular baby. Removing the name therefore does not make the entry anonymous. This linkage risk is central to [de-identification guidance](https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html). Use broader gestational-age and time categories, and check that the remaining combination does not single out the baby.",
+   "latency_s": 22.4,
+   "thinking_chars": 0,
+   "tokens_est": 165,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s):\n    k = 2\n    count, left, best = {}, 0, 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "latency_s": 3.2,
+   "thinking_chars": 978,
+   "tokens_est": 334,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "glm-5.3",
+   "task": "trade_b1",
+   "text": "**Totals:**\n- Wins: 80 \u00d7 0.459 = 36.72R\n- Losses: 36 \u00d7 0.416 = 14.976R\n- Partials: +0.44R; scratches: 0R\n- Gross profit = 36.72 + 0.44 = 37.16R\n- Gross loss = 14.976R\n- Net = 37.16 \u2212 14.976 = 22.184R\n- Trades check: 80 + 36 + 7 + 28 = 151 \u2713\n\n**Expectancy:**\n22.184 / 151 = **0.147R per trade**\n\n**Profit factor:**\n37.16 / 14.976 = **2.48**",
+   "latency_s": 61.6,
+   "thinking_chars": 2025,
+   "tokens_est": 591,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "med_b1",
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Rationale:** Double bubble **without** distal gas = *complete* duodenal o\nobstruction \u2192 most likely **duodenal atresia** (vs. volvulus, which has dis\ndistal gas and needs urgent laparotomy). Atresia is not a surgical emergenc\nemergency: stabilize with NG/OGT decompression, correct electrolytes/fluids\nelectrolytes/fluids, and screen for associated anomalies (cardiac echo for \nDown syndrome, VACTERL) before duodenoduodenostomy.\n\n- **A/C)** Contrast enema/biopsy are for distal obstruction (Hirschsprung, \natresia with microcolon) \u2014 not needed here.\n- **D)** Urgent laparotomy is for malrotation/volvulus (distal gas present,\npresent, sick baby).\n- **E)** No role for observation in complete obstruction.",
+   "latency_s": 5.9,
+   "thinking_chars": 2269,
+   "tokens_est": 754,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "glm-5.3",
+   "task": "long_b1",
+   "text": "A quasi-identifier is a field that doesn't name a patient on its own but ca\ncan single them out in context. Your NICU may admit only a handful of 24-we\n24-week infants per year, and very few die. Combine gestational age with th\nthe March 4 death date and anyone with unit knowledge\u2014staff, a parent brows\nbrowsing an audit summary, a colleague\u2014can deduce exactly which baby this w\nwas. Small-cell data functions as identification even without name or MRN. \nThat's why the date must be truncated to month or year, the gestational age\nage bucketed, or the record suppressed. Treat any rare combination in a sma\nsmall cohort as identifying, because it is.",
+   "latency_s": 3.9,
+   "thinking_chars": 838,
+   "tokens_est": 372,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s):\n    k = 2  # at most k distinct characters\n    count = {}\n    left = 0\n    best = 0\n    for right, c in enumerate(s):\n        count[c] = count.get(c, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "latency_s": 14.4,
+   "thinking_chars": 4046,
+   "tokens_est": 1111,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "trade_b1",
+   "text": "**Totals**\n- Gross win: 80 \u00d7 0.459 = 36.72 R; partials: +0.44 R \u2192 37.16 R\n- Gross loss: 36 \u00d7 (\u22120.416) = \u221214.976 R\n- Net: 37.16 \u2212 14.976 = **+22.184 R** (28 scratches contribute 0)\n\n**Expectancy per trade**\n22.184 \u00f7 151 = **+0.1469 R per trade** (~0.147R)\n\n**Profit factor**\n37.16 \u00f7 14.976 = **2.481**\n\n(Trade count check: 80 + 36 + 7 + 28 = 151 \u2713)",
+   "latency_s": 7.0,
+   "thinking_chars": 721,
+   "tokens_est": 267,
+   "correctness": 0.5,
+   "token_eff": 1.0
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "med_b1",
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\nDouble bubble **without distal gas** in a term neonate with bilious emesis \n= duodenal atresia. Place an orogastric tube for decompression, evaluate fo\nfor associated anomalies (cardiac, Down syndrome, VACTERL), then proceed to\nto duodenoduodenostomy.\n\n(Contrast enema is only needed if distal gas is present \u2014 to rule out malro\nmalrotation/volvulus or second atresia.)",
+   "latency_s": 3.1,
+   "thinking_chars": 778,
+   "tokens_est": 296,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "long_b1",
+   "text": "A quasi-identifier is a data point that isn't a name but, alone or combined\ncombined, can identify a specific person. In a small NICU, very few babies \nare born at 24 weeks' gestation, and fewer still die on any given date. Com\nCombining gestational age, date of death, and outcome narrows the cohort to\nto essentially one baby. Anyone with ward knowledge\u2014staff, families of neig\nneighbouring cots\u2014can identify the infant and family from an audit table wi\nwithout a name or hospital number. That defeats the purpose of anonymisatio\nanonymisation and risks breaching confidentiality and Caldicott/GDPR princi\nprinciples. In small-cohort audits, coarsen such details: widen gestational\ngestational age bands, report deaths by month or quarter, and aggregate whe\nwhere numbers are small.",
+   "latency_s": 3.9,
+   "thinking_chars": 695,
+   "tokens_est": 369,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s):\n    k = 2\n    count = {}\n    left = 0\n    max_len = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > k:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "latency_s": 2.3,
+   "thinking_chars": 818,
+   "tokens_est": 308,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "trade_b1",
+   "text": "Total R:\n\n- Wins: \\(80 \\times 0.459 = 36.72\\)\n- Losses: \\(36 \\times -0.416 = -14.976\\)\n- Partial wins: \\(+0.44\\)\n- Scratches: \\(0\\)\n\nNet total:  \n\\[\n36.72 - 14.976 + 0.44 = 22.184\n\\]\n\nExpectancy per trade:  \n\\[\n\\frac{22.184}{151} = 0.1469R\n\\]\n\nProfit factor:  \n\\[\n\\frac{36.72 + 0.44}{14.976} = \\frac{37.16}{14.976} = 2.48\n\\]\n\n**Expectancy: +0.147R per trade**  \n**Profit factor: 2.48**",
+   "latency_s": 2.8,
+   "thinking_chars": 1059,
+   "tokens_est": 360,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "med_b1",
+   "text": "B) OGT + duodenoduodenostomy workup  \n(Double bubble with no distal gas suggests duodenal atresia; initial step i\nis decompression and surgical workup, not emergent laparotomy.)",
+   "latency_s": 8.9,
+   "thinking_chars": 4594,
+   "tokens_est": 1192,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "long_b1",
+   "text": "A 24-week gestational age with death on March 4 is a quasi-identifier becau\nbecause in a small NICU audit, that combination almost certainly matches on\none infant. Even without name or medical record number, any staff member wh\nwho worked that week can recognize the patient from those two details alone\nalone. The date and extreme prematurity are rare enough together that they \nfunction like a fingerprint. Releasing that row in a small dataset breaks a\nanonymity and risks re-identifying the baby and family, so you must suppres\nsuppress or generalize those fields before sharing the audit.",
+   "latency_s": 2.5,
+   "thinking_chars": 639,
+   "tokens_est": 307,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "code_b1",
+   "text": "def solve(s):\n    count = {}\n    left = 0\n    best = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > 2:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "latency_s": 5.4,
+   "thinking_chars": 1055,
+   "tokens_est": 357,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "trade_b1",
+   "text": "Gross wins: \\(80 \\times 0.459 = 36.72R\\)  \nPartial wins: \\(+0.44R\\)  \nGross profit: \\(36.72 + 0.44 = 37.16R\\)\n\nGross losses: \\(36 \\times 0.416 = 14.976R\\)\n\nNet P&L: \\(37.16 - 14.976 = 22.184R\\)\n\nExpectancy per trade:  \n\\[\n\\frac{22.184}{151}=0.1469R\n\\]\n\nProfit factor:  \n\\[\n\\frac{37.16}{14.976}=2.4813\n\\]\n\n**Expectancy: +0.1469R per trade**  \n**Profit factor: 2.48**",
+   "latency_s": 15.9,
+   "thinking_chars": 2499,
+   "tokens_est": 715,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "med_b1",
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\nClassic **double bubble with no distal gas** suggests **duodenal atresia**.\natresia**. Next: **OG/NG decompression, IV fluids, evaluate associated anom\nanomalies**, then proceed to **duodenoduodenostomy**.",
+   "latency_s": 22.0,
+   "thinking_chars": 5431,
+   "tokens_est": 1419,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "long_b1",
+   "text": "A 24-week GA baby who died March 4 is a quasi-identifier because those deta\ndetails are rare and precise. In a small NICU audit, few infants share that\nthat gestational age or death date, so combining them can uniquely pick out\nout one patient. Staff or others with local knowledge can then infer the ba\nbaby\u2019s identity and health information even without name or MRN. Treat this\nthis combination as identifiable; report it only in aggregate or with dates\ndates and extreme gestational ages masked.",
+   "latency_s": 14.8,
+   "thinking_chars": 1367,
+   "tokens_est": 465,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s: str) -> int:\n    counts = {}\n    left = 0\n    max_len = 0\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n        while len(counts) > 2:\n            counts[s[left]] -= 1\n            if counts[s[left]] == 0:\n                del counts[s[left]]\n            left += 1\n        max_len = max(max_len, right - left + 1)\n    return max_len\n```",
+   "latency_s": 12.0,
+   "thinking_chars": 0,
+   "tokens_est": 99,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "trade_b1",
+   "text": "### Arithmetic\n\n* **Gross Profit:** $(80 \\times 0.459\\text{R}) + 0.44\\text{R} = 36.72\\text{R} + 0.44\\text{R} = 37.16\\text{R}$\n* **Gross Loss:** $36 \\times 0.416\\text{R} = 14.976\\text{R}$\n* **Net R:** $37.16\\text{R} - 14.976\\text{R} = 22.184\\text{R}$\n\n---\n\n### Results\n\n* **Expectancy per Trade:**  \n  $$\\frac{22.184\\text{R}}{151} \\approx \\mathbf{+0.147\\text{R}}$$\n\n* **Profit Factor:**  \n  $$\\frac{37.16\\text{R}}{14.976\\text{R}} \\approx \\mathbf{2.48}$$",
+   "latency_s": 12.6,
+   "thinking_chars": 0,
+   "tokens_est": 113,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "med_b1",
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Explanation:**  \nThe \"double bubble\" sign with no distal air is pathognomonic for **duodenal atresia**. Duodenal atresia is not an immediate surgical emergency requiring emergency crash laparotomy; the correct next steps are gastric decompression (OGT/NGT), fluid resuscitation, and preoperative workup (including screening for associated anomalies such as Trisomy 21 and congenital heart defects) prior to definitive surgical repair (duodenoduodenostomy).",
+   "latency_s": 10.3,
+   "thinking_chars": 0,
+   "tokens_est": 125,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "long_b1",
+   "text": "A quasi-identifier is indirect data that, when combined with external context, uniquely pinpoints an individual. In a small NICU, delivering at 24 weeks is an uncommon clinical event, and neonatal mortality is even rarer. Pairing an exact gestational age of 24 weeks with a specific date of death (March 4) reduces the cohort size to a sample of one. Anyone with access to unit rosters, shift handover sheets, obituaries, or staff recall can instantly re-identify the infant and family. Even without a name or hospital number, this combination breaches patient anonymity. You must remove exact dates and aggregate gestational ages into wider bands to ensure genuine de-identification.",
+   "latency_s": 16.2,
+   "thinking_chars": 0,
+   "tokens_est": 171,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "kimi-k3",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s):\n    from collections import defaultdict\n    count = defaultdict(int)\n    left = best = 0\n    for right, c in enumerate(s):\n        count[c] += 1\n        while len(count) > 2:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "latency_s": 4.5,
+   "thinking_chars": 854,
+   "tokens_est": 309,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "kimi-k3",
+   "task": "trade_b1",
+   "text": "**Gross profit:** (80 \u00d7 0.459) + 0.44 = 36.72 + 0.44 = **+37.16R**\n\n**Gross loss:** 36 \u00d7 0.416 = **14.976R**\n\n**Net R:** 37.16 \u2212 14.976 = **22.184R**\n\n**Expectancy per trade:** 22.184 / 151 = **\u2248 +0.147R**\n\n**Profit factor:** 37.16 / 14.976 = **\u2248 2.48**\n\nCheck: 80 + 36 + 7 + 28 = 151 \u2713",
+   "latency_s": 6.9,
+   "thinking_chars": 729,
+   "tokens_est": 254,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "kimi-k3",
+   "task": "med_b1",
+   "text": "**B) Orogastric decompression and preoperative workup for duodenoduodenosto\nduodenoduodenostomy** \u2014 findings indicate **duodenal atresia**.",
+   "latency_s": 5.7,
+   "thinking_chars": 1277,
+   "tokens_est": 354,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "kimi-k3",
+   "task": "long_b1",
+   "text": "A quasi-identifier is data that doesn't name a patient but singles them out\nout when combined with other facts. In a small NICU, 24-week infants are fe\nfew and deaths are fewer, and staff, other families, and the community know\nknow which baby died on a given date. Gestational age plus date of death pl\nplus the unit therefore behaves like a name: anyone with ordinary knowledge\nknowledge of the ward can link that audit row to one identifiable child and\nand family, breaching confidentiality even though names and record numbers \nwere removed. Small denominators make rare events unique. Present such audi\naudits with banded gestation, shifted or banded dates, and suppressed small\nsmall cells.",
+   "latency_s": 9.2,
+   "thinking_chars": 2258,
+   "tokens_est": 738,
+   "correctness": null,
+   "token_eff": null
+  }
+ ]
+}

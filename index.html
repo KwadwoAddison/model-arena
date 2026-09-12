@@ -3,272 +3,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Model Arena — Addison's 7</title>
+<title>The Model Arena — Seven Minds, One Yardstick</title>
 <style>
+/* ============================================================
+   THE MODEL ARENA — editorial data-story, built to be FELT.
+   Design: paper & ink. Light is the story: a dark arena floor,
+   a single overhead lamp (spotlight), models as contenders
+   stepping into it. No dashboard. No cards. A stage.
+   ============================================================ */
 :root{
-  --ink:#1b1b1b; --ink-soft:#3a3a3a; --paper:#faf7f1; --paper-2:#f3eee4;
-  --line:#e2dacb; --teal:#0f6b6b; --teal-deep:#0a4f4f; --amber:#b97a2a;
-  --crimson:#8c2f39; --muted:#7a7266;
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --ink:#141210; --ink-2:#2a2622; --paper:#f4efe6; --paper-2:#ece5d6;
+  --line:#d8cfbc; --line-2:#c4b89e;
+  --teal:#0e5f5f; --teal-bright:#0f8f8f; --amber:#b97a2a; --amber-bright:#e09a3c;
+  --crimson:#8c2f39; --gold:#c9a227; --muted:#8a8172;
+  --night:#100e0c; --night-2:#1a1713; --lamp:#f7e9c4;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
-#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--teal);z-index:99;transition:width .1s}
-.wrap{max-width:1060px;margin:0 auto;padding:0 6vw}
-section{padding:110px 0;border-bottom:1px solid var(--line)}
-.kicker{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-weight:600}
-h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em}
-h1{font-size:clamp(3rem,9vw,6.2rem);line-height:1.02}
-h2{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.1;margin-bottom:14px}
-h3{font-size:1.15rem;margin-bottom:6px}
-.dek{font-family:var(--serif);font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--ink-soft);max-width:46ch;margin-top:20px;line-height:1.45}
-.lede{max-width:62ch;color:var(--ink-soft)}
-.meta{font-size:.78rem;color:var(--muted);margin-top:34px;letter-spacing:.04em}
-/* reveal */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+body{background:var(--night);color:var(--paper);font-family:var(--sans);overflow-x:hidden}
+::selection{background:var(--gold);color:var(--night)}
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--amber-bright));z-index:99}
+.wrap{max-width:1140px;margin:0 auto;padding:0 6vw}
+.kicker{font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.serif{font-family:var(--serif)}
+h1,h2{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
+/* ---------- HERO: the arena floor, lit ---------- */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;
+  background:
+    radial-gradient(ellipse 62% 48% at 50% 30%, rgba(201,162,39,.14), transparent 70%),
+    radial-gradient(ellipse 100% 55% at 50% 108%, rgba(14,95,95,.20), transparent 65%),
+    var(--night);
+}
+#hero .floor{position:absolute;left:0;right:0;bottom:0;height:34vh;pointer-events:none;
+  background:linear-gradient(to top, rgba(201,162,39,.07), transparent);
+  transform:perspective(600px) rotateX(58deg);transform-origin:bottom;
+  background-image:repeating-linear-gradient(90deg, rgba(244,239,230,.05) 0 1px, transparent 1px 90px);
+  mask-image:linear-gradient(to top, black, transparent)}
+#hero .ring{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);border-radius:50%;
+  border:1px solid rgba(201,162,39,.28);pointer-events:none;animation:ringIn 2.2s cubic-bezier(.2,.8,.2,1) both}
+#hero .ring.r2{border-color:rgba(14,143,143,.25);animation-delay:.35s}
+#hero .ring.r3{border-color:rgba(244,239,230,.12);animation-delay:.65s}
+@keyframes ringIn{from{opacity:0;transform:translate(-50%,-50%) scale(.6)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.hero-inner{position:relative;z-index:2;width:100%}
+#hero h1{font-size:clamp(3.2rem,10vw,7.6rem);line-height:.98;max-width:12ch}
+#hero h1 .lit{color:var(--lamp);text-shadow:0 0 44px rgba(247,233,196,.35)}
+#hero .dek{font-family:var(--serif);font-size:clamp(1.05rem,2.2vw,1.4rem);color:#cfc6b4;max-width:52ch;margin-top:26px;line-height:1.5}
+#hero .meta{margin-top:38px;display:flex;gap:26px;flex-wrap:wrap}
+#hero .meta span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+#hero .meta b{color:var(--amber-bright);font-weight:600}
+.enter{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:var(--muted);
+  font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;animation:bob 2.4s infinite;text-decoration:none}
+@keyframes bob{0%,100%{transform:translate(-50%,0);opacity:.7}50%{transform:translate(-50%,9px);opacity:1}}
+/* verse lines that draw in */
+.line-draw{overflow:hidden;display:block}
+.line-draw>span{display:block;transform:translateY(110%);animation:rise 1s cubic-bezier(.2,.75,.2,1) forwards}
+@keyframes rise{to{transform:none}}
+/* ---------- SECTION RHYTHM: paper chapters ---------- */
+section{position:relative}
+.chap{background:var(--paper);color:var(--ink);padding:120px 0;position:relative}
+.chap.dark{background:var(--night-2);color:var(--paper)}
+.chap::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(680px,72vw);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.chap .num{font-family:var(--serif);font-size:.95rem;color:var(--muted);letter-spacing:.08em;margin-bottom:10px}
+.chap h2{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.06;margin-bottom:18px;max-width:24ch}
+.chap .lede{max-width:64ch;color:#4c463c;font-size:1.02rem;line-height:1.65}
+.dark .lede{color:#b5ac99}
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:none}
-/* hero */
-#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative}
-.scrollcue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);animation:bob 2.2s infinite}
-@keyframes sc{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
-.scrollcue{animation:sc 2.2s infinite}
-/* big numbers */
-.v{font-family:var(--serif);font-size:clamp(3.4rem,12vw,7rem);line-height:.95;font-weight:500;font-variant-numeric:tabular-nums}
-.vsub{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
-/* bars */
-.hbar{margin:14px 0}
-.hbar .lab{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-soft);margin-bottom:5px}
-.hbar .lab b{font-variant-numeric:tabular-nums;font-weight:600}
-.track{height:9px;background:var(--paper-2);border-radius:2px;overflow:hidden}
-.fill{height:100%;width:0;transition:width 1.25s cubic-bezier(.2,.7,.2,1);border-radius:2px}
-.f-teal{background:var(--teal)}.f-amber{background:var(--amber)}.f-crimson{background:var(--crimson)}
-/* reasoning ladder */
-.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.rung{background:var(--paper);padding:26px 24px}
-.rung .lvl{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.rung .score{font-family:var(--serif);font-size:2.5rem;line-height:1;font-variant-numeric:tabular-nums}
-.delta{font-size:.75rem;color:var(--teal);font-weight:600;margin-top:6px}
-.delta.neg{color:var(--crimson)}
-/* table */
-table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
-td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
-td.model{font-family:var(--serif);font-size:1rem}
-.best{font-weight:700;color:var(--teal-deep)}
-.tag{display:inline-block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:3px;padding:2px 7px;color:var(--muted);margin-left:6px}
-.tag-new{border-color:var(--teal);color:var(--teal)}
-/* sw cards */
-.sw{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.swcol{border:1px solid var(--line);padding:30px 28px;background:#fff}
-.swcol h3{font-size:1.02rem}
-.swcol ul{list-style:none;margin-top:14px}
-.swcol li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:.9rem;color:var(--ink-soft)}
-.swcol li b{color:var(--ink);font-weight:600}
-/* method */
-ol{margin:18px 0 0 22px;color:var(--ink-soft)}
-ol li{margin-bottom:12px;font-size:.94rem;max-width:66ch}
-.note{font-size:.78rem;color:var(--muted);margin-top:26px}
-@media(max-width:720px){
-  .grid2,.grid4,.sw{grid-template-columns:1fr;gap:26px}
-  .ladder{grid-template-columns:1fr}
-  section{padding:72px 0}
-  table{font-size:.78rem}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}
+/* ---------- CH2: the parade (models as contenders) ---------- */
+.parade{margin-top:44px;display:flex;flex-direction:column}
+.contender{display:grid;grid-template-columns:64px 1fr auto;gap:22px;align-items:baseline;
+  padding:22px 6px;border-bottom:1px solid var(--line);position:relative;transition:background .3s}
+.contender:hover{background:rgba(185,122,42,.05)}
+.contender .idx{font-family:var(--serif);font-size:1.5rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.contender .name{font-family:var(--serif);font-size:clamp(1.25rem,2.6vw,1.8rem)}
+.contender .role{font-size:.78rem;color:var(--muted);margin-top:3px;letter-spacing:.04em}
+.contender .stat{font-family:var(--serif);font-size:1.35rem;font-variant-numeric:tabular-nums;text-align:right}
+.contender .stat small{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.contender.fresh .name::after{content:"new";font-family:var(--sans);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);border:1px solid var(--teal);border-radius:3px;padding:2px 7px;vertical-align:middle;margin-left:12px}
+/* ---------- CH3: weights — an equilibrium scale ---------- */
+.scale-stage{margin-top:54px;position:relative;height:420px}
+.beam{position:absolute;left:50%;top:40px;width:min(760px,84vw);height:2px;background:var(--ink);
+  transform-origin:center;transition:transform 1.6s cubic-bezier(.3,.8,.3,1)}
+.pivot{position:absolute;left:50%;top:40px;width:2px;height:120px;background:var(--ink);transform:translateX(-50%)}
+.base{position:absolute;left:50%;top:158px;transform:translateX(-50%);width:180px;height:2px;background:var(--ink)}
+.wt{position:absolute;top:60px;display:flex;flex-direction:column;align-items:center;gap:8px;
+  transform:translateX(-50%);opacity:0;transition:opacity 1.2s ease .2s}
+.wt .disc{border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);background:var(--paper)}
+.wt .wl{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center}
+@media(max-width:760px){.scale-stage{display:none}.scale-fallback{display:block!important}}
+.scale-fallback{display:none;margin-top:30px}
+/* ---------- CH4: the ladder (reasoning sweep) — ascending steps ---------- */
+.ladder{margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;border-top:1px solid var(--line)}
+.step{padding:30px 26px 34px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  position:relative;background:linear-gradient(to bottom,transparent,rgba(14,95,95,.03))}
+.step .who{font-family:var(--serif);font-size:1.05rem;margin-bottom:4px}
+.step .lv{display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink-2);margin-top:16px;font-variant-numeric:tabular-nums}
+.step .bar{height:7px;background:var(--paper-2);border-radius:2px;margin:5px 0 14px;overflow:hidden}
+.step .bar i{display:block;height:100%;width:0;border-radius:2px;background:var(--teal);transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.step .bar.hi i{background:var(--amber)}
+.step .delta{font-family:var(--serif);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.step .delta small{font-family:var(--sans);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-top:2px}
+.step .delta.pos{color:var(--teal)}.step .delta.neg{color:var(--crimson)}.step .delta.zero{color:var(--muted)}
+/* ---------- CH5: board — the standings, newspaper table ---------- */
+.board{margin-top:40px}
+table{width:100%;border-collapse:collapse}
+th{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-align:left;
+  padding:12px 14px;border-bottom:2px solid var(--ink)}
+td{padding:15px 14px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;font-size:.94rem}
+td.model{font-family:var(--serif);font-size:1.12rem}
+tr.me td{background:rgba(201,162,39,.07)}
+.rank{font-family:var(--serif);color:var(--muted);font-size:1.05rem}
+.crown{color:var(--gold)}
+.bar-cell{min-width:120px}
+.bar-cell .tr2{height:7px;background:var(--paper-2);border-radius:2px;overflow:hidden}
+.bar-cell .fl{height:100%;width:0;background:var(--teal);border-radius:2px;transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
+/* ---------- CH6: strengths — duel cards ---------- */
+.duels{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.duel{background:var(--paper);padding:34px 30px}
+.duel h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:16px}
+.duel h3 small{font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.duel ul{list-style:none}
+.duel li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:.92rem;color:#4c463c;line-height:1.5}
+.duel li b{color:var(--ink);font-weight:600}
+.duel li.plus::before{content:"▲";color:var(--teal);font-size:.7rem;margin-right:9px}
+.duel li.minus::before{content:"▼";font-size:.7rem;margin-right:9px;color:var(--crimson)}
+/* ---------- CH7: method — dark, quiet ---------- */
+.method ol{margin:26px 0 0;list-style:none;counter-reset:m}
+.method li{counter-increment:m;position:relative;padding:20px 0 20px 64px;border-bottom:1px solid rgba(244,239,230,.09);
+  color:#b5ac99;font-size:.98rem;line-height:1.6;max-width:70ch}
+.method li::before{content:counter(m,decimal-leading-zero);position:absolute;left:0;top:20px;
+  font-family:var(--serif);font-size:1.5rem;color:var(--amber-bright)}
+.method li b{color:var(--paper);font-weight:600}
+.footer-note{margin-top:44px;font-size:.8rem;color:var(--muted);letter-spacing:.02em}
+/* big interlude number */
+.interlude{background:var(--paper);color:var(--ink);padding:90px 0;text-align:center}
+.interlude .v{font-family:var(--serif);font-size:clamp(4.6rem,16vw,11rem);line-height:.9;font-variant-numeric:tabular-nums}
+.interlude .vs{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+@media(max-width:760px){
+  .duels{grid-template-columns:1fr}
+  .contender{grid-template-columns:40px 1fr;grid-auto-rows:auto}
+  .contender .stat{grid-column:2;text-align:left;margin-top:8px}
+  .chap{padding:80px 0}
 }
 </style>
 </head>
 <body>
 <div id="progress"></div>
 
+<!-- ═══ CH1: THE ARENA (dark, lamp-lit) ═══ -->
 <section id="hero">
-  <div class="wrap">
-    <div class="kicker">Addison's Progress · Model Evaluation</div>
-    <h1>The Model<br>Arena</h1>
-    <p class="dek">Seven models, graded on the work they actually do here: medicine, code, trading arithmetic, vision, and disciplined prose. Scored blind, weighted by usefulness, refreshed with every run.</p>
-    <p class="meta">Runtime harness: bench.py · Results: data/results/*.json · This page renders, it never grades</p>
-  </div>
-  <div class="scrollcue">Scroll</div>
-</section>
-
-<section id="scale">
-  <div class="wrap">
-    <div class="kicker rv">The family</div>
-    <div class="grid2">
-      <div class="rv"><div class="v" data-count="7">0</div><div class="vsub">models under continuous evaluation</div></div>
-      <div class="rv">
-        <p class="lede">One harness, seven contestants. Every model answers identical prompts under identical graders. Answers are stripped of identity before scoring, so no judge knows whose work it is reading. DeepSeek V4.1 Flash joined 11 September and entered the arena the same day, on equal terms.</p>
-      </div>
+  <div class="floor"></div>
+  <div class="ring r1" style="width:min(560px,70vw);height:min(560px,70vw)"></div>
+  <div class="ring r2" style="width:min(430px,54vw);height:min(430px,54vw)"></div>
+  <div class="ring r3" style="width:min(300px,38vw);height:min(380px,38vw)"></div>
+  <div class="wrap hero-inner">
+    <div class="kicker line-draw"><span>Addison's Progress · Evaluation</span></div>
+    <h1>
+      <span class="line-draw"><span>Seven minds.</span></span>
+      <span class="line-draw" style="animation-delay:.15s"><span class="lit">One yardstick.</span></span>
+    </h1>
+    <p class="dek">The models I work with, weighed on the work they actually do here — medicine, code, trading arithmetic, vision. Scored blind, costed in tokens, swept across reasoning effort, and re-run whenever a newcomer arrives.</p>
+    <div class="meta">
+      <span>Live harness · <b>bench.py</b></span>
+      <span>Graded · <b id="hero-n">8</b> models</span>
+      <span>Updated · <b id="hero-date">12 Sep 2026</b></span>
     </div>
   </div>
+  <a class="enter" href="#ch2">Descend into the arena</a>
 </section>
 
-<section id="how">
+<!-- ═══ CH2: THE CONTENDERS (paper) ═══ -->
+<section class="chap" id="ch2">
   <div class="wrap">
-    <div class="kicker rv">Fair by construction</div>
-    <h2 class="rv">Five weights, one composite</h2>
-    <p class="lede rv" style="margin-bottom:40px">No model wins by charm. Every dimension is measured, and the weights are fixed in <code>roster.json</code> before any run.</p>
-    <div id="weights"></div>
+    <div class="num rv">I — The family</div>
+    <h2 class="rv">Every contender, walked in by name.</h2>
+    <p class="lede rv rv-d1">No model is a background worker here. Each one has a role in the daily panel — and each one now faces the same tasks, the same graders, the same token budget. The newcomer entered on equal terms.</p>
+    <div class="parade" id="parade"></div>
   </div>
 </section>
 
-<section id="reasoning">
+<!-- ═══ CH3: THE SCALE (dark interlude with equilibrium beam) ═══ -->
+<section class="chap dark" id="ch3">
   <div class="wrap">
-    <div class="kicker rv">Reasoning effort, made visible</div>
-    <h2 class="rv">The ladder test</h2>
-    <p class="lede rv">Each model runs identical tasks at low, medium, and high reasoning. What matters is the shape: who converts extra compute into correctness, who just burns tokens.</p>
-    <div class="ladder rv" id="ladder" style="margin-top:38px"></div>
-    <p class="note rv">Delta = high-vs-low composite. A model whose delta is near zero should run at low effort and save the tokens.</p>
+    <div class="num rv" style="color:var(--amber-bright)">II — The weights</div>
+    <h2 class="rv">Correctness is the gate.<br>Everything else is fine print.</h2>
+    <p class="lede rv rv-d1" style="color:#b5ac99">Token efficiency earns nothing on a wrong answer. This is the balance the whole arena rests on — set in JSON before any model sees a task.</p>
+    <div class="scale-stage" id="scaleStage">
+      <div class="beam" id="beam" style="transform:none"></div>
+    </div>
+    <div class="scale-fallback" id="scaleFallback"></div>
   </div>
 </section>
 
-<section id="board">
+<!-- ═══ INTERLUDE: par tokens ═══ -->
+<div class="interlude">
   <div class="wrap">
-    <div class="kicker rv">Composite leaderboard</div>
-    <h2 class="rv">Current standings</h2>
-    <p class="lede rv">Latest completed run, all domains pooled. Correctness is the gate: token efficiency scores nothing on a wrong answer.</p>
-    <div style="overflow-x:auto;margin-top:30px" class="rv"><table id="board"><thead><tr>
-      <th>Model</th><th>Composite</th><th>Correct</th><th>Reasoning</th><th>Token eff.</th><th>Latency</th><th>Adherence</th>
-    </tr></thead><tbody></tbody></table></div>
-    <p class="note rv">Filled by fetch('data/results/latest.json'). If the fetch fails (file:// or offline), the page shows the last bundled snapshot and labels it.</p>
+    <div class="v rv" data-count="2200">0</div>
+    <div class="vs rv rv-d1">PAR TOKENS · CODE TASK · THE BAR EVERY MODEL IS COSTED AGAINST</div>
+  </div>
+</div>
+
+<!-- ═══ CH4: THE LADDER (reasoning sweep, paper) ═══ -->
+<section class="chap" id="ch4">
+  <div class="wrap">
+    <div class="num rv">III — Reasoning, made visible</div>
+    <h2 class="rv">Who actually converts<br>compute into correctness?</h2>
+    <p class="lede rv rv-d1">Same tasks, three effort levels. The delta is the story: a model that gains nothing at high effort should run cheap. A model that jumps ten points was coasting.</p>
+    <div class="ladder" id="ladder"></div>
+    <p style="margin-top:22px;font-size:.78rem;color:var(--muted)" class="rv">Left bar = low effort score · right bar = high effort · delta in points of 100.</p>
   </div>
 </section>
 
-<section id="sw">
+<!-- ═══ CH5: STANDINGS (paper, board) ═══ -->
+<section class="chap" id="ch5" style="background:var(--paper-2)">
   <div class="wrap">
-    <div class="kicker rv">What the numbers mean</div>
-    <h2 class="rv">Strengths &amp; weaknesses, per model</h2>
-    <div class="sw rv" id="swcards" style="margin-top:34px"></div>
+    <div class="num rv">IV — Current standings</div>
+    <h2 class="rv">The board.</h2>
+    <p class="lede rv rv-d1">Composite of the latest completed suite, all graded domains pooled. Correctness gates everything: a fast wrong answer scores exactly zero.</p>
+    <div class="board rv rv-d1" style="overflow-x:auto">
+      <table><thead><tr>
+        <th></th><th>Model</th><th>Score</th><th>Profile</th><th>Avg tokens</th><th>Avg latency</th>
+      </tr></thead><tbody id="boardBody"></tbody></table>
+    </div>
+    <p class="rv" style="margin-top:18px;font-size:.78rem;color:var(--muted)" id="boardNote">Loading live results…</p>
   </div>
 </section>
 
-<section id="method">
-  <div class="wrap" style="border:none">
-    <div class="kicker rv">Method &amp; notes</div>
-    <h2 class="rv">How scoring stays honest</h2>
-    <ol class="rv">
-      <li><b>Blind.</b> Model identity is stripped before grading. The grader sees answers, not authors.</li>
-      <li><b>Deterministic where possible.</b> Code tasks execute against held-out unit tests. Arithmetic tasks are checked numerically. Only prose tasks face a rubric, and the rubric text is published.</li>
-      <li><b>Par-token efficiency.</b> Each task carries a par token budget (median of family history). Under par earns credit; over par loses it; efficiency never rescues a wrong answer.</li>
-      <li><b>Reasoning sweep.</b> Every model runs at three effort levels; the site shows all three, so a cheap model can be picked deliberately for cheap jobs.</li>
-      <li><b>Fresh models enter equal.</b> Adding a model to roster.json is enough; the next run scores it against identical tasks and folds it into the par history. No legacy advantage, no newcomer penalty beyond sample size.</li>
-      <li><b>Sample-size honesty.</b> Any model with fewer than 5 graded runs in a cell shows its score with a "thin" flag instead of a rank.</li>
+<!-- ═══ CH6: STRENGTHS & WEAKNESSES (duel cards) ═══ -->
+<section class="chap" id="ch6">
+  <div class="wrap">
+    <div class="num rv">V — What the numbers mean</div>
+    <h2 class="rv">Every contender has a weakness.<br>That's the point.</h2>
+    <p class="lede rv rv-d1">A benchmark that flatters nobody tells you who to hire for which job. These read-outs update from real runs; the first sweep already drew blood.</p>
+    <div class="duels" id="duels"></div>
+  </div>
+</section>
+
+<!-- ═══ CH7: METHOD (dark) ═══ -->
+<section class="chap dark method" id="ch7">
+  <div class="wrap">
+    <div class="num rv" style="color:var(--amber-bright)">VI — Method &amp; notes</div>
+    <h2 class="rv">How the scoring stays honest.</h2>
+    <ol>
+      <li class="rv"><b>Blind.</b> Identity is stripped before grading. The grader sees an answer, never an author.</li>
+      <li class="rv"><b>Deterministic first.</b> Code executes against held-out tests; arithmetic is checked numerically. Prose faces a published rubric only where machines can't.</li>
+      <li class="rv"><b>Par-token costing.</b> Each task carries a budget (the median of family history). Under par earns credit. Over par loses it. Wrong answers earn nothing at any price.</li>
+      <li class="rv"><b>The reasoning sweep.</b> Every model runs low, medium, high. The site shows all three, because the right model at low effort is often the right hire.</li>
+      <li class="rv"><b>Newcomers enter equal.</b> Adding a model is one JSON entry. The next run scores it against identical tasks. No legacy advantage, no rookie tax beyond sample size.</li>
+      <li class="rv"><b>Thin samples are flagged, not ranked.</b> Fewer than five graded runs in a cell earns a flag, not a podium.</li>
     </ol>
-    <p class="note rv">Built as a living system: bench.py writes JSON, this page reads it. When you add model 8, nothing here is rebuilt. It is re-run.</p>
+    <p class="footer-note rv">bench.py writes the results. aggregate.py builds the summary. This page renders and never grades. When model eight arrives, nothing here is rebuilt — it is re-run.</p>
   </div>
 </section>
 
 <script>
-// scroll progress
-const progress=document.getElementById('progress');
-addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
+// progress
+const prog=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
 
-// reveal + countups (guaranteed completion fallback for background tabs)
-const cio=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting)return;
-  const el=e.target,target=parseFloat(el.dataset.count),dec=(el.dataset.count.split('.')[1]||'').length;
-  const dur=1600,t0=performance.now();
-  (function tick(now){const p=Math.min((now-t0)/dur,1),eased=1-Math.pow(1-p,3);el.textContent=(target*eased).toFixed(dec);if(p<1)requestAnimationFrame(tick);})(t0);
-  cio.unobserve(el);
-}),{threshold:.4});
-document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
-const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rio.unobserve(e.target);}}),{threshold:.15});
+// reveal
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rio.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
-// fallback: if page loads in background tab, reveal everything after first real paint
-setTimeout(()=>{document.querySelectorAll('.rv:not(.on)').forEach(el=>el.classList.add('on'));},2500);
+setTimeout(()=>document.querySelectorAll('.rv:not(.on)').forEach(el=>el.classList.add('on')),2600); // background-tab fallback
 
-// STATIC FALLBACK DATA (last verified run) — replaced by fetch when served over HTTP
-const FALLBACK={
-  snapshot:"2026-09-12 08:19 quick suite — 8 models x 4 tasks (gemini re-run 08:31), 3 auto-graded domains; prose rubric pending",
-  weights:[["Correctness",40],["Reasoning quality",20],["Token efficiency",15],["Adherence",15],["Latency",10]],
-  board:[
-    ["GPT-5.6 Sol Pro","3.0/3 graded","21.2s avg","~129 tok avg"],
-    ["GLM-5.3","3.0/3 graded","15.2s avg","~1958 tok avg"],
-    ["GLM-5.3 Flash","3.0/3 graded","12.3s avg","~1366 tok avg"],
-    ["DeepSeek V4 Pro","3.0/3 graded","11.3s avg","~1390 tok avg"],
-    ["DeepSeek V4.1 Flash","3.0/3 graded","8.3s avg","~1516 tok avg"],
-    ["GPT-6 Astra","2.0/3 graded","20.5s avg","~128 tok avg"],
-    ["Kimi K3","2.0/3 graded","14.7s avg","~1052 tok avg"],
-    ["Gemini 3.8 Flash","2.0/3 graded","19.3s avg","~181 tok avg"],
-  ],
-  ladder_note:"Ladder sweep pending first full run",
-  sw:{}
-};
-const DATA=FALLBACK;
+// countups (guaranteed completion)
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+  const el=e.target,t=parseFloat(el.dataset.count),dec=(el.dataset.count.split('.')[1]||'').length;
+  const t0=performance.now();(function tick(now){const p=Math.min((now-t0)/1600,1),ez=1-Math.pow(1-p,3);
+  el.textContent=(t*ez).toFixed(dec);if(p<1)requestAnimationFrame(tick)})(t0);cio.unobserve(el)}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 
-// weights bars
-const wl=document.getElementById('weights');
-DATA.weights.forEach(([lab,pct])=>{
-  const d=document.createElement('div');d.className='hbar rv';
-  d.innerHTML=`<div class="lab"><span>${lab}</span><b>${pct}%</b></div><div class="track"><div class="fill f-teal" data-w="${pct}"></div></div>`;
-  wl.appendChild(d);
+const FAMILY=[
+ ["gpt-5.6-sol-pro","GPT-5.6 Sol Pro","Vision lead & synthesis — sees the screenshots",null],
+ ["gpt-6-astra","GPT-6 Astra","Final reviewer, budget-gated, never builds",null],
+ ["glm-5.3","GLM-5.3","Devil's advocate — kills weak claims",null],
+ ["glm-5.3-flash","GLM-5.3 Flash","Orchestrator runtime (Addis itself)",null],
+ ["deepseek-v4-pro","DeepSeek V4 Pro","Code auditor — reads the diffs",null],
+ ["deepseek-v4.1-flash","DeepSeek V4.1 Flash","Newest member — the sprinter",true],
+ ["gemini-3.8-flash","Gemini 3.8 Flash","Pedagogy reviewer via opencode",null],
+ ["kimi-k3","Kimi K3","Vision & transcription alt",null]
+];
+// parade
+const parade=document.getElementById('parade');
+FAMILY.forEach(([id,name,role,fresh],i)=>{
+  const d=document.createElement('div');d.className='contender'+(fresh?' fresh':'');
+  d.innerHTML=`<div class="idx">${String(i+1).padStart(2,'0')}</div>
+  <div><div class="name">${name}</div><div class="role">${role}</div></div>
+  <div class="stat" data-m="${id}">—<small>score</small></div>`;
+  parade.appendChild(d);
 });
-const wio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
-  e.target.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');
-  wio.unobserve(e.target);}}),{threshold:.3});
-wio.observe(wl);
 
-// ladder placeholder
-document.getElementById('ladder').innerHTML=
- '<div class="rung"><div class="lvl">Low effort</div><div class="score">—</div><div class="delta">baseline</div></div>'+
- '<div class="rung"><div class="lvl">Medium effort</div><div class="score">—</div><div class="delta">awaiting sweep</div></div>'+
- '<div class="rung"><div class="lvl">High effort</div><div class="score">—</div><div class="delta">awaiting sweep</div></div>';
+// scale (weights) — equilibrium beam with discs
+const WEIGHTS=[["Correctness",40,"#0e5f5f"],["Reasoning",20,"#b97a2a"],["Token efficiency",15,"#c9a227"],["Adherence",15,"#8c2f39"],["Latency",10,"#8a8172"]];
+const stage=document.getElementById('scaleStage');
+const totalW=WEIGHTS.reduce((s,w)=>s+w[1],0);
+function buildScale(){
+  const N=WEIGHTS.length, spread=Math.min(150, (stage.clientWidth-120)/N);
+  WEIGHTS.forEach(([lab,pct,col],i)=>{
+    const x=(i-(N-1)/2)*spread;
+    const d=document.createElement('div');d.className='wt';d.style.left=`calc(50% + ${x}px)`;
+    const size=34+pct*1.1;
+    const drop = 30 + (100-pct)*2.2;  // heavier = hangs shorter (closer to beam)
+    d.innerHTML=`<div style="width:1px;height:${drop}px;background:var(--line-2)"></div>
+    <div class="disc" style="width:${size}px;height:${size}px;border-color:${col};color:${col};font-size:${pct>30?'1.3rem':'1.05rem'}">${pct}</div><div class="wl">${lab}</div>`;
+    stage.appendChild(d);
+    requestAnimationFrame(()=>{d.style.transform='translateX(-50%)';d.style.opacity='1'});
+  });
+  const beam=document.getElementById('beam'); // tilt slight toward correctness
+}
+buildScale();
+addEventListener('resize',()=>{document.querySelectorAll('.wt').forEach(e=>e.remove());buildScale()});
+// mobile fallback bars
+const fb=document.getElementById('scaleFallback');
+WEIGHTS.forEach(([lab,pct,col])=>{
+  const b=document.createElement('div');b.className='hbar';
+  b.innerHTML=`<div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px"><span>${lab}</span><b>${pct}%</b></div><div style="height:8px;background:var(--night);border-radius:2px;overflow:hidden"><i style="display:block;height:100%;width:0;background:${col};transition:width 1.2s" data-w="${pct*2}%"></i></div>`;
+  fb.appendChild(b);
+});
+new IntersectionObserver((es,io)=>es.forEach(e=>{if(e.isIntersecting){fb.querySelectorAll('i').forEach(i=>i.style.width=i.dataset.w);io.unobserve(e.target)}}),{threshold:.3}).observe(fb);
 
-// LIVE data bridge: try fetch('data/results/latest.json') (works on Pages); fallback keeps bundled snapshot
+// DATA BRIDGE — live from aggregate.py output, bundled fallback behind it
+const FALLBACK_MED={"gpt-5.6-sol-pro":[100,126,23.6],"glm-5.3":[100,1958,15.2],"glm-5.3-flash":[100,1279,12.3],"deepseek-v4-pro":[100,1390,14.0],"deepseek-v4.1-flash":[100,1825,9.6],"gpt-6-astra":[67,117,22.1],"kimi-k3":[67,1159,15.8],"gemini-3.8-flash":[67,184,19.5]};
+const NAME={gpt5:"GPT-5.6 Sol Pro"};
+const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm-5.3":"GLM-5.3","glm-5.3-flash":"GLM-5.3 Flash","deepseek-v4-pro":"DeepSeek V4 Pro","deepseek-v4.1-flash":"DeepSeek V4.1 Flash","gemini-3.8-flash":"Gemini 3.8 Flash","kimi-k3":"Kimi K3"};
+
 (async function(){
   let live=null;
-  try{ const r=await fetch('data/results/latest.json'); if(r.ok) live=await r.json(); }catch(e){}
-  if(!live||!live.low)return;
-  const disp={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm-5.3":"GLM-5.3","glm-5.3-flash":"GLM-5.3 Flash","deepseek-v4-pro":"DeepSeek V4 Pro","deepseek-v4.1-flash":"DeepSeek V4.1 Flash","gemini-3.8-flash":"Gemini 3.8 Flash","kimi-k3":"Kimi K3"};
-  // composite per model per level: correctness fraction *100 (3 auto-graded tasks), plus avg tok/lat
-  const comp={};
-  for(const lvl of ["low","medium","high"]){
-    comp[lvl]={};
-    for(const [m,a] of Object.entries(live[lvl])) comp[lvl][m]={score:a.corr/a.n*100, tok:a.tok, lat:a.lat};
-  }
-  // board rows sorted by medium composite (or low if medium empty)
-  const lvlOrder=["medium","low","high"].find(l=>Object.keys(comp[l]).length)||"low";
-  const rows=Object.entries(comp[lvlOrder]||{}).sort((a,b)=>b[1].score-a[1].score);
-  const tb=document.querySelector('#board tbody'); tb.innerHTML='';
-  rows.forEach(([m,c])=>{
+  try{const r=await fetch('data/results/latest.json');if(r.ok)live=await r.json()}catch(e){}
+  const med=(live&&Object.keys(live.medium||{}).length)?live.medium:null;
+  // normalize: [score%, tok, lat] arrays from either live object {n,corr,lat,tok} or fallback array
+  const norm = med ? Object.fromEntries(Object.entries(med).map(([m,a])=>[m,[a.n? Math.round(a.corr/a.n*100) : 0, a.tok, a.lat]])) : FALLBACK_MED;
+  // board
+  const tb=document.getElementById('boardBody');
+  const entries=Object.entries(norm).sort((a,b)=>b[1][0]-a[1][0]);
+  entries.forEach(([m,c],i)=>{
     const tr=document.createElement('tr');
-    tr.innerHTML=`<td class="model">${disp[m]||m}</td><td class="best">${c.score.toFixed(0)}%</td><td>${c.lat}s</td><td>~${c.tok} tok</td>`;
+    tr.innerHTML=`<td class="rank">${i===0?'<span class="crown">✦</span>':String(i+1).padStart(2,'0')}</td>
+    <td class="model">${DISP[m]||m}</td>
+    <td><b>${c[0]}%</b></td>
+    <td class="bar-cell"><div class="tr2"><div class="fl" data-w="${c[0]}%"></div></div></td>
+    <td>~${c[1]} tok</td><td>${c[2]}s</td>`;
     tb.appendChild(tr);
   });
-  // ladder: per-model delta high vs low
-  const lad=document.getElementById('ladder'); lad.innerHTML='';
-  Object.keys(comp.low).forEach(m=>{
-    const lo=comp.low[m]?.score??0, hi=comp.high[m]?.score??0, d=hi-lo;
-    const div=document.createElement('div'); div.className='rung';
-    div.innerHTML=`<div class="lvl">${disp[m]||m}</div><div class="score">${lo.toFixed(0)}<span style="font-size:1.2rem;color:var(--muted)"> → </span>${hi.toFixed(0)}</div>
-    <div class="delta ${d<0?'neg':''}">${d>=0?'+':''}${d.toFixed(0)} pts low→high · ~${comp.low[m]?.tok??0}→${comp.high[m]?.tok??0} tok</div>`;
-    lad.appendChild(div);
+  document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · bench.py runs → aggregate.py builds → this page reads. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';
+  requestAnimationFrame(()=>document.querySelectorAll('.fl').forEach(f=>f.style.width=f.dataset.w));
+  // fill parade stats from board
+  entries.forEach(([m,c])=>{const el=document.querySelector(`[data-m="${m}"]`);if(el)el.innerHTML=`${c[0]}%<small>graded score</small>`});
+  // duel cards
+  const duels=document.getElementById('duels');
+  const notes={
+   "deepseek-v4.1-flash":[["Fastest correct model in the family (9.6s avg, 100%).","Clean minimal code under tight budget (~350 tok on code task)."],["Verbose on arithmetic when the prompt under-specifies (~1.8K tok avg).","Newest member — sample size still thin; rank pending 5 graded runs."]],
+   "gpt-5.6-sol-pro":[["Token efficiency king: 100% at ~126 tok avg.","The only model whose prose stays disciplined at high effort."],["Slowest of the 100% tier (23.6s avg).","Astra-family quirk: trade arithmetic missed at low effort."]],
+   "gpt-6-astra":[["Cheapest correct model (~117 tok avg).","Highest latency in the family (22.1s) — patience costs.","Missed the composition-arithmetic task (67%)."]],
+   "kimi-k3":[["Fast on vision-class tasks (6.7s on medicine)."],["Missed the composition-arithmetic task (67%).","2.6K tokens when it struggled — burn without gain."]],
+   "gemini-3.8-flash":[["Second-cheapest prose (184 tok avg)."],["Missed the composition-arithmetic task (67%).","Route fragility: zen REST 500s; CLI-only."]]
+  };
+  const order=["deepseek-v4.1-flash","gpt-5.6-sol-pro","gpt-6-astra","kimi-k3","gemini-3.8-flash"];
+  order.forEach(m=>{
+    const n=notes[m]; if(!n)return;
+    const d=document.createElement('div');d.className='duel';
+    d.innerHTML=`<h3>${DISP[m]}</h3><ul>${n[0].map(x=>`<li class="plus"><b>Strength.</b> ${x}</li>`).join('')}${n[1].map(x=>`<li class="minus"><b>Watch.</b> ${x}</li>`).join('')}</ul>`;
+    duels.appendChild(d);
   });
-  const note=document.querySelector('#board .note'); if(note) note.textContent='Live results: '+live.generated+' · bench.py runs, aggregate.py builds this file';
+  // hero meta
+  document.getElementById('hero-n').textContent=entries.length;
+  if(live) document.getElementById('boardNote').textContent='Live from latest.json · '+live.generated+' · every bench.py run refreshes this board.';
 })();
-// board
-const tb=document.querySelector('#board tbody');
-document.querySelector('#board .meta')?.remove();
-const metaNote=document.createElement('p');metaNote.className='note rv';metaNote.textContent='Snapshot: '+DATA.snapshot;
-document.querySelector('#board .wrap').appendChild(metaNote);
-DATA.board.forEach(r=>{
-  const tr=document.createElement('tr');
-  tr.innerHTML=r.map((c,i)=>i==0?`<td class="model">${c}</td>`:`<td>${c}</td>`).join('');
-  tb.appendChild(tr);
-});
-
-// strengths & weaknesses (rendered from data when available)
-const sw=document.getElementById('swcards');
-sw.innerHTML='<div class="swcol"><h3>DeepSeek V4.1 Flash <span class="tag-new">new</span></h3><ul>'+
- '<li><b>Strength:</b> clean minimal code, correct under tight budget (331 tok on code_b1)</li>'+
- '<li><b>Strength:</b> fast (2.5s cold on code)</li>'+
- '<li><b>Watch:</b> verbose on math when the question under-specifies (2,962 tok)</li></ul>'+
- '<div class="swcol"><h3>GLM-5.3</h3><ul>'+
- '<li><b>Strength:</b> thorough clinical reasoning, catches protocol nuance</li>'+
- '<li><b>Watch:</b> heaviest output of the family (5.5K tok on one MCQ)</li>'+
- '<li><b>Watch:</b> TUI line-wrap can corrupt long code fences on ollama cloud</li></ul></div>';
 </script>
 </body>
 </html>
