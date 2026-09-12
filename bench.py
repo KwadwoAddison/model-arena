@@ -254,11 +254,12 @@ def grade_dispatch(task_id, text):
     return None
 
 # ---------------- runner ----------------
-def run(models=None, suite="quick", reasoning=None):
+def run(models=None, suite="quick", reasoning=None, only=None):
     if suite == "quick":
-        chosen = [k for k, v in TASKS.items() if v.get("suite", "full") == "full"][:0] or ["code_algo", "code_art", "trade_expect", "med_neo", "long_privacy"]
+        chosen = ["code_algo", "code_art", "trade_expect", "med_neo", "long_privacy"]
     else:
         chosen = list(TASKS)
+    if only: chosen = [t for t in chosen if t in only]
     stamp = datetime.datetime.now().strftime("%Y%m%d_%H%M")
     out = {"suite": suite, "reasoning": reasoning or "default", "stamp": stamp,
            "grading_rules": {tid: t.get("rule") for tid, t in TASKS.items()}, "runs": []}
@@ -302,5 +303,6 @@ def run(models=None, suite="quick", reasoning=None):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--suite", default="quick"); ap.add_argument("--models"); ap.add_argument("--reasoning")
+    ap.add_argument("--only", help="comma-separated task ids")
     args = ap.parse_args()
-    run(args.models.split(",") if args.models else None, args.suite, args.reasoning)
+    run(args.models.split(",") if args.models else None, args.suite, args.reasoning, args.only.split(",") if args.only else None)

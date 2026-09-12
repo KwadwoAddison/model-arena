@@ -22,8 +22,13 @@ for f in sorted(glob.glob(f"{BASE}/data/results/*.json")):
     except Exception: continue
     if d.get("grading_rules"): GRADING_RULES = d["grading_rules"]  # newest rules win
 
-def runs_for(eff):
-    """all runs across files whose reasoning == eff; 'default' counts as medium; full+quick merge"""
+CURRENT_TASKS = {"code_algo","code_pine","code_html","code_art","med_neo","med_surg","med_pharm",
+                 "trade_expect","trade_logic","trade_sizing","long_privacy","long_pf"}
+
+def runs_for(eff, current_only=True):
+    """runs per effort bucket; 'default' counts as medium; newest wins per model+task.
+    current_only=True restricts to the CURRENT 12-task suite (used for composite/domains).
+    Ladder (low/high) uses current_only=False so the historical sweep stays visible."""
     merged = {}
     for f in sorted(glob.glob(f"{BASE}/data/results/*_quick.json")) + sorted(glob.glob(f"{BASE}/data/results/*_full.json")):
         try: d = json.load(open(f))
@@ -33,8 +38,9 @@ def runs_for(eff):
         if r_eff != eff: continue
         for r in d["runs"]:
             if "error" in r or r.get("correctness") is None: continue
+            if current_only and r["task"] not in CURRENT_TASKS: continue
             key = (r["model"], r["task"])
-            merged[key] = r  # newest wins per model+task
+            merged[key] = r
     return list(merged.values())
 
 def agg(rows):
@@ -111,9 +117,10 @@ def art_artifacts(rows):
                                 "tok": r.get("tokens_est"), "lat": r.get("latency_s")}
     return arts
 
-med_rows, high_rows, low_rows = runs_for("medium"), runs_for("high"), runs_for("low")
+med_rows = runs_for("medium")                      # current suite (composite basis)
+high_rows, low_rows = runs_for("high", False), runs_for("low", False)  # sweep ladder (historical tasks ok)
 med, high, low = agg(med_rows), agg(high_rows), agg(low_rows)
-per_dom = domain_breakdown(med_rows + high_rows + low_rows)
+per_dom = domain_breakdown(med_rows)  # medium-only: composite correctness basis (no effort double-count)
 bw = best_worst(per_dom)
 comp = composite(med, high, low, med)
 arts = art_artifacts(med_rows + high_rows)

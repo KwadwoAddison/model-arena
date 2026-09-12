@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-12T09:16:28",
+ "generated": "2026-09-12T11:08:36",
  "weights": {
   "correctness": 0.4,
   "reasoning": 0.2,
@@ -7,8 +7,21 @@
   "latency": 0.1,
   "adherence": 0.15
  },
- "grading_rules": {},
- "par": 1219.0,
+ "grading_rules": {
+  "code_algo": "Code executed against 7 fixed secret cases (incl. edge cases). 1.0 = all pass, 0.5 = \u22655/7, else 0.",
+  "code_pine": "Structural checks, each weighted 0.2: defines f_room(highs, lows, atr); uses pivothigh/pivotlow; uses ta.atr or atr param; no request.security (lookahead ban); returns a float expression.",
+  "code_html": "Structural checks, 0.2 each: single file, IntersectionObserver present, count-up targets 0 from 61, background-safe mechanism (rAF loop or visibilitychange guard), zero external URLs.",
+  "code_art": "Deterministic SVG inspection, 0.2 each: parses as valid XML; \u22655 distinct fills (skin/hair/lips/eyes/background); bilateral symmetry (mirrored element pairs around centre); facial stack order (eye shapes above nose region above mouth region); uses gradients or \u22653 shading opacities.",
+  "med_neo": "Exact key match: B (duodenal obstruction workup). One letter, blind key.",
+  "med_surg": "Exact key match: D (both cystic structures, nothing else).",
+  "med_pharm": "Exact key match: C (hold + assess, classic citrate toxicity sign).",
+  "trade_expect": "Both numbers within \u00b10.03 of the blind key (expectancy 0.147R, PF 2.48). 0.5 each. No partial credit for vibes.",
+  "trade_logic": "0.25 each: states A expectancy +0.50R; states B expectancy -0.10R; picks A; no more than 3 sentences.",
+  "trade_sizing": "Both within tolerance: 0.40 lots and $100 risk. 0.5 each.",
+  "long_privacy": "0.34 each: \u2264120 words; zero bullet lines; zero hedging tokens (might/perhaps/maybe/'I think').",
+  "long_pf": "0.34 each: exactly 3 sentences; names both terms; zero numeric examples."
+ },
+ "par": 2995.0,
  "low": {
   "gpt-5.6-sol-pro": {
    "n": 3,
@@ -68,61 +81,61 @@
   }
  },
  "medium": {
-  "deepseek-v4.1-flash": {
-   "n": 3,
-   "corr": 3.0,
-   "lat": 9.6,
-   "tok": 1825,
-   "pct": 100
-  },
-  "glm-5.3": {
-   "n": 3,
-   "corr": 3.0,
-   "lat": 14.9,
-   "tok": 1942,
-   "pct": 100
-  },
   "gpt-5.6-sol-pro": {
-   "n": 3,
-   "corr": 3.0,
-   "lat": 23.6,
-   "tok": 126,
-   "pct": 100
+   "n": 12,
+   "corr": 11.1,
+   "lat": 25.9,
+   "tok": 334,
+   "pct": 92
   },
   "gpt-6-astra": {
-   "n": 3,
-   "corr": 2.0,
-   "lat": 22.1,
-   "tok": 117,
-   "pct": 67
+   "n": 12,
+   "corr": 11.1,
+   "lat": 35.5,
+   "tok": 498,
+   "pct": 92
+  },
+  "glm-5.3": {
+   "n": 12,
+   "corr": 11.3,
+   "lat": 112.0,
+   "tok": 12118,
+   "pct": 94
   },
   "glm-5.3-flash": {
-   "n": 3,
-   "corr": 3.0,
-   "lat": 12.3,
-   "tok": 1279,
-   "pct": 100
+   "n": 12,
+   "corr": 9.85,
+   "lat": 68.8,
+   "tok": 5588,
+   "pct": 82
   },
   "deepseek-v4-pro": {
-   "n": 3,
-   "corr": 3.0,
-   "lat": 14.0,
-   "tok": 1773,
-   "pct": 100
+   "n": 12,
+   "corr": 11.55,
+   "lat": 15.9,
+   "tok": 2730,
+   "pct": 96
   },
-  "kimi-k3": {
-   "n": 3,
-   "corr": 2.0,
-   "lat": 15.8,
-   "tok": 1159,
-   "pct": 67
+  "deepseek-v4.1-flash": {
+   "n": 12,
+   "corr": 9.43,
+   "lat": 26.0,
+   "tok": 3260,
+   "pct": 79
   },
   "gemini-3.8-flash": {
-   "n": 3,
-   "corr": 2.0,
-   "lat": 19.5,
-   "tok": 184,
-   "pct": 67
+   "n": 12,
+   "corr": 11.1,
+   "lat": 86.8,
+   "tok": 1011,
+   "pct": 92
+  },
+  "kimi-k3": {
+   "n": 12,
+   "corr": 11.3,
+   "lat": 38.6,
+   "tok": 3472,
+   "pct": 94
   }
  },
  "high": {
@@ -184,180 +197,59 @@
   }
  },
  "domains": {
-  "deepseek-v4.1-flash": {
-   "coding": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "code_b1": {
-      "corr": 1.0,
-      "lat": 5.4,
-      "tok": 357,
-      "chars": 378
-     }
-    },
-    "pct": 100
-   },
-   "trading": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "trade_b1": {
-      "corr": 1.0,
-      "lat": 15.9,
-      "tok": 715,
-      "chars": 365
-     }
-    },
-    "pct": 100
-   },
-   "medicine": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "med_b1": {
-      "corr": 1.0,
-      "lat": 22.0,
-      "tok": 1419,
-      "chars": 246
-     }
-    },
-    "pct": 100
-   }
-  },
-  "glm-5.3": {
-   "coding": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "code_b1": {
-      "corr": 1.0,
-      "lat": 3.2,
-      "tok": 334,
-      "chars": 360
-     }
-    },
-    "pct": 100
-   },
-   "trading": {
-    "n": 3,
-    "corr": 2.0,
-    "tasks": {
-     "trade_b1": {
-      "corr": 0.0,
-      "lat": 61.6,
-      "tok": 591,
-      "chars": 339
-     }
-    },
-    "pct": 67
-   },
-   "medicine": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "med_b1": {
-      "corr": 1.0,
-      "lat": 5.9,
-      "tok": 754,
-      "chars": 748
-     }
-    },
-    "pct": 100
-   }
-  },
   "gpt-5.6-sol-pro": {
    "coding": {
-    "n": 3,
-    "corr": 3.0,
+    "n": 4,
+    "corr": 3.6,
     "tasks": {
-     "code_b1": {
+     "code_algo": {
       "corr": 1.0,
-      "lat": 16.6,
-      "tok": 103,
-      "chars": 411
-     }
-    },
-    "pct": 100
-   },
-   "trading": {
-    "n": 3,
-    "corr": 2.0,
-    "tasks": {
-     "trade_b1": {
-      "corr": 0.0,
-      "lat": 25.3,
-      "tok": 55,
-      "chars": 221
-     }
-    },
-    "pct": 67
-   },
-   "medicine": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "med_b1": {
+      "lat": 17.1,
+      "tok": 98,
+      "chars": 393
+     },
+     "code_pine": {
+      "corr": 0.6,
+      "lat": 24.9,
+      "tok": 162,
+      "chars": 647
+     },
+     "code_html": {
       "corr": 1.0,
-      "lat": 31.5,
-      "tok": 82,
-      "chars": 327
-     }
-    },
-    "pct": 100
-   }
-  },
-  "gpt-6-astra": {
-   "coding": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "code_b1": {
+      "lat": 21.9,
+      "tok": 572,
+      "chars": 2290
+     },
+     "code_art": {
       "corr": 1.0,
-      "lat": 18.0,
-      "tok": 97,
-      "chars": 389
+      "lat": 89.3,
+      "tok": 2766,
+      "chars": 4000
      }
     },
-    "pct": 100
-   },
-   "trading": {
-    "n": 3,
-    "corr": 1.0,
-    "tasks": {
-     "trade_b1": {
-      "corr": 0.0,
-      "lat": 21.4,
-      "tok": 94,
-      "chars": 377
-     }
-    },
-    "pct": 33
+    "pct": 90
    },
    "medicine": {
     "n": 3,
     "corr": 3.0,
     "tasks": {
-     "med_b1": {
+     "med_neo": {
       "corr": 1.0,
-      "lat": 20.9,
-      "tok": 80,
-      "chars": 320
-     }
-    },
-    "pct": 100
-   }
-  },
-  "glm-5.3-flash": {
-   "coding": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "code_b1": {
+      "lat": 8.4,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_surg": {
       "corr": 1.0,
-      "lat": 14.4,
-      "tok": 1111,
-      "chars": 398
+      "lat": 11.2,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 7.4,
+      "tok": 1,
+      "chars": 1
      }
     },
     "pct": 100
@@ -366,24 +258,348 @@
     "n": 3,
     "corr": 2.5,
     "tasks": {
-     "trade_b1": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 12.6,
+      "tok": 108,
+      "chars": 431
+     },
+     "trade_logic": {
       "corr": 0.5,
-      "lat": 7.0,
-      "tok": 267,
-      "chars": 347
+      "lat": 14.1,
+      "tok": 62,
+      "chars": 248
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 78.2,
+      "tok": 36,
+      "chars": 144
      }
     },
     "pct": 83
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 11.3,
+      "tok": 95,
+      "chars": 381
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 14.3,
+      "tok": 105,
+      "chars": 420
+     }
+    },
+    "pct": 100
+   }
+  },
+  "gpt-6-astra": {
+   "coding": {
+    "n": 4,
+    "corr": 3.6,
+    "tasks": {
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 16.7,
+      "tok": 102,
+      "chars": 407
+     },
+     "code_pine": {
+      "corr": 0.6,
+      "lat": 27.4,
+      "tok": 210,
+      "chars": 842
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 54.5,
+      "tok": 1036,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 1.0,
+      "lat": 211.9,
+      "tok": 4160,
+      "chars": 4000
+     }
+    },
+    "pct": 90
    },
    "medicine": {
     "n": 3,
     "corr": 3.0,
     "tasks": {
-     "med_b1": {
+     "med_neo": {
       "corr": 1.0,
-      "lat": 3.1,
-      "tok": 296,
-      "chars": 410
+      "lat": 13.9,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 12.6,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 13.0,
+      "tok": 1,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.5,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 17.6,
+      "tok": 112,
+      "chars": 449
+     },
+     "trade_logic": {
+      "corr": 0.5,
+      "lat": 16.0,
+      "tok": 80,
+      "chars": 319
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 11.9,
+      "tok": 34,
+      "chars": 137
+     }
+    },
+    "pct": 83
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 12.2,
+      "tok": 137,
+      "chars": 548
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 17.9,
+      "tok": 97,
+      "chars": 387
+     }
+    },
+    "pct": 100
+   }
+  },
+  "glm-5.3": {
+   "coding": {
+    "n": 4,
+    "corr": 3.8,
+    "tasks": {
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 22.3,
+      "tok": 3733,
+      "chars": 1556
+     },
+     "code_pine": {
+      "corr": 1.0,
+      "lat": 245.3,
+      "tok": 19235,
+      "chars": 3610
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 438.8,
+      "tok": 55863,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 0.8,
+      "lat": 543.1,
+      "tok": 54310,
+      "chars": 4000
+     }
+    },
+    "pct": 95
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_neo": {
+      "corr": 1.0,
+      "lat": 6.3,
+      "tok": 672,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 2.6,
+      "tok": 130,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 4.6,
+      "tok": 324,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.5,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 15.7,
+      "tok": 1734,
+      "chars": 1279
+     },
+     "trade_logic": {
+      "corr": 0.5,
+      "lat": 10.0,
+      "tok": 1138,
+      "chars": 526
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 3.9,
+      "tok": 295,
+      "chars": 549
+     }
+    },
+    "pct": 83
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 19.3,
+      "tok": 2929,
+      "chars": 723
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 32.4,
+      "tok": 5058,
+      "chars": 625
+     }
+    },
+    "pct": 100
+   }
+  },
+  "glm-5.3-flash": {
+   "coding": {
+    "n": 4,
+    "corr": 2.6,
+    "tasks": {
+     "code_algo": {
+      "corr": 0.0,
+      "lat": 21.4,
+      "tok": 2269,
+      "chars": 622
+     },
+     "code_pine": {
+      "corr": 0.8,
+      "lat": 134.9,
+      "tok": 11337,
+      "chars": 2712
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 292.7,
+      "tok": 26257,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 0.8,
+      "lat": 286.0,
+      "tok": 21080,
+      "chars": 4000
+     }
+    },
+    "pct": 65
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_neo": {
+      "corr": 1.0,
+      "lat": 6.4,
+      "tok": 603,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 2.5,
+      "tok": 158,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 2.6,
+      "tok": 133,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.25,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 22.5,
+      "tok": 1243,
+      "chars": 1254
+     },
+     "trade_logic": {
+      "corr": 0.25,
+      "lat": 11.0,
+      "tok": 849,
+      "chars": 589
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 4.9,
+      "tok": 275,
+      "chars": 269
+     }
+    },
+    "pct": 75
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 31.6,
+      "tok": 1992,
+      "chars": 659
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 9.1,
+      "tok": 861,
+      "chars": 778
      }
     },
     "pct": 100
@@ -391,40 +607,305 @@
   },
   "deepseek-v4-pro": {
    "coding": {
+    "n": 4,
+    "corr": 3.8,
+    "tasks": {
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 3.5,
+      "tok": 433,
+      "chars": 447
+     },
+     "code_pine": {
+      "corr": 1.0,
+      "lat": 18.9,
+      "tok": 4026,
+      "chars": 2496
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 57.7,
+      "tok": 11771,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 0.8,
+      "lat": 68.9,
+      "tok": 11527,
+      "chars": 4000
+     }
+    },
+    "pct": 95
+   },
+   "medicine": {
     "n": 3,
     "corr": 3.0,
     "tasks": {
-     "code_b1": {
+     "med_neo": {
       "corr": 1.0,
-      "lat": 2.3,
-      "tok": 308,
-      "chars": 414
+      "lat": 10.0,
+      "tok": 1522,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 2.7,
+      "tok": 136,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 2.1,
+      "tok": 81,
+      "chars": 1
      }
     },
     "pct": 100
    },
    "trading": {
     "n": 3,
-    "corr": 3.0,
+    "corr": 2.75,
     "tasks": {
-     "trade_b1": {
+     "trade_expect": {
       "corr": 1.0,
-      "lat": 2.8,
-      "tok": 360,
-      "chars": 385
+      "lat": 8.0,
+      "tok": 1095,
+      "chars": 586
+     },
+     "trade_logic": {
+      "corr": 0.75,
+      "lat": 6.3,
+      "tok": 721,
+      "chars": 387
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 1.8,
+      "tok": 172,
+      "chars": 145
+     }
+    },
+    "pct": 92
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 4.4,
+      "tok": 269,
+      "chars": 561
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 6.7,
+      "tok": 1002,
+      "chars": 539
      }
     },
     "pct": 100
+   }
+  },
+  "deepseek-v4.1-flash": {
+   "coding": {
+    "n": 4,
+    "corr": 3.6,
+    "tasks": {
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 2.2,
+      "tok": 356,
+      "chars": 414
+     },
+     "code_pine": {
+      "corr": 0.8,
+      "lat": 64.8,
+      "tok": 11597,
+      "chars": 241
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 51.1,
+      "tok": 9596,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 0.8,
+      "lat": 70.1,
+      "tok": 12381,
+      "chars": 4000
+     }
+    },
+    "pct": 90
    },
    "medicine": {
     "n": 3,
     "corr": 3.0,
     "tasks": {
-     "med_b1": {
+     "med_neo": {
+      "corr": 1.0,
+      "lat": 18.4,
+      "tok": 2750,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 1.9,
+      "tok": 281,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 1.4,
+      "tok": 155,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 1.5,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 7.8,
+      "tok": 1621,
+      "chars": 907
+     },
+     "trade_logic": {
+      "corr": 0.5,
+      "lat": 93.5,
+      "tok": 386,
+      "chars": 1543
+     },
+     "trade_sizing": {
+      "corr": 0.0,
+      "lat": 0.2,
+      "tok": 1,
+      "chars": 0
+     }
+    },
+    "pct": 50
+   },
+   "longform": {
+    "n": 2,
+    "corr": 1.33,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 0.0,
+      "tok": 1,
+      "chars": 0
+     },
+     "long_pf": {
+      "corr": 0.33,
+      "lat": 0.0,
+      "tok": 1,
+      "chars": 0
+     }
+    },
+    "pct": 66
+   }
+  },
+  "gemini-3.8-flash": {
+   "coding": {
+    "n": 4,
+    "corr": 3.6,
+    "tasks": {
+     "code_art": {
+      "corr": 1.0,
+      "lat": 363.0,
+      "tok": 8747,
+      "chars": 4000
+     },
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 11.5,
+      "tok": 118,
+      "chars": 472
+     },
+     "code_pine": {
+      "corr": 0.6,
+      "lat": 386.6,
+      "tok": 185,
+      "chars": 739
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 67.6,
+      "tok": 2376,
+      "chars": 4000
+     }
+    },
+    "pct": 90
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_neo": {
+      "corr": 1.0,
+      "lat": 12.3,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 7.2,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_pharm": {
       "corr": 1.0,
       "lat": 8.9,
-      "tok": 1192,
-      "chars": 177
+      "tok": 1,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.5,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 19.9,
+      "tok": 210,
+      "chars": 840
+     },
+     "trade_logic": {
+      "corr": 0.5,
+      "lat": 14.6,
+      "tok": 119,
+      "chars": 477
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 9.8,
+      "tok": 60,
+      "chars": 241
+     }
+    },
+    "pct": 83
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 16.9,
+      "tok": 170,
+      "chars": 681
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 123.1,
+      "tok": 148,
+      "chars": 590
      }
     },
     "pct": 100
@@ -432,81 +913,101 @@
   },
   "kimi-k3": {
    "coding": {
-    "n": 3,
-    "corr": 3.0,
+    "n": 4,
+    "corr": 3.8,
     "tasks": {
-     "code_b1": {
+     "code_algo": {
       "corr": 1.0,
-      "lat": 4.5,
-      "tok": 309,
-      "chars": 386
+      "lat": 6.7,
+      "tok": 492,
+      "chars": 387
+     },
+     "code_pine": {
+      "corr": 1.0,
+      "lat": 114.0,
+      "tok": 12251,
+      "chars": 489
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 57.6,
+      "tok": 6081,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 0.8,
+      "lat": 228.1,
+      "tok": 17951,
+      "chars": 4000
      }
     },
-    "pct": 100
-   },
-   "trading": {
-    "n": 3,
-    "corr": 1.0,
-    "tasks": {
-     "trade_b1": {
-      "corr": 0.0,
-      "lat": 6.9,
-      "tok": 254,
-      "chars": 286
-     }
-    },
-    "pct": 33
+    "pct": 95
    },
    "medicine": {
     "n": 3,
     "corr": 3.0,
     "tasks": {
-     "med_b1": {
+     "med_neo": {
       "corr": 1.0,
-      "lat": 5.7,
-      "tok": 354,
-      "chars": 139
-     }
-    },
-    "pct": 100
-   }
-  },
-  "gemini-3.8-flash": {
-   "coding": {
-    "n": 3,
-    "corr": 3.0,
-    "tasks": {
-     "code_b1": {
+      "lat": 3.0,
+      "tok": 160,
+      "chars": 1
+     },
+     "med_surg": {
       "corr": 1.0,
-      "lat": 12.0,
-      "tok": 99,
-      "chars": 395
+      "lat": 2.5,
+      "tok": 167,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 2.7,
+      "tok": 201,
+      "chars": 1
      }
     },
     "pct": 100
    },
    "trading": {
     "n": 3,
-    "corr": 1.0,
+    "corr": 2.5,
     "tasks": {
-     "trade_b1": {
-      "corr": 0.0,
+     "trade_expect": {
+      "corr": 1.0,
       "lat": 12.6,
-      "tok": 113,
-      "chars": 452
+      "tok": 895,
+      "chars": 1119
+     },
+     "trade_logic": {
+      "corr": 0.5,
+      "lat": 5.3,
+      "tok": 365,
+      "chars": 494
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 3.3,
+      "tok": 152,
+      "chars": 358
      }
     },
-    "pct": 33
+    "pct": 83
    },
-   "medicine": {
-    "n": 3,
-    "corr": 3.0,
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
     "tasks": {
-     "med_b1": {
+     "long_privacy": {
       "corr": 1.0,
-      "lat": 10.3,
-      "tok": 125,
-      "chars": 499
+      "lat": 13.4,
+      "tok": 1531,
+      "chars": 712
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 13.6,
+      "tok": 1414,
+      "chars": 666
      }
     },
     "pct": 100
@@ -514,120 +1015,169 @@
   }
  },
  "best_worst": {
-  "deepseek-v4.1-flash": {
-   "strongest": "coding",
-   "weakest": "medicine",
-   "strongest_pct": 100,
-   "weakest_pct": 100
-  },
-  "glm-5.3": {
-   "strongest": "coding",
-   "weakest": "trading",
-   "strongest_pct": 100,
-   "weakest_pct": 67
-  },
   "gpt-5.6-sol-pro": {
-   "strongest": "coding",
-   "weakest": "trading",
-   "strongest_pct": 100,
-   "weakest_pct": 67
-  },
-  "gpt-6-astra": {
-   "strongest": "coding",
-   "weakest": "trading",
-   "strongest_pct": 100,
-   "weakest_pct": 33
-  },
-  "glm-5.3-flash": {
-   "strongest": "coding",
+   "strongest": "medicine",
    "weakest": "trading",
    "strongest_pct": 100,
    "weakest_pct": 83
   },
-  "deepseek-v4-pro": {
-   "strongest": "coding",
-   "weakest": "medicine",
-   "strongest_pct": 100,
-   "weakest_pct": 100
-  },
-  "kimi-k3": {
-   "strongest": "coding",
+  "gpt-6-astra": {
+   "strongest": "medicine",
    "weakest": "trading",
    "strongest_pct": 100,
-   "weakest_pct": 33
+   "weakest_pct": 83
+  },
+  "glm-5.3": {
+   "strongest": "medicine",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 83
+  },
+  "glm-5.3-flash": {
+   "strongest": "medicine",
+   "weakest": "coding",
+   "strongest_pct": 100,
+   "weakest_pct": 65
+  },
+  "deepseek-v4-pro": {
+   "strongest": "medicine",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 92
+  },
+  "deepseek-v4.1-flash": {
+   "strongest": "medicine",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 50
   },
   "gemini-3.8-flash": {
-   "strongest": "coding",
+   "strongest": "medicine",
    "weakest": "trading",
    "strongest_pct": 100,
-   "weakest_pct": 33
+   "weakest_pct": 83
+  },
+  "kimi-k3": {
+   "strongest": "medicine",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 83
   }
  },
  "composite": {
-  "deepseek-v4.1-flash": {
-   "correctness": 100,
-   "reasoning": 100,
-   "token_eff": 67,
-   "latency": 79,
-   "adherence": 100,
-   "total": 93.0
-  },
-  "glm-5.3": {
-   "correctness": 100,
-   "reasoning": 87,
-   "token_eff": 63,
-   "latency": 67,
-   "adherence": 100,
-   "total": 88.5
-  },
   "gpt-5.6-sol-pro": {
-   "correctness": 100,
+   "correctness": 92,
    "reasoning": 87,
    "token_eff": 100,
-   "latency": 48,
+   "latency": 42,
    "adherence": 100,
-   "total": 92.2
+   "total": 88.4
   },
   "gpt-6-astra": {
-   "correctness": 67,
+   "correctness": 92,
    "reasoning": 87,
    "token_eff": 100,
-   "latency": 51,
-   "adherence": 67,
-   "total": 74.4
+   "latency": 21,
+   "adherence": 100,
+   "total": 86.3
+  },
+  "glm-5.3": {
+   "correctness": 94,
+   "reasoning": 87,
+   "token_eff": 25,
+   "latency": 0,
+   "adherence": 100,
+   "total": 73.8
   },
   "glm-5.3-flash": {
-   "correctness": 100,
+   "correctness": 82,
    "reasoning": 93,
-   "token_eff": 95,
-   "latency": 73,
+   "token_eff": 54,
+   "latency": 0,
    "adherence": 100,
-   "total": 95.2
+   "total": 74.5
   },
   "deepseek-v4-pro": {
-   "correctness": 100,
+   "correctness": 96,
    "reasoning": 100,
-   "token_eff": 69,
-   "latency": 69,
-   "adherence": 100,
-   "total": 92.2
-  },
-  "kimi-k3": {
-   "correctness": 67,
-   "reasoning": 87,
    "token_eff": 100,
    "latency": 65,
-   "adherence": 67,
-   "total": 75.8
+   "adherence": 100,
+   "total": 94.9
+  },
+  "deepseek-v4.1-flash": {
+   "correctness": 79,
+   "reasoning": 100,
+   "token_eff": 92,
+   "latency": 42,
+   "adherence": 66,
+   "total": 79.5
   },
   "gemini-3.8-flash": {
-   "correctness": 67,
+   "correctness": 92,
    "reasoning": 87,
    "token_eff": 100,
-   "latency": 57,
-   "adherence": 67,
-   "total": 75.0
+   "latency": 0,
+   "adherence": 100,
+   "total": 84.2
+  },
+  "kimi-k3": {
+   "correctness": 94,
+   "reasoning": 87,
+   "token_eff": 86,
+   "latency": 14,
+   "adherence": 100,
+   "total": 84.3
   }
  },
- "art": {}
+ "art": {
+  "gpt-5.6-sol-pro": {
+   "corr": 1.0,
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 700\" role=\"img\" aria-label=\"Front-facing head-and-shoulders portrait of a woman with fair skin and brown hair\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#e9e1dd\"/>\n      <stop offset=\"1\" stop-color=\"#cfc1bc\"/>\n    </linearGradient>\n    <radialGradient id=\"skin\" cx=\"48%\" cy=\"35%\" r=\"68%\">\n      <stop offset=\"0\" stop-color=\"#f8d9c8\"/>\n      <stop offset=\".58\" stop-color=\"#efc4b1\"/>\n      <stop offset=\"1\" stop-color=\"#d99f8c\"/>\n    </radialGradient>\n    <linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".2\">\n      <stop offset=\"0\" stop-color=\"#dca38f\"/>\n      <stop offset=\".25\" stop-color=\"#efc0ac\"/>\n      <stop offset=\".5\" stop-color=\"#f5cdbc\"/>\n      <stop offset=\".78\" stop-color=\"#edbba8\"/>\n      <stop offset=\"1\" stop-color=\"#d89c89\"/>\n    </linearGradient>\n    <linearGradient id=\"hair\" x1=\".15\" y1=\".05\" x2=\".85\" y2=\".95\">\n      <stop offset=\"0\" stop-color=\"#241711\"/>\n      <stop offset=\".28\" stop-color=\"#4b2c20\"/>\n      <stop offset=\".58\" stop-color=\"#6a4030\"/>\n      <stop offset=\".82\" stop-color=\"#3b241b\"/>\n      <stop offset=\"1\" stop-color=\"#1d130f\"/>\n    </linearGradient>\n    <linearGradient id=\"hairLight\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#936650\" stop-opacity=\".8\"/>\n      <stop offset=\".5\" stop-color=\"#6e4433\" stop-opacity=\".4\"/>\n      <stop offset=\"1\" stop-color=\"#2e1d17\" stop-opacity=\"0\"/>\n    </linearGradient>\n    <radialGradient id=\"iris\" cx=\"40%\" cy=\"35%\">\n      <stop offset=\"0\" stop-color=\"#9b7852\"/>\n      <stop offset=\".35\" stop-color=\"#765033\"/>\n      <stop offset=\".78\" stop-color=\"#4a2f20\"/>\n      <stop offset=\"1\" stop-color=\"#241914\"/>\n    </radialGradient>\n    <linearGradient id=\"lip\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#a95e63\"/>\n      <stop offset=\"1\" stop-color=\"#7f3e46\"/>\n    </linearGradient>\n    <filter id=\"soft\">\n      <feGaussianBlur stdDeviation=\"7\"/>\n    </filter>\n    <filter id=\"tinySoft\">\n      <feGaussianBlur stdDeviation=\"2\"/>\n    </filter>\n    <clipPath id=\"faceClip\">\n      <path d=\"M188 183 C196 91 252 60 302 62 C369 63 416 112 414 199 L409 344 C404 418 355 487 300 492 C242 487 193 418 187 344 Z\"/>\n    </clipPath>\n  </defs>\n\n  <rect width=\"600\" height=\"700\" fill=\"url(#bg)\"/>\n  <ellipse cx=\"300\" cy=\"655\" rx=\"252\" ry=\"85\" fill=\"#b9aaa5\" opacity=\".45\" filter=\"url(#soft)\"/>\n\n  <!-- shoulders and clothing -->\n  <path d=\"M82 700 C88 604 150 564 242 541 L358 541 C450 564 512 604 518 700 Z\" fill=\"#26384a\"/>\n  <path d=\"M173 586 C204 553 241 540 300 539 C359 540 396 553 427 586 L391 700 L209 700 Z\" fill=\"#31485e\"/>\n  <path d=\"M242 522 L242 565 C248 602 270 625 300 632 C330 625 352 602 358 565 L358 520 Z\" fill=\"url(#neck)\"/>\n  <path d=\"M242 538 C257 561 278 573 300 573 C324 573 344 560 358 537 L358 564 C346 600 327 619 300 625 C272 618 253 599 242 564 Z\" fill=\"#c88979\" opacity=\".35\"/>\n  <path d=\"M168 588 C191 561 217 548 244 540 C248 581 268 613 300 628 C259 636 225 620 202 594 Z\" fill=\"#203043\"/>\n  <path d=\"M432 588 C409 561 383 548 356 540 C352 581 332 613 300 628 C341 636 375 620 398 594 Z\" fill=\"#203043\"/>\n\n  <!-- hair mass -->\n  <path d=\"M158 237 C151 139 203 57 292 45 C392 31 449 113 441 224 C463 293 454 407 415 523 C395 581 365 600 338 586 C367 500 370 424 365 351 L228 351 C227 438 241 513 264 586 C231 603 201 577 182 524 C145 418 138 306 158 237 Z\" fill=\"url(#hair)\"/>\n  <path d=\"M167 228 C145 339 171 473 217 551 C189 449 187 322 210 224 Z\" fill=\"#1c120f\" opacity=\".62\"/>\n  <path d=\"M433 224 C455 338 432 471 385 551 C412 440 413 320 390 218 Z\" fill=\"#1a110e\" opacity=\".65\"/>\n\n  <!-- ears -->\n  <path d=\"M184 266 C161 260 153 283 160 320 C166 354 178 370 193 356 L202 304 Z\" fill=\"#e5ad9a\"/>\n  <path d=\"M416 266 C439 260 447 283 440 320 C434 354 422 370 407 356 L398 304 Z\" fill=\"#e5ad9a\"/>\n  <path d=\"M180 284 C169 281 168 302 174 329 C177 341 184 346 190 337 C180 328 183 313 191 307 C187 300 188 290 180 284 Z\" fill=\"#bd7d72\" opacity",
+   "tok": 2766,
+   "lat": 89.3
+  },
+  "gpt-6-astra": {
+   "corr": 1.0,
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"720\" viewBox=\"0 0 600 720\" role=\"img\" aria-labelledby=\"title desc\">\n  <title id=\"title\">Portrait of a woman, age 36</title>\n  <desc id=\"desc\">A front-facing woman with fair skin, softly shaded brown hair, hazel eyes, and a composed expression, shown from the shoulders up.</desc>\n  <defs>\n    <radialGradient id=\"background\" cx=\"48%\" cy=\"35%\" r=\"75%\">\n      <stop stop-color=\"#e9e2d9\"/>\n      <stop offset=\"1\" stop-color=\"#a9b4af\"/>\n    </radialGradient>\n    <linearGradient id=\"hair\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".6\">\n      <stop stop-color=\"#241a18\"/>\n      <stop offset=\".24\" stop-color=\"#51362a\"/>\n      <stop offset=\".46\" stop-color=\"#76513b\"/>\n      <stop offset=\".7\" stop-color=\"#3e2a23\"/>\n      <stop offset=\"1\" stop-color=\"#211a19\"/>\n    </linearGradient>\n    <linearGradient id=\"hairLight\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".7\">\n      <stop stop-color=\"#ad8058\"/>\n      <stop offset=\".5\" stop-color=\"#755038\"/>\n      <stop offset=\"1\" stop-color=\"#36251f\"/>\n    </linearGradient>\n    <radialGradient id=\"skin\" cx=\"42%\" cy=\"32%\" r=\"70%\">\n      <stop stop-color=\"#fbe4d5\"/>\n      <stop offset=\".45\" stop-color=\"#f0cdbc\"/>\n      <stop offset=\".77\" stop-color=\"#dfac98\"/>\n      <stop offset=\"1\" stop-color=\"#b77c69\"/>\n    </radialGradient>\n    <linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\".6\" y2=\"1\">\n      <stop stop-color=\"#a66d5d\"/>\n      <stop offset=\".34\" stop-color=\"#d6a18b\"/>\n      <stop offset=\".75\" stop-color=\"#efc9b5\"/>\n      <stop offset=\"1\" stop-color=\"#dfb29d\"/>\n    </linearGradient>\n    <linearGradient id=\"sideShade\">\n      <stop stop-color=\"#b97965\" stop-opacity=\".6\"/>\n      <stop offset=\"1\" stop-color=\"#dca38a\" stop-opacity=\"0\"/>\n    </linearGradient>\n    <radialGradient id=\"cheek\">\n      <stop stop-color=\"#d98d83\" stop-opacity=\".48\"/>\n      <stop offset=\"1\" stop-color=\"#df9b8b\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <radialGradient id=\"socket\">\n      <stop stop-color=\"#9a6d61\" stop-opacity=\".46\"/>\n      <stop offset=\"1\" stop-color=\"#bd8b77\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <linearGradient id=\"eyeWhite\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#c7b3a5\"/>\n      <stop offset=\".5\" stop-color=\"#f5ede3\"/>\n      <stop offset=\"1\" stop-color=\"#e4d4c7\"/>\n    </linearGradient>\n    <radialGradient id=\"iris\">\n      <stop stop-color=\"#8b7044\"/>\n      <stop offset=\".47\" stop-color=\"#8a8358\"/>\n      <stop offset=\".8\" stop-color=\"#5c6247\"/>\n      <stop offset=\"1\" stop-color=\"#303c32\"/>\n    </radialGradient>\n    <linearGradient id=\"nose\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".15\">\n      <stop stop-color=\"#b87965\" stop-opacity=\".06\"/>\n      <stop offset=\".3\" stop-color=\"#cd947e\" stop-opacity=\".64\"/>\n      <stop offset=\".54\" stop-color=\"#ffe6d2\" stop-opacity=\".85\"/>\n      <stop offset=\".73\" stop-color=\"#f4cfb6\" stop-opacity=\".5\"/>\n      <stop offset=\"1\" stop-color=\"#ad735e\" stop-opacity=\".25\"/>\n    </linearGradient>\n    <linearGradient id=\"upperLip\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#b87875\"/>\n      <stop offset=\"1\" stop-color=\"#925454\"/>\n    </linearGradient>\n    <linearGradient id=\"lowerLip\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop stop-color=\"#bd7e7a\"/>\n      <stop offset=\".5\" stop-color=\"#d89890\"/>\n      <stop offset=\"1\" stop-color=\"#bd7c72\"/>\n    </linearGradient>\n    <linearGradient id=\"shirt\" x1=\"0\" y1=\"0\" x2=\".8\" y2=\"1\">\n      <stop stop-color=\"#465a56\"/>\n      <stop offset=\".5\" stop-color=\"#293e3b\"/>\n      <stop offset=\"1\" stop-color=\"#172c2a\"/>\n    </linearGradient>\n    <filter id=\"soft\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\">\n      <feGaussianBlur stdDeviation=\"6\"/>\n    </filter>\n    <filter id=\"fine\" x=\"-30%\" y=\"-30%\" width=\"160%\" height=\"160%\">\n      <feGaussianBlur stdDeviation=\"2\"/>\n    </filter>\n    <clipPath id=\"faceClip\">\n      <path d=\"M181 211C183 153 231 127 299 127C368 127 413 165 421 223L415 333C410 394 390 438 355 468C338 483 318 492 300 493C277 491 254 478 237 461C203 428 186 385 182 328Z\"/>\n    </clipPath>\n    <clipPath id=\"leftEye\">\n",
+   "tok": 4160,
+   "lat": 211.9
+  },
+  "glm-5.3": {
+   "corr": 0.8,
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"500\" viewBox=\"0\nviewBox=\"0 0 400 500\" role=\"img\" aria-label=\"Portrait of a woman with brown\nbrown hair\">\n  <title>Portrait of a woman</title>\n  <defs>\n    <radialGradient id=\"bg\" cx=\"50%\" cy=\"38%\" r=\"80%\">\n      <stop offset=\"0\" stop-color=\"#f8f1e7\"/>\n      <stop offset=\"1\" stop-color=\"#e3d3c0\"/>\n    </radialGradient>\n    <radialGradient id=\"skin\" gradientUnits=\"userSpaceOnUse\" cx=\"200\" cy=\"2\ncy=\"205\" r=\"195\">\n      <stop offset=\"0\" stop-color=\"#f8d9b8\"/>\n      <stop offset=\"0.55\" stop-color=\"#f2c9a3\"/>\n      <stop offset=\"1\" stop-color=\"#e0ab82\"/>\n    </radialGradient>\n    <radialGradient id=\"iris\" cx=\"0.5\" cy=\"0.42\" r=\"0.6\">\n      <stop offset=\"0\" stop-color=\"#8a5a34\"/>\n      <stop offset=\"0.45\" stop-color=\"#6a3f22\"/>\n      <stop offset=\"0.82\" stop-color=\"#41220f\"/>\n      <stop offset=\"1\" stop-color=\"#2b1508\"/>\n    </radialGradient>\n    <linearGradient id=\"lipTop\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#bd5449\"/>\n      <stop offset=\"1\" stop-color=\"#c9705f\"/>\n    </linearGradient>\n    <linearGradient id=\"lipBot\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#d97a6b\"/>\n      <stop offset=\"1\" stop-color=\"#b3574b\"/>\n    </linearGradient>\n    <linearGradient id=\"hairG\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#86522d\"/>\n      <stop offset=\"0.45\" stop-color=\"#6b3f23\"/>\n      <stop offset=\"1\" stop-color=\"#4c2a15\"/>\n    </linearGradient>\n    <linearGradient id=\"shirtG\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#5a7682\"/>\n      <stop offset=\"1\" stop-color=\"#43585f\"/>\n    </linearGradient>\n    <filter id=\"b1\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"><feGaussia\nheight=\"180%\"><feGaussianBlur stdDeviation=\"1.4\"/></filter>\n    <filter id=\"b2\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"><feGaussia\nheight=\"180%\"><feGaussianBlur stdDeviation=\"3\"/></filter>\n    <filter id=\"b3\" x=\"-70%\" y=\"-70%\" width=\"240%\" height=\"240%\"><feGaussia\nheight=\"240%\"><feGaussianBlur stdDeviation=\"5.5\"/></filter>\n    <clipPath id=\"eL\"><path d=\"M143 216.5 C146 210.5 153 206.5 161 206.5 C1\nC170 206.6 177.5 210.5 181.5 215.5 C177.5 219.8 169.5 221.4 160.5 221.2 C15\nC152.5 221 146.5 219.5 143 216.5 Z\"/></clipPath>\n    <clipPath id=\"eR\"><path d=\"M257 216.5 C254 210.5 247 206.5 239 206.5 C2\nC230 206.6 222.5 210.5 218.5 215.5 C222.5 219.8 230.5 221.4 239.5 221.2 C24\nC247.5 221 253.5 219.5 257 216.5 Z\"/></clipPath>\n  </defs>\n\n  <rect width=\"400\" height=\"500\" fill=\"url(#bg)\"/>\n\n  <!-- hair behind the head and shoulders -->\n  <path d=\"M200 46 C132 46 94 100 90 170 C86 240 92 330 98 420 C101 452 102\n102 478 99 500 L301 500 C298 478 299 452 302 420 C308 330 314 240 310 170 C\nC306 100 268 46 200 46 Z\" fill=\"#462817\"/>\n\n  <!-- neck and upper chest -->\n  <path d=\"M170 335 L170 428 C178 452 222 452 230 428 L230 335 Z\" fill=\"url\nfill=\"url(#skin)\"/>\n\n  <!-- shirt -->\n  <path d=\"M168 413 Q200 452 232 413 C252 418 296 432 328 446 C352 458 370 \n480 376 500 L24 500 C30 480 48 458 72 446 C104 432 148 418 168 413 Z\" fill=\nfill=\"url(#shirtG)\"/>\n  <ellipse cx=\"200\" cy=\"441\" rx=\"34\" ry=\"8\" fill=\"#324b53\" opacity=\"0.35\" f\nfilter=\"url(#b2)\"/>\n  <path d=\"M168 413 Q200 452 232 413\" fill=\"none\" stroke=\"#364e55\" stroke-w\nstroke-width=\"3\"/>\n  <path d=\"M156 468 C158 481 156 492 151 500\" fill=\"none\" stroke=\"#3a535c\" \nstroke-width=\"2.5\" opacity=\"0.5\"/>\n  <path d=\"M244 468 C242 481 244 492 249 500\" fill=\"none\" stroke=\"#3a535c\" \nstroke-width=\"2.5\" opacity=\"0.5\"/>\n  <path d=\"M96 452 C104 461 109 471 111 483\" fill=\"none\" stroke=\"#3a535c\" s\nstroke-width=\"2\" opacity=\"0.35\"/>\n  <path d=\"M304 452 C296 461 291 471 289 483\" fill=\"none\" stroke=\"#3a535c\" \nstroke-width=\"2\" opacity=\"0.35\"/>\n\n  <!-- face -->\n  <path d=\"M200 118 C148 118 116 158 114 212 C112 262 126 318 160 352 C174 \n367 187 376 200 377 C213 376 226 367 240 352 C274 318 288 262 286 212 C284 \n158 252 118 200 118 Z\" fill=\"url(#skin)\"/>\n\n  <!-- soft facial shading -->\n  <g>\n    <path d=\"M200 147 C182 15",
+   "tok": 54310,
+   "lat": 543.1
+  },
+  "glm-5.3-flash": {
+   "corr": 0.8,
+   "svg": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 520\" width=\"400\" h\nheight=\"520\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#efe8db\"/>\n      <stop offset=\"1\" stop-color=\"#d2c7b5\"/>\n    </linearGradient>\n    <radialGradient id=\"glow\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0\" stop-color=\"#ffffff\" stop-opacity=\"0.55\"/>\n      <stop offset=\"0.6\" stop-color=\"#ffffff\" stop-opacity=\"0.18\"/>\n      <stop offset=\"1\" stop-color=\"#ffffff\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <radialGradient id=\"skin\" cx=\"50%\" cy=\"40%\" r=\"70%\">\n      <stop offset=\"0\" stop-color=\"#fde8cd\"/>\n      <stop offset=\"0.55\" stop-color=\"#f6d0ac\"/>\n      <stop offset=\"1\" stop-color=\"#ecb98f\"/>\n    </radialGradient>\n    <linearGradient id=\"hair\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#8a5730\"/>\n      <stop offset=\"0.45\" stop-color=\"#6b4226\"/>\n      <stop offset=\"1\" stop-color=\"#452a15\"/>\n    </linearGradient>\n    <linearGradient id=\"top\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#55848d\"/>\n      <stop offset=\"1\" stop-color=\"#2e545b\"/>\n    </linearGradient>\n    <radialGradient id=\"iris\" cx=\"50%\" cy=\"45%\" r=\"55%\">\n      <stop offset=\"0\" stop-color=\"#a5763f\"/>\n      <stop offset=\"0.5\" stop-color=\"#6e4423\"/>\n      <stop offset=\"1\" stop-color=\"#40260f\"/>\n    </radialGradient>\n    <filter id=\"soft\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\"><feGauss\nheight=\"220%\"><feGaussianBlur stdDeviation=\"3\"/></filter>\n    <filter id=\"soft2\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\"><feGaus\nheight=\"220%\"><feGaussianBlur stdDeviation=\"6\"/></filter>\n    <clipPath id=\"eyeL\"><path d=\"M153 224 Q168 209.5 183 224 Q168 237.5 153\n153 224 Z\"/></clipPath>\n    <clipPath id=\"eyeR\"><path d=\"M217 224 Q232 209.5 247 224 Q232 237.5 217\n217 224 Z\"/></clipPath>\n  </defs>\n\n  <!-- background -->\n  <rect width=\"400\" height=\"520\" fill=\"url(#bg)\"/>\n  <ellipse cx=\"200\" cy=\"240\" rx=\"175\" ry=\"205\" fill=\"url(#glow)\"/>\n\n  <!-- back hair -->\n  <path d=\"M200 70 C128 70 92 122 92 190 C92 255 94 315 84 365 C76 410 80 4\n452 98 484 C126 488 148 470 156 440 C166 462 182 474 200 474 C218 474 234 4\n462 244 440 C252 470 274 488 302 484 C320 452 324 410 316 365 C306 315 308 \n255 308 190 C308 122 272 70 200 70 Z\" fill=\"url(#hair)\"/>\n  <path d=\"M150 120 C168 98 232 98 250 120\" stroke=\"#a5713d\" stroke-width=\"\nstroke-width=\"9\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.35\"/>\n  <path d=\"M158 112 C174 96 226 96 242 112\" stroke=\"#c89457\" stroke-width=\"\nstroke-width=\"3.5\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.45\"/>\n  <path d=\"M116 140 C104 195 104 260 94 325\" stroke=\"#4a2c17\" stroke-width=\nstroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.5\"/>\n  <path d=\"M106 150 C96 210 98 275 88 345\" stroke=\"#4a2c17\" stroke-width=\"2\nstroke-width=\"2.4\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.4\"/>\n  <path d=\"M284 140 C296 195 296 260 306 325\" stroke=\"#4a2c17\" stroke-width\nstroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.5\"/>\n  <path d=\"M294 150 C304 210 302 275 312 345\" stroke=\"#4a2c17\" stroke-width\nstroke-width=\"2.4\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.4\"/>\n  <path d=\"M126 130 C118 190 118 255 108 320\" stroke=\"#9c6636\" stroke-width\nstroke-width=\"2.2\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.5\"/>\n  <path d=\"M274 130 C282 190 282 255 292 320\" stroke=\"#9c6636\" stroke-width\nstroke-width=\"2.2\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.5\"/>\n  <path d=\"M96 440 C100 462 104 474 112 482\" stroke=\"#3d2412\" stroke-width=\nstroke-width=\"2.5\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.5\"/>\n  <path d=\"M304 440 C300 462 296 474 288 482\" stroke=\"#3d2412\" stroke-width\nstroke-width=\"2.5\" stroke-linecap=\"round\" fill=\"none\" opacity=\"0.5\"/>\n  <path d=\"M168 72 C162 62 154 58 146 58 M232 72 C238 62 246 58 254 58\" str\nstroke=\"#6d4426\" stroke-width=\"1.6\" stroke-linecap=\"round\" fill=\"none\" opac\nopacity=\"0.7\"/>\n  <path d=\"M90 210 C85 250 88 290 84 330 M310 210 C315 250 312 ",
+   "tok": 21080,
+   "lat": 286.0
+  },
+  "deepseek-v4-pro": {
+   "corr": 0.8,
+   "svg": "I\u2019ll generate a front-facing SVG portrait of a 36-year-old woman with fair \nskin and brown hair, using only inline vector shapes and layered shading fo\nfor facial structure.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n    <defs>\n        <!-- Background Gradients -->\n        <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n            <stop offset=\"0%\" stop-color=\"#4a5a6a\"/>\n            <stop offset=\"100%\" stop-color=\"#1a1a2e\"/>\n        </radialGradient>\n        <radialGradient id=\"vignette\" cx=\"50%\" cy=\"50%\" r=\"70%\">\n            <stop offset=\"60%\" stop-color=\"#000\" stop-opacity=\"0\"/>\n            <stop offset=\"100%\" stop-color=\"#000\" stop-opacity=\"0.5\"/>\n        </radialGradient>\n        \n        <!-- Skin Gradients -->\n        <linearGradient id=\"skinGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n            <stop offset=\"0%\" stop-color=\"#fde8d7\"/>\n            <stop offset=\"50%\" stop-color=\"#f2c4ac\"/>\n            <stop offset=\"100%\" stop-color=\"#d9a38c\"/>\n        </linearGradient>\n        <radialGradient id=\"cheekGrad\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n            <stop offset=\"0%\" stop-color=\"#e88b7a\" stop-opacity=\"0.4\"/>\n            <stop offset=\"100%\" stop-color=\"#e88b7a\" stop-opacity=\"0\"/>\n        </radialGradient>\n        \n        <!-- Hair Gradients -->\n        <linearGradient id=\"hairGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n            <stop offset=\"0%\" stop-color=\"#5c3a21\"/>\n            <stop offset=\"40%\" stop-color=\"#3b2210\"/>\n            <stop offset=\"100%\" stop-color=\"#1f0f05\"/>\n        </linearGradient>\n        <linearGradient id=\"hairHighlight\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"10\ny2=\"100%\">\n            <stop offset=\"0%\" stop-color=\"#8c5a3b\"/>\n            <stop offset=\"100%\" stop-color=\"#6b442a\"/>\n        </linearGradient>\n        \n        <!-- Eye & Lip Gradients -->\n        <radialGradient id=\"irisGrad\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n            <stop offset=\"0%\" stop-color=\"#6b442a\"/>\n            <stop offset=\"70%\" stop-color=\"#3b2210\"/>\n            <stop offset=\"100%\" stop-color=\"#1f0f05\"/>\n        </radialGradient>\n        <linearGradient id=\"lipGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n            <stop offset=\"0%\" stop-color=\"#c96b5a\"/>\n            <stop offset=\"100%\" stop-color=\"#a34a3a\"/>\n        </linearGradient>\n        \n        <!-- Clothing Gradient -->\n        <linearGradient id=\"clothGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n            <stop offset=\"0%\" stop-color=\"#3a4b5c\"/>\n            <stop offset=\"100%\" stop-color=\"#1a252f\"/>\n        </linearGradient>\n        \n        <!-- Filters for Soft Shading -->\n        <filter id=\"blur1\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\">\n            <feGaussianBlur stdDeviation=\"3\"/>\n        </filter>\n        <filter id=\"blur2\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\">\n            <feGaussianBlur stdDeviation=\"8\"/>\n        </filter>\n        <filter id=\"blur3\" x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\">\n            <feGaussianBlur stdDeviation=\"15\"/>\n        </filter>\n    </defs>\n\n    <!-- Background -->\n    <rect width=\"500\" height=\"600\" fill=\"url(#bgGrad)\"/>\n\n    <!-- Torso & Shoulders -->\n    <path d=\"M 100 600 L 100 450 Q 150 400 250 400 Q 350 400 400 450 L 400 \n600 Z\" fill=\"url(#clothGrad)\"/>\n    <!-- Collar/Neckline -->\n    <path d=\"M 200 400 Q 250 430 300 400 Q 280 450 250 460 Q 220 450 200 40\n400 Z\" fill=\"#1a252f\"/>\n    <path d=\"M 200 400 Q 250 430 300 400\" fill=\"none\" stroke=\"#5a6b7c\" stro\nstroke-width=\"2\"/>\n    <!-- Necklace -->\n    <path d=\"M 230 420 Q 250 440 270 420\" fill=\"none\" stroke=\"#d4af37\" stro\nstroke-width=\"2\"/>\n    <circle cx=\"250\" cy=\"435\" r=\"4\" fill=\"#d4af37\"/>\n    <circle cx=\"250\" cy=\"435\" r=\"2\" fill=\"#fff\" opacity=\"0.5\"/>\n\n    <!-- Neck -->\n    <path d=\"M 210 350 L 210 420 Q 250 440 290 420 L 290 350 Z\" fill=\"url(#\nfill=\"url(#skinGrad)\"/>\n    <!-- Neck Shadow -->\n    <path d=\"M 210 350 L 210 420 Q 250 440 290 420 L 290 350 Z\" fill=\"#000\"\nfill=\"#000\" opacity=\"0.15\" filter=\"url(#blur1)\"/>\n  ",
+   "tok": 11527,
+   "lat": 68.9
+  },
+  "deepseek-v4.1-flash": {
+   "corr": 0.8,
+   "svg": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" />\n      <stop offset=\"100%\" stop-color=\"#dce1e6\" />\n    </radialGradient>\n    \n    <!-- Face Gradient -->\n    <radialGradient id=\"faceGrad\" cx=\"50%\" cy=\"40%\" r=\"55%\">\n      <stop offset=\"0%\" stop-color=\"#fef4f0\" />\n      <stop offset=\"70%\" stop-color=\"#fceee9\" />\n      <stop offset=\"100%\" stop-color=\"#e8c8c0\" />\n    </radialGradient>\n    \n    <!-- Hair Gradient -->\n    <linearGradient id=\"hairGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#4a2e1b\" />\n      <stop offset=\"50%\" stop-color=\"#2b1a0f\" />\n      <stop offset=\"100%\" stop-color=\"#3b2515\" />\n    </linearGradient>\n  </defs>\n\n  <!-- Background -->\n  <rect width=\"500\" height=\"600\" fill=\"url(#bgGrad)\" />\n\n  <!-- Hair Background / Volume -->\n  <path d=\"M 250 80 C 370 80, 410 200, 390 360 C 380 460, 330 540, 330 540 \nL 170 540 C 170 540, 120 460, 110 360 C 90 200, 130 80, 250 80 Z\" fill=\"url\nfill=\"url(#hairGrad)\" />\n  <path d=\"M 250 80 C 340 80, 380 180, 370 320 C 360 440, 310 520, 310 520 \nL 190 520 C 190 520, 140 440, 130 320 C 120 180, 160 80, 250 80 Z\" fill=\"#4\nfill=\"#4a2e1b\" opacity=\"0.8\" />\n  \n  <!-- Hair Strands (Background) -->\n  <path d=\"M 180 120 C 160 180, 150 280, 170 380\" fill=\"none\" stroke=\"#7a4e\nstroke=\"#7a4e2e\" stroke-width=\"2\" opacity=\"0.5\" />\n  <path d=\"M 320 120 C 340 180, 350 280, 330 380\" fill=\"none\" stroke=\"#7a4e\nstroke=\"#7a4e2e\" stroke-width=\"2\" opacity=\"0.5\" />\n  <path d=\"M 150 200 C 140 280, 150 400, 180 480\" fill=\"none\" stroke=\"#6a40\nstroke=\"#6a4020\" stroke-width=\"3\" opacity=\"0.4\" />\n  <path d=\"M 350 200 C 360 280, 350 400, 320 480\" fill=\"none\" stroke=\"#6a40\nstroke=\"#6a4020\" stroke-width=\"3\" opacity=\"0.4\" />\n\n  <!-- Shoulders / Clothing -->\n  <path d=\"M 60 600 C 60 500, 140 480, 200 480 L 300 480 C 360 480, 440 500\n500, 440 600 Z\" fill=\"#2c3e50\" />\n  <path d=\"M 200 480 L 250 540 L 300 480\" fill=\"none\" stroke=\"#1a252f\" stro\nstroke-width=\"6\" stroke-linecap=\"round\" />\n  <path d=\"M 220 485 L 250 520 L 280 485\" fill=\"none\" stroke=\"#1a252f\" stro\nstroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M 150 500 Q 250 550, 350 500\" fill=\"none\" stroke=\"#1a252f\" strok\nstroke-width=\"2\" opacity=\"0.4\" />\n\n  <!-- Neck -->\n  <path d=\"M 200 400 L 200 500 C 200 530, 300 530, 300 500 L 300 400 Z\" fil\nfill=\"#fceee9\" />\n  <!-- Neck Shadows -->\n  <path d=\"M 200 400 C 220 440, 280 440, 300 400 L 300 500 C 300 530, 200 5\n530, 200 500 Z\" fill=\"#e8c8c0\" opacity=\"0.5\" />\n  <path d=\"M 210 440 C 230 470, 270 470, 280 440 L 280 500 C 280 510, 220 5\n510, 220 500 Z\" fill=\"#d6a8a0\" opacity=\"0.3\" />\n  <!-- Chin Shadow -->\n  <path d=\"M 190 430 C 220 460, 280 460, 310 430 C 290 450, 250 470, 210 45\n450 Z\" fill=\"#000\" opacity=\"0.12\" />\n\n  <!-- Face Base -->\n  <path d=\"M 250 100 C 310 100, 345 160, 345 250 C 345 340, 310 430, 250 43\n430 C 190 430, 155 340, 155 250 C 155 160, 190 100, 250 100 Z\" fill=\"url(#f\nfill=\"url(#faceGrad)\" />\n\n  <!-- Ears -->\n  <path d=\"M 155 240 C 135 240, 135 290, 155 310 C 165 320, 170 310, 165 29\n290 Z\" fill=\"#fceee9\" stroke=\"#d6a8a0\" stroke-width=\"2\" />\n  <path d=\"M 150 250 C 145 260, 145 280, 155 290\" fill=\"none\" stroke=\"#d6a8\nstroke=\"#d6a8a0\" stroke-width=\"1.5\" opacity=\"0.6\" />\n  <path d=\"M 345 240 C 365 240, 365 290, 345 310 C 335 320, 330 310, 335 29\n290 Z\" fill=\"#fceee9\" stroke=\"#d6a8a0\" stroke-width=\"2\" />\n  <path d=\"M 350 250 C 355 260, 355 280, 345 290\" fill=\"none\" stroke=\"#d6a8\nstroke=\"#d6a8a0\" stroke-width=\"1.5\" opacity=\"0.6\" />\n\n  <!-- Face Shading & Contours -->\n  <!-- Right side shadow (Light from left) -->\n  <path d=\"M 320 150 C 350 220, 350 340, 310 430 C 330 350, 340 250, 320 15\n150 Z\" fill=\"#000\" opacity=\"0.06\" />\n  <!-- Left side highlight -->\n  <path d=\"M 180 150 C 160 220, 160 340, 190 420 C 170 350, 170 250, 180 15\n150 Z\" fill=\"#fff\" opacity=\"0.2\" />\n  <!-- Cheek Blush ",
+   "tok": 12381,
+   "lat": 70.1
+  },
+  "gemini-3.8-flash": {
+   "corr": 1.0,
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 1000\" width=\"100%\" height=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bg-grad\" cx=\"50%\" cy=\"45%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#3a4454\"/>\n      <stop offset=\"50%\" stop-color=\"#232a35\"/>\n      <stop offset=\"100%\" stop-color=\"#12151b\"/>\n    </radialGradient>\n    <radialGradient id=\"bg-glow\" cx=\"50%\" cy=\"40%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#e8dcd5\" stop-opacity=\"0.12\"/>\n      <stop offset=\"100%\" stop-color=\"#232a35\" stop-opacity=\"0\"/>\n    </radialGradient>\n\n    <!-- Skin Tones & Lighting -->\n    <radialGradient id=\"skin-base\" cx=\"48%\" cy=\"42%\" r=\"45%\">\n      <stop offset=\"0%\" stop-color=\"#ffede3\"/>\n      <stop offset=\"55%\" stop-color=\"#f7ded0\"/>\n      <stop offset=\"85%\" stop-color=\"#ebd0bf\"/>\n      <stop offset=\"100%\" stop-color=\"#d8b9a5\"/>\n    </radialGradient>\n\n    <radialGradient id=\"forehead-shade\" cx=\"50%\" cy=\"25%\" r=\"40%\">\n      <stop offset=\"0%\" stop-color=\"#fff5ee\" stop-opacity=\"0.9\"/>\n      <stop offset=\"60%\" stop-color=\"#fae3d5\" stop-opacity=\"0.4\"/>\n      <stop offset=\"100%\" stop-color=\"#dfb79e\" stop-opacity=\"0\"/>\n    </radialGradient>\n\n    <linearGradient id=\"jaw-shade\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#d8b29c\" stop-opacity=\"0\"/>\n      <stop offset=\"70%\" stop-color=\"#c99f87\" stop-opacity=\"0.5\"/>\n      <stop offset=\"100%\" stop-color=\"#996a54\" stop-opacity=\"0.85\"/>\n    </linearGradient>\n\n    <radialGradient id=\"cheek-blush-l\" cx=\"40%\" cy=\"50%\" r=\"45%\">\n      <stop offset=\"0%\" stop-color=\"#e8837a\" stop-opacity=\"0.38\"/>\n      <stop offset=\"60%\" stop-color=\"#df8b83\" stop-opacity=\"0.15\"/>\n      <stop offset=\"100%\" stop-color=\"#f7ded0\" stop-opacity=\"0\"/>\n    </radialGradient>\n\n    <radialGradient id=\"cheek-blush-r\" cx=\"60%\" cy=\"50%\" r=\"45%\">\n      <stop offset=\"0%\" stop-color=\"#e8837a\" stop-opacity=\"0.35\"/>\n      <stop offset=\"60%\" stop-color=\"#df8b83\" stop-opacity=\"0.14\"/>\n      <stop offset=\"100%\" stop-color=\"#f7ded0\" stop-opacity=\"0\"/>\n    </radialGradient>\n\n    <!-- Neck & Chest Shading -->\n    <linearGradient id=\"neck-shadow\" x1=\"50%\" y1=\"0%\" x2=\"50%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#805441\" stop-opacity=\"0.85\"/>\n      <stop offset=\"25%\" stop-color=\"#a4725b\" stop-opacity=\"0.6\"/>\n      <stop offset=\"65%\" stop-color=\"#caa08a\" stop-opacity=\"0.3\"/>\n      <stop offset=\"100%\" stop-color=\"#ecc6b1\" stop-opacity=\"0\"/>\n    </linearGradient>\n\n    <radialGradient id=\"chest-skin\" cx=\"50%\" cy=\"80%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#faece3\"/>\n      <stop offset=\"60%\" stop-color=\"#f3d8c8\"/>\n      <stop offset=\"100%\" stop-color=\"#d9b49f\"/>\n    </radialGradient>\n\n    <!-- Eye Gradients -->\n    <radialGradient id=\"sclera-l\" cx=\"45%\" cy=\"45%\" r=\"55%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\"/>\n      <stop offset=\"70%\" stop-color=\"#f4eeea\"/>\n      <stop offset=\"100%\" stop-color=\"#dcd3cc\"/>\n    </radialGradient>\n    <radialGradient id=\"sclera-r\" cx=\"55%\" cy=\"45%\" r=\"55%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\"/>\n      <stop offset=\"70%\" stop-color=\"#f4eeea\"/>\n      <stop offset=\"100%\" stop-color=\"#dcd3cc\"/>\n    </radialGradient>\n\n    <radialGradient id=\"iris-grad\" cx=\"45%\" cy=\"40%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#82522c\"/>\n      <stop offset=\"45%\" stop-color=\"#5a3416\"/>\n      <stop offset=\"75%\" stop-color=\"#381d09\"/>\n      <stop offset=\"100%\" stop-color=\"#1e0f04\"/>\n    </radialGradient>\n\n    <!-- Nose Shading Gradients -->\n    <linearGradient id=\"nose-bridge-light\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#eddcd2\" stop-opacity=\"0\"/>\n      <stop offset=\"50%\" stop-color=\"#ffffff\" stop-opacity=\"0.65\"/>\n      <stop offset=\"100%\" stop-color=\"#eddcd2\" stop-opacity=\"0\"/>\n    </linearGradient>\n\n    <linearGradient id=\"nose-side-shadow\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#ae7e65\" stop-opacity=\"0.45\"/>\n      <stop offset=\"60%\" stop-color=\"#c4977f\" stop-opacity=\"0.15\"/>\n      <stop offse",
+   "tok": 8747,
+   "lat": 363.0
+  },
+  "kimi-k3": {
+   "corr": 0.8,
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 700\" width=\"600\" h\nheight=\"700\">\n<defs>\n<radialGradient id=\"bg\" cx=\"300\" cy=\"250\" r=\"430\" gradientUnits=\"userSpaceO\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#ece5db\"/><stop offset=\"0.65\" stop-color=\"#ded\nstop-color=\"#ded4c7\"/><stop offset=\"1\" stop-color=\"#c9b9a9\"/>\n</radialGradient>\n<linearGradient id=\"faceSkin\" x1=\"0\" y1=\"140\" x2=\"0\" y2=\"440\" gradientUnits\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#f9e3cb\"/><stop offset=\"0.5\" stop-color=\"#f3d3\nstop-color=\"#f3d3ae\"/><stop offset=\"1\" stop-color=\"#e7b489\"/>\n</linearGradient>\n<linearGradient id=\"neckSkin\" x1=\"0\" y1=\"398\" x2=\"0\" y2=\"526\" gradientUnits\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#ecc8a2\"/><stop offset=\"1\" stop-color=\"#dda87c\nstop-color=\"#dda87c\"/>\n</linearGradient>\n<linearGradient id=\"hairBack\" x1=\"0\" y1=\"44\" x2=\"0\" y2=\"646\" gradientUnits=\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#5f3d22\"/><stop offset=\"0.4\" stop-color=\"#472b\nstop-color=\"#472b16\"/><stop offset=\"1\" stop-color=\"#2f1c0e\"/>\n</linearGradient>\n<linearGradient id=\"hairFront\" x1=\"170\" y1=\"60\" x2=\"430\" y2=\"330\" gradientU\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#6f4929\"/><stop offset=\"0.55\" stop-color=\"#4e3\nstop-color=\"#4e3018\"/><stop offset=\"1\" stop-color=\"#38220f\"/>\n</linearGradient>\n<linearGradient id=\"strand\" x1=\"0\" y1=\"250\" x2=\"0\" y2=\"646\" gradientUnits=\"\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#603d21\"/><stop offset=\"1\" stop-color=\"#33200f\nstop-color=\"#33200f\"/>\n</linearGradient>\n<radialGradient id=\"iris\" cx=\"0.4\" cy=\"0.36\" r=\"0.66\">\n<stop offset=\"0\" stop-color=\"#a97845\"/><stop offset=\"0.5\" stop-color=\"#6f44\nstop-color=\"#6f4423\"/><stop offset=\"1\" stop-color=\"#3d230f\"/>\n</radialGradient>\n<linearGradient id=\"lipU\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#a8504a\"/><stop offset=\"1\" stop-color=\"#94403a\nstop-color=\"#94403a\"/>\n</linearGradient>\n<linearGradient id=\"lipL\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#b45c50\"/><stop offset=\"1\" stop-color=\"#d98a70\nstop-color=\"#d98a70\"/>\n</linearGradient>\n<linearGradient id=\"cloth\" x1=\"0\" y1=\"498\" x2=\"0\" y2=\"700\" gradientUnits=\"u\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#617f7a\"/><stop offset=\"1\" stop-color=\"#3a5652\nstop-color=\"#3a5652\"/>\n</linearGradient>\n<filter id=\"f2\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"><feGaussianBlu\nheight=\"180%\"><feGaussianBlur stdDeviation=\"1.6\"/></filter>\n<filter id=\"f3\" x=\"-40%\" y=\"-40%\" width=\"180%\" height=\"180%\"><feGaussianBlu\nheight=\"180%\"><feGaussianBlur stdDeviation=\"2.6\"/></filter>\n<filter id=\"f6\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\"><feGaussianBlu\nheight=\"200%\"><feGaussianBlur stdDeviation=\"5\"/></filter>\n<filter id=\"f10\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\"><feGaussianBl\nheight=\"220%\"><feGaussianBlur stdDeviation=\"8.5\"/></filter>\n<clipPath id=\"faceClip\"><path d=\"M300 148 C248 148 212 180 205 238 C199 292\n292 209 342 235 381 C254 409 276 425 300 429 C324 425 346 409 365 381 C391 \n342 401 292 395 238 C388 180 352 148 300 148 Z\"/></clipPath>\n</defs>\n\n<rect width=\"600\" height=\"700\" fill=\"url(#bg)\"/>\n\n<path d=\"M300 44 C204 44 148 118 146 230 C144 314 132 414 148 516 C156 574 \n168 612 182 646 L418 646 C432 612 444 574 452 516 C468 414 456 314 454 230 \nC452 118 396 44 300 44 Z\" fill=\"url(#hairBack)\"/>\n<ellipse cx=\"300\" cy=\"88\" rx=\"95\" ry=\"30\" fill=\"#8f5c31\" opacity=\"0.3\" filt\nfilter=\"url(#f10)\"/>\n<ellipse cx=\"180\" cy=\"638\" rx=\"60\" ry=\"22\" fill=\"#24150a\" opacity=\"0.5\" fil\nfilter=\"url(#f10)\"/>\n<ellipse cx=\"420\" cy=\"638\" rx=\"60\" ry=\"22\" fill=\"#24150a\" opacity=\"0.5\" fil\nfilter=\"url(#f10)\"/>\n\n<path d=\"M258 398 C261 440 258 472 250 498 C245 512 244 520 247 526 L353 52\n526 C356 520 355 512 350 498 C342 472 339 440 342 398 Z\" fill=\"url(#neckSki\nfill=\"url(#neckSkin)\"/>\n<ellipse cx=\"262\" cy=\"468\" rx=\"10\" ry=\"42\" fill=\"#c8916a\" opacity=\"0.45\" fi\nfilter=\"url(#f6)\"/>\n<ellipse cx=\"338\" cy=\"468\" rx=\"10\" ry",
+   "tok": 17951,
+   "lat": 228.1
+  }
+ }
 }

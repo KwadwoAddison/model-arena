@@ -1,45 +1,77 @@
 {
- "deepseek-v4.1-flash": {
-  "code_b1": {
-   "grade": 1.0,
-   "text": "def solve(s):\n    count = {}\n    left = 0\n    best = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > 2:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
-   "lat": 5.4,
-   "tok": 357
-  },
-  "trade_b1": {
-   "grade": 1.0,
-   "text": "Gross wins: \\(80 \\times 0.459 = 36.72R\\)  \nPartial wins: \\(+0.44R\\)  \nGross profit: \\(36.72 + 0.44 = 37.16R\\)\n\nGross losses: \\(36 \\times 0.416 = 14.976R\\)\n\nNet P&L: \\(37.16 - 14.976 = 22.184R\\)\n\nExpectancy per trade:  \n\\[\n\\frac{22.184}{151}=0.1469R\n\\]\n\nProfit factor:  \n\\[\n\\frac{37.16}{14.976}=2.4813\n\\]\n\n**Expectancy: +0.1469R per trade**  \n**Profit factor: 2.48**",
-   "lat": 15.9,
-   "tok": 715
-  },
-  "med_b1": {
-   "grade": 1.0,
-   "text": "**B) OGT + duodenoduodenostomy workup**\n\nClassic **double bubble with no distal gas** suggests **duodenal atresia**.\natresia**. Next: **OG/NG decompression, IV fluids, evaluate associated anom\nanomalies**, then proceed to **duodenoduodenostomy**.",
-   "lat": 22.0,
-   "tok": 1419
-  }
- },
- "glm-5.3": {
-  "code_b1": {
-   "grade": 1.0,
-   "text": "```python\ndef solve(s):\n    k = 2\n    count, left, best = {}, 0, 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
-   "lat": 3.2,
-   "tok": 334
-  },
-  "trade_b1": {
-   "grade": 0.0,
-   "text": "**Totals:**\n- Wins: 80 \u00d7 0.459 = 36.72R\n- Losses: 36 \u00d7 0.416 = 14.976R\n- Partials: +0.44R; scratches: 0R\n- Gross profit = 36.72 + 0.44 = 37.16R\n- Gross loss = 14.976R\n- Net = 37.16 \u2212 14.976 = 22.184R\n- Trades check: 80 + 36 + 7 + 28 = 151 \u2713\n\n**Expectancy:**\n22.184 / 151 = **0.147R per trade**\n\n**Profit factor:**\n37.16 / 14.976 = **2.48**",
-   "lat": 61.6,
-   "tok": 591
-  },
-  "med_b1": {
-   "grade": 1.0,
-   "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Rationale:** Double bubble **without** distal gas = *complete* duodenal o\nobstruction \u2192 most likely **duodenal atresia** (vs. volvulus, which has dis\ndistal gas and needs urgent laparotomy). Atresia is not a surgical emergenc\nemergency: stabilize with NG/OGT decompression, correct electrolytes/fluids\nelectrolytes/fluids, and screen for associated anomalies (cardiac echo for \nDown syndrome, VACTERL) before duodenoduodenostomy.\n\n- **A/C)** Contrast enema/biopsy are for distal obstruction (Hirschsprung, \natresia with microcolon) \u2014 not needed here.\n- **D)** Urgent laparotomy is for malrotation/volvulus (distal gas present,\npresent, sick baby).\n- **E)** ",
-   "lat": 5.9,
-   "tok": 754
-  }
- },
  "gpt-5.6-sol-pro": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    left = best = 0\n    counts = {}\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            left_char = s[left]\n            counts[left_char] -= 1\n            if counts[left_char] == 0:\n                del counts[left_char]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "lat": 17.1,
+   "tok": 98
+  },
+  "code_pine": {
+   "grade": 0.6,
+   "text": "```pine\n//@version=6\nf_room(float highs, float lows, float atr) =>\n    float nearest = na\n\n    for i = 1 to 20\n        bool swingHigh = highs[i] > highs[i - 1] and highs[i] >= highs[i + 1]\n        bool swingLow  = lows[i] < lows[i - 1] and lows[i] <= lows[i + 1]\n\n        if swingHigh and highs[i] > close\n            float distance = highs[i] - close\n            nearest := na(nearest) ? distance : math.min(nearest, distance)\n\n        if swingLow and lows[i] < close\n            float distance = close - lows[i]\n            nearest := na(nearest) ? distance : math.min(nearest, distance)\n\n    not na(nearest) and atr > 0 ? nearest / atr : na\n```",
+   "lat": 24.9,
+   "tok": 162
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Scroll Count</title>\n  <style>\n    * { box-sizing: border-box; }\n    html, body { margin: 0; }\n    body {\n      min-height: 220vh;\n      display: grid;\n      place-items: end center;\n      padding-bottom: 45vh;\n      color: #f8fafc;\n      background: linear-gradient(180deg, #020617, #172554);\n      font-family: system-ui, sans-serif;\n    }\n    #count {\n      font-size: clamp(6rem, 25vw, 18rem);\n      font-weight: 800;\n      line-height: 1;\n      font-variant-numeric: tabular-nums;\n    }\n  </style>\n</head>\n<body>\n  <output id=\"count\" aria-live=\"polit",
+   "lat": 21.9,
+   "tok": 572
+  },
+  "code_art": {
+   "grade": 1.0,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 700\" role=\"img\" aria-label=\"Front-facing head-and-shoulders portrait of a woman with fair skin and brown hair\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#e9e1dd\"/>\n      <stop offset=\"1\" stop-color=\"#cfc1bc\"/>\n    </linearGradient>\n    <radialGradient id=\"skin\" cx=\"48%\" cy=\"35%\" r=\"68%\">\n      <stop offset=\"0\" stop-color=\"#f8d9c8\"/>\n      <stop offset=\".58\" stop-color=\"#efc4b1\"/>\n      <stop offset=\"1\" stop-color=\"#d99f8c\"/>\n    </radialGradient>\n    <linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".2\">\n      <stop offset=\"0\" stop-color=\"#dca38f\"/>\n      <stop offset=\".25\" s",
+   "lat": 89.3,
+   "tok": 2766
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 8.4,
+   "tok": 1
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 11.2,
+   "tok": 1
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 7.4,
+   "tok": 1
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "- Full-win profit: \\(80 \\times 0.459R = 36.720R\\)\n- Partial-win profit: \\(+0.440R\\)\n- Gross profit: \\(36.720R + 0.440R = 37.160R\\)\n- Gross loss: \\(36 \\times 0.416R = 14.976R\\)\n- Net result: \\(37.160R - 14.976R = 22.184R\\)\n\n**Expectancy per trade**\n\n\\[\n\\frac{22.184R}{151}=+0.1469R\n\\]\n\n**Profit factor**\n\n\\[\n\\frac{37.160R}{14.976R}=2.481\n\\]\n\nSo the journal has an expectancy of **+0.147R per trade** and a profit factor of **2.48**.",
+   "lat": 12.6,
+   "tok": 108
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "Strategy A has higher expectancy: \\(0.30(4R)+0.70(-1R)=+0.50R\\) per trade.  \nAssuming Strategy B\u2019s 75% outcomes earn \\(+0.2R\\), its expectancy is \\(0.75(0.2R)+0.25(-1R)=-0.10R\\).  \nA wins because its much larger payoff outweighs its lower win rate.",
+   "lat": 14.1,
+   "tok": 62
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "**0.40 lots**\n\n- Risk amount: $10,000 \u00d7 1% = **$100**\n- Risk per 1.00 lot: 25 pips \u00d7 $10 = **$250**\n- Position size: $100 \u00f7 $250 = **0.40 lots**",
+   "lat": 78.2,
+   "tok": 36
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "\u201c24-week gestational age\u201d plus the exact death date, March 4, forms a quasi-identifier because this rare combination may single out one baby in a small NICU audit. Staff, parents, or others with access to rosters or clinical events could link the record back to the baby without a name or hospital number. Replace exact values with grouped gestational age and broader date periods.",
+   "lat": 11.3,
+   "tok": 95
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor compares total gross profits with total gross losses, while expectancy estimates the average profit or loss per trade using both win frequency and payoff size. Profit factor is useful for a quick efficiency check but can be distorted by a few unusually large outcomes. Expectancy better survives a long-tailed return distribution, provided it is estimated from enough trades and stress-tested for outliers.",
+   "lat": 14.3,
+   "tok": 105
+  },
   "code_b1": {
    "grade": 1.0,
    "text": "def solve(s):\n    left = 0\n    counts = {}\n    longest = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            left_char = s[left]\n            counts[left_char] -= 1\n            if counts[left_char] == 0:\n                del counts[left_char]\n            left += 1\n\n        longest = max(longest, right - left + 1)\n\n    return longest",
@@ -60,6 +92,78 @@
   }
  },
  "gpt-6-astra": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    counts = {}\n    left = 0\n    longest = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            outgoing = s[left]\n            counts[outgoing] -= 1\n            if counts[outgoing] == 0:\n                del counts[outgoing]\n            left += 1\n\n        longest = max(longest, right - left + 1)\n\n    return longest",
+   "lat": 16.7,
+   "tok": 102
+  },
+  "code_pine": {
+   "grade": 0.6,
+   "text": "```pine\n//@version=6\n// highs/lows: swing-price series; na when no swing occurs.\n// Call every bar. Scans current bar plus the previous 19.\n// Returns na if no qualifying swing exists or ATR is invalid.\nf_room(series float highs, series float lows, series float atr) =>\n    float nearest = na\n    for i = 0 to 19\n        float h = highs[i]\n        float l = lows[i]\n        if not na(h) and h > close\n            float distance = h - close\n            nearest := na(nearest) ? distance : math.min(nearest, distance)\n        if not na(l) and l < close\n            float distance = close - l\n            nearest := na(nearest) ? distance : math.min(nearest, distance)\n    not na(atr) and atr > 0.0 ? ne",
+   "lat": 27.4,
+   "tok": 210
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Scroll Countdown</title>\n  <style>\n    * { box-sizing: border-box; }\n    body {\n      margin: 0;\n      background: #101114;\n      color: #f5f5f7;\n      font-family: system-ui, sans-serif;\n    }\n    header, main {\n      min-height: 100svh;\n      display: grid;\n      place-content: center;\n      padding: 2rem;\n      text-align: center;\n    }\n    header p { color: #a4a5ad; }\n    .arrow { margin-top: 2rem; font-size: 2rem; }\n    #counter {\n      font-size: clamp(7rem, 25vw, 20rem);\n      font-weight: 750;\n      line-height: 1;\n      letter-spacing: -.07",
+   "lat": 54.5,
+   "tok": 1036
+  },
+  "code_art": {
+   "grade": 1.0,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"720\" viewBox=\"0 0 600 720\" role=\"img\" aria-labelledby=\"title desc\">\n  <title id=\"title\">Portrait of a woman, age 36</title>\n  <desc id=\"desc\">A front-facing woman with fair skin, softly shaded brown hair, hazel eyes, and a composed expression, shown from the shoulders up.</desc>\n  <defs>\n    <radialGradient id=\"background\" cx=\"48%\" cy=\"35%\" r=\"75%\">\n      <stop stop-color=\"#e9e2d9\"/>\n      <stop offset=\"1\" stop-color=\"#a9b4af\"/>\n    </radialGradient>\n    <linearGradient id=\"hair\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".6\">\n      <stop stop-color=\"#241a18\"/>\n      <stop offset=\".24\" stop-color=\"#51362a\"/>\n      <stop offset=\".46\" stop-color=\"#7651",
+   "lat": 211.9,
+   "tok": 4160
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 13.9,
+   "tok": 1
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 12.6,
+   "tok": 1
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 13.0,
+   "tok": 1
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "**Expectancy: +0.147R per trade. Profit factor: 2.48.**\n\nGross profit includes wins and partial wins:\n\\[\n80(0.459R) + 0.44R = 37.16R\n\\]\n\nGross loss:\n\\[\n36(0.416R) = 14.976R\n\\]\n\nExpectancy across all 151 closed entries, including scratches:\n\\[\n\\frac{37.16R - 14.976R + 28(0R)}{151}\n= \\frac{22.184R}{151}\n= \\boxed{+0.1469R\\text{ per trade}}\n\\]\n\nProfit factor:\n\\[\n\\frac{\\text{Gross profit}}{\\text{Gross loss}}\n= \\frac{37.16}{14.976}\n= \\boxed{2.4813}\n\\]",
+   "lat": 17.6,
+   "tok": 112
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "Strategy A has expectancy of \\(0.30(4R) - 0.70(1R) = +0.50R\\) per trade.\nAssuming Strategy B\u2019s 75% wins earn \\(+0.2R\\), its expectancy is \\(0.75(0.2R) - 0.25(1R) = -0.10R\\) per trade.\nStrategy A wins because its larger payouts more than offset its lower win rate, while B\u2019s frequent small gains cannot cover its losses.",
+   "lat": 16.0,
+   "tok": 80
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "**0.40 lots**\n\nRisk amount = $10,000 \u00d7 1% = $100  \nRisk per 1.00 lot = 25 pips \u00d7 $10 = $250  \nPosition size = $100 \u00f7 $250 = **0.40 lots**",
+   "lat": 11.9,
+   "tok": 34
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "In a small NICU audit, the combination \u201c24 weeks\u2019 gestation, died March 4\u201d is a quasi-identifier: it can identify a baby indirectly when linked with other information. Neither detail gives a name, but together they narrow the records to a distinctive case. Staff or relatives who know the admission or death can match that knowledge to the audit and identify the baby.\n\nRemoving names therefore does not make the audit anonymous. Use broader gestational-age bands and reporting periods, and suppress rare combinations to reduce identification risk.",
+   "lat": 12.2,
+   "tok": 137
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor compares total profits with total losses, showing how much you earn relative to what you lose. Expectancy is the average net profit or loss per trade, showing what each trade contributes after costs. Neither reliably survives a long tail of extreme outcomes: rare wins or losses can dominate both measures, and expectancy is undefined if the underlying mean does not exist.",
+   "lat": 17.9,
+   "tok": 97
+  },
   "code_b1": {
    "grade": 1.0,
    "text": "def solve(s):\n    counts = {}\n    left = best = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            outgoing = s[left]\n            counts[outgoing] -= 1\n            if counts[outgoing] == 0:\n                del counts[outgoing]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
@@ -79,7 +183,171 @@
    "tok": 80
   }
  },
+ "glm-5.3": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    \"\"\"\n    Return the length of the longest substring of `s` that contains\n    at most k = 2 distinct characters.\n\n    Uses a sliding window: expand the right edge one character at a\n    time, and shrink from the left whenever the window holds more\n    than k distinct characters. Runs in O(n) time with O(k) space.\n    \"\"\"\n    k = 2\n    char_count = {}  # char -> count within the current window\n    left = 0\n    max_len = 0\n\n    for right, ch in enumerate(s):\n        # Expand window to include s[right]\n        char_count[ch] = char_count.get(ch, 0) + 1\n\n        # Shrink from the left until at most k distinct chars remain\n        while len(char_count) > k:\n            l",
+   "lat": 22.3,
+   "tok": 3733
+  },
+  "code_pine": {
+   "grade": 1.0,
+   "text": "Here's the function, written for v6 (`ta.pivothigh`/`ta.pivotlow` are the c\ncorrect tools here, since a 20-bar pivot is only *confirmed* 20 bars after \nit forms):\n\n```pine\n//@version=6\nindicator(\"Room to nearest swing\", overlay = false)\n\n// Distance in ATRs from the last close to the nearest confirmed swing leve\nlevel:\n// the closest 20/20 pivot HIGH above the close or the closest 20/20 pivot\n// LOW below it \u2014 whichever is nearer. Returns float (na until data exists)\nexists).\n// NOTE: call it unconditionally on every bar (it holds `var` state + ta.*)\nta.*).\nf_room(highs, lows, atr) =>\n    int lb    = 20      // pivot lookback: bars on each side of the swing\n    int maxSw = 100     // how man",
+   "lat": 245.3,
+   "tok": 19235
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"color-scheme\" content=\"dark\">\n<title>GD-61 \u00b7 Terminal Descent \u2014 61 \u2192 0</title>\n<!--\n  GD-61 \u00b7 TERMINAL DESCENT\n  A scroll-triggered 61 \u2192 0 counter that is guaranteed to finish even if th\nthe\n  tab is backgrounded mid-run (or during load):\n\n  \u00b7 TRIGGER   IntersectionObserver (threshold 0.35), plus a manual in-view\n              check on load / visibilitychange as a belt-and-braces fallbac\nfallback.\n  \u00b7 PROGRESS  The value is a pure function of wall-clock time\n              (performance.now()), never of frame count.\n  \u00b7 DRIVERS   (1) requestAni",
+   "lat": 438.8,
+   "tok": 55863
+  },
+  "code_art": {
+   "grade": 0.8,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"500\" viewBox=\"0\nviewBox=\"0 0 400 500\" role=\"img\" aria-label=\"Portrait of a woman with brown\nbrown hair\">\n  <title>Portrait of a woman</title>\n  <defs>\n    <radialGradient id=\"bg\" cx=\"50%\" cy=\"38%\" r=\"80%\">\n      <stop offset=\"0\" stop-color=\"#f8f1e7\"/>\n      <stop offset=\"1\" stop-color=\"#e3d3c0\"/>\n    </radialGradient>\n    <radialGradient id=\"skin\" gradientUnits=\"userSpaceOnUse\" cx=\"200\" cy=\"2\ncy=\"205\" r=\"195\">\n      <stop offset=\"0\" stop-color=\"#f8d9b8\"/>\n      <stop offset=\"0.55\" stop-color=\"#f2c9a3\"/>\n      <stop offset=\"1\" stop-color=\"#e0ab82\"/>\n    </radialGradient>\n    <radialGradient id=\"iris\" cx=\"0.5\" cy=\"0.42\" r=\"0.6\">\n     ",
+   "lat": 543.1,
+   "tok": 54310
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 6.3,
+   "tok": 672
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 2.6,
+   "tok": 130
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 4.6,
+   "tok": 324
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "# Trade Journal Metrics\n\n## Step 1: Verify trade count\n80 + 36 + 7 + 28 = **151** \u2713 (matches closed entries)\n\n## Step 2: Gross profit\n| Category | Arithmetic | R |\n|---|---|---|\n| Full wins | 80 \u00d7 0.459 | +36.72 |\n| Partials | total given | +0.44 |\n| Scratches | 28 \u00d7 0.000 | 0.00 |\n| **Gross profit** | | **+37.16R** |\n\n## Step 3: Gross loss\n36 \u00d7 0.416 = **14.976R**\n\n## Step 4: Net result\n37.16 \u2212 14.976 = **+22.184R**\n\n## Step 5: Expectancy per trade\n$$E = \\frac{\\text{Net}}{n} = \\frac{22.184}{151} \\approx \\mathbf{+0.147R}$$\n\nEach closed entry returns ~14.7% of the initial risk, on average.\n\n## Step 6: Profit factor\n$$PF = \\frac{\\text{Gross profit}}{\\text{Gross loss}} = \\frac{37.16}{14.976}\n\\f",
+   "lat": 15.7,
+   "tok": 1734
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "Strategy A's expectancy is +0.50R per trade (0.30 \u00d7 4R \u2212 0.70 \u00d7 1R), while \nStrategy B's is \u22120.10R per trade (0.75 \u00d7 0.2R \u2212 0.25 \u00d7 1R), so A is higher \ndespite its lower win rate. Expectancy is (win rate \u00d7 average win) \u2212 (loss \nrate \u00d7 average loss), and B's 75% winners of +0.2R simply can't cover its 2\n25% full stop-outs of \u22121R, making it a losing system. This shows that win r\nrate alone is meaningless\u2014A's rare 4R payoffs more than fund its frequent s\nsmall losses, while B's high hit rate is an illusion of profitability.",
+   "lat": 10.0,
+   "tok": 1138
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "**Position size: 0.40 lots**\n\n**Working:**\n\n1. **Risk amount** = Account \u00d7 1% = $10,000 \u00d7 0.01 = **$100**\n\n2. **Dollar risk per 1.00 lot** = Stop (pips) \u00d7 Pip value = 25 \u00d7 $10 = **$2\n**$250 per lot**\n\n3. **Position size** = Risk amount \u00f7 Risk per lot = $100 \u00f7 $250 = **0.40 lo\nlots**\n\n**Check:** 0.40 lots \u00d7 25 pips \u00d7 $10/pip = $100 \u2713 (exactly 1% of the accoun\naccount)\n\nIf your broker only accepts 0.10-lot increments, round **down** to 0.40 (al\n(already exact). If it required rounding, always round down to keep risk at\nat or below 1% \u2014 never up.",
+   "lat": 3.9,
+   "tok": 295
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "A quasi-identifier is a detail that does not name a patient alone but re-id\nre-identifies them in combination with others. This record carries three: g\ngestational age, date of death, and unit size. Twenty-four weeks sits at th\nthe extreme margin of viability, so few babies occupy that category. March \n4 pins the death to a single day. A small NICU has few beds, and its staff \nknow every baby's story. Anyone with roster access\u2014or a parent from the sam\nsame ward\u2014triangulates those facts to one child in minutes. That is the k-a\nk-anonymity problem: small units rarely contain two identical cases. Report\nReports therefore band gestational ages, round dates, and suppress small ce\ncells; this case",
+   "lat": 19.3,
+   "tok": 2929
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor is the ratio of gross winnings to gross losses across a track\ntrack record, and since it looks only at totals, a few outsized trades can \nwildly flatter or wreck it. Expectancy is the average outcome you should an\nanticipate per trade or per unit of risk, weighing how often you win agains\nagainst the typical size of your wins and losses, which makes it the truer \nmeasure of edge. Expectancy is the one that survives a long tail, because i\nit spreads the cost of rare, extreme events across every trade in the sampl\nsample, while a pristine profit factor can collapse the moment that tail fi\nfinally shows up.",
+   "lat": 32.4,
+   "tok": 5058
+  },
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    k = 2\n    count, left, best = {}, 0, 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "lat": 3.2,
+   "tok": 334
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "**Totals:**\n- Wins: 80 \u00d7 0.459 = 36.72R\n- Losses: 36 \u00d7 0.416 = 14.976R\n- Partials: +0.44R; scratches: 0R\n- Gross profit = 36.72 + 0.44 = 37.16R\n- Gross loss = 14.976R\n- Net = 37.16 \u2212 14.976 = 22.184R\n- Trades check: 80 + 36 + 7 + 28 = 151 \u2713\n\n**Expectancy:**\n22.184 / 151 = **0.147R per trade**\n\n**Profit factor:**\n37.16 / 14.976 = **2.48**",
+   "lat": 61.6,
+   "tok": 591
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Rationale:** Double bubble **without** distal gas = *complete* duodenal o\nobstruction \u2192 most likely **duodenal atresia** (vs. volvulus, which has dis\ndistal gas and needs urgent laparotomy). Atresia is not a surgical emergenc\nemergency: stabilize with NG/OGT decompression, correct electrolytes/fluids\nelectrolytes/fluids, and screen for associated anomalies (cardiac echo for \nDown syndrome, VACTERL) before duodenoduodenostomy.\n\n- **A/C)** Contrast enema/biopsy are for distal obstruction (Hirschsprung, \natresia with microcolon) \u2014 not needed here.\n- **D)** Urgent laparotomy is for malrotation/volvulus (distal gas present,\npresent, sick baby).\n- **E)** ",
+   "lat": 5.9,
+   "tok": 754
+  }
+ },
  "glm-5.3-flash": {
+  "code_algo": {
+   "grade": 0.0,
+   "text": "```python\ndef solve(s):\n    \"\"\"Return the length of the longest substring of s with at most 2 disti\ndistinct characters.\n\n    Uses a sliding window with a character-frequency map.\n    Time: O(n), Space: O(1) (the map holds at most 3 keys).\n    \"\"\"\n    k = 2\n    count = {}\n    left = 0\n    best = 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > k:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "lat": 21.4,
+   "tok": 2269
+  },
+  "code_pine": {
+   "grade": 0.8,
+   "text": "```pinescript\n//@version=6\nindicator(\"Room to nearest swing\", overlay = false)\n\n// Distance, in ATRs, from the last close to the nearest swing high above i\nit\n// or swing low below it, scanning the last 20 bars.\n//   highs, lows : series to scan (normally pass `high` and `low`)\n//   atr         : current ATR value (normally pass e.g. `ta.atr(14)`)\n// A swing = a bar whose extreme is not exceeded by `strength` bars on eith\neither\n// side, with both sides fully inside the lookback window.\n// Returns `na` if no qualifying swing exists, or if atr is na / <= 0.\n// Reads history through its parameters, so it must be called on every bar.\nbar.\nf_room(float highs, float lows, float atr) =>\n    int   ",
+   "lat": 134.9,
+   "tok": 11337
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>T-MINUS 61 \u2014 Scroll Countdown</title>\n<style>\n  :root{\n    --paper:#F1EDE2;\n    --ink:#17150F;\n    --ink-soft:#4B463A;\n    --ink-dim:rgba(23,21,15,.28);\n    --coal:#12110C;\n    --bone:#EAE4D4;\n    --bone-dim:rgba(234,228,212,.55);\n    --bone-faint:rgba(234,228,212,.22);\n    --acc:#E04A0F;\n  }\n  *{margin:0;padding:0;box-sizing:border-box}\n  body{\n    background:var(--paper);\n    color:var(--ink);\n    font-family:\"SF Mono\",ui-monospace,\"Cascadia Mono\",Menlo,Consolas,\"Libe\nMono\",Menlo,Consolas,\"Liberation Mono\",monospace;\n    -webkit-font-smoothing",
+   "lat": 292.7,
+   "tok": 26257
+  },
+  "code_art": {
+   "grade": 0.8,
+   "text": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 520\" width=\"400\" h\nheight=\"520\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#efe8db\"/>\n      <stop offset=\"1\" stop-color=\"#d2c7b5\"/>\n    </linearGradient>\n    <radialGradient id=\"glow\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0\" stop-color=\"#ffffff\" stop-opacity=\"0.55\"/>\n      <stop offset=\"0.6\" stop-color=\"#ffffff\" stop-opacity=\"0.18\"/>\n      <stop offset=\"1\" stop-color=\"#ffffff\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <radialGradient id=\"skin\" cx=\"50%\" cy=\"40%\" r=\"70%\">\n      <stop offset=\"0\" stop-color=\"#fde8cd\"/>\n      <stop offset=\"0.55\" stop-color=\"#f6d0a",
+   "lat": 286.0,
+   "tok": 21080
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 6.4,
+   "tok": 603
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 2.5,
+   "tok": 158
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 2.6,
+   "tok": 133
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "## Step 1: Sum each bucket\n\n| Bucket | Count | Per-trade R | Total R |\n|---|---|---|---|\n| Full wins | 80 | +0.459 | 80 \u00d7 0.459 = **+36.72R** |\n| Losses | 36 | \u22120.416 | 36 \u00d7 0.416 = **\u221214.976R** |\n| Partial wins | 7 | \u2014 | given total = **+0.44R** |\n| Scratches | 28 | 0.0 | **0.00R** |\n\nCount check: 80 + 36 + 7 + 28 = 151 \u2713\n\n## Step 2: Total net R\n\nGross profit = 36.72 + 0.44 = **+37.16R**\nGross loss = **\u221214.976R**\n\nNet = 37.16 \u2212 14.976 + 0 = **+22.184R**\n\n## Step 3: Expectancy per trade\n\n$$\n\\text{Expectancy} = \\frac{22.184\\text{R}}{151} = \\mathbf{+0.1469R} \\approx \n+0.147\\text{R per trade}\n$$\n\n## Step 4: Profit factor\n\n$$\n\\text{PF} = \\frac{\\text{Gross profit}}{\\text{Gross loss}} = \\frac{37.1",
+   "lat": 22.5,
+   "tok": 1243
+  },
+  "trade_logic": {
+   "grade": 0.25,
+   "text": "**Strategy A: +0.50R expectancy** = (0.30 \u00d7 4R) \u2212 (0.70 \u00d7 1R), versus **Str\n**Strategy B: \u22120.10R** = (0.75 \u00d7 0.2R) \u2212 (0.25 \u00d7 1R), since B's tiny 0.2R w\nwins mathematically cannot cover its 1R losses (it would need an 83% win ra\nrate just to break even).\n\nA wins because expectancy is (win% \u00d7 avg win) \u2212 (loss% \u00d7 avg loss), and its\nits 4:1 payoff asymmetry turns a 30% hit rate into five times B's per-trade\nper-trade edge.\n\nB's 75% win rate is cosmetic\u2014frequent small wins are a slow bleed that also\nalso tends to breed overconfidence and hide the fact that you're paying 1R \nto make 0.2R.",
+   "lat": 11.0,
+   "tok": 849
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "**Position size = 0.40 lots**\n\n**Working:**\n\n1. Risk amount = $10,000 \u00d7 1% = **$100**\n2. Dollar risk per 1.00 lot = 25 pips \u00d7 $10 = **$250**\n3. Lot size = $100 \u00f7 $250 = **0.40 lots**\n\n**Check:** 0.40 lots \u00d7 25 pips \u00d7 $10/pip = $100 loss at stop = 1% of accoun\naccount \u2713",
+   "lat": 4.9,
+   "tok": 275
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "A quasi-identifier does not name the patient but can single them out when c\ncombined with other details. A gestational age of 24 weeks is rare; few bab\nbabies in a small NICU are that premature in any period. Adding the death d\ndate, March 4, pins the event to one day. In a unit with a small census, ex\nextreme prematurity plus a precise death date narrows the cohort to one bab\nbaby. Anyone who worked that month will know exactly who died. The record t\ntherefore functions as identifiable data even without a name or hospital nu\nnumber. Protect it by grouping gestational ages into broader bands and repo\nreporting month or quarter rather than exact dates.",
+   "lat": 31.6,
+   "tok": 1992
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor measures total gross profits divided by total gross losses, s\nshowing how many dollars a strategy earns for every dollar it loses, while \nexpectancy measures the average gain or loss you can expect per trade after\nafter weighing win rate against average win and loss sizes. Because profit \nfactor is built from aggregates, a single outsized winner or loser can swin\nswing it wildly, whereas expectancy distributes the impact of any one trade\ntrade across the whole sample and converges toward the strategy's true edge\nedge as the trade count grows. For that reason, expectancy is the metric th\nthat survives a long tail \u2014 it degrades gracefully when rare extreme outcom\noutcomes hit, wh",
+   "lat": 9.1,
+   "tok": 861
+  },
   "code_b1": {
    "grade": 1.0,
    "text": "```python\ndef solve(s):\n    k = 2  # at most k distinct characters\n    count = {}\n    left = 0\n    best = 0\n    for right, c in enumerate(s):\n        count[c] = count.get(c, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
@@ -100,6 +368,78 @@
   }
  },
  "deepseek-v4-pro": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    from collections import defaultdict\n\n    counts = defaultdict(int)\n    left = 0\n    max_len = 0\n\n    for right, ch in enumerate(s):\n        counts[ch] += 1\n\n        while len(counts) > 2:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "lat": 3.5,
+   "tok": 433
+  },
+  "code_pine": {
+   "grade": 1.0,
+   "text": "Below is a Pine Script v6 function `f_room` that returns the distance in AT\nATRs from the last close to the nearest swing high above or swing low below\nbelow, using a 20\u2011bar lookback. The function uses a simple pivot definition\ndefinition (left = 1, right = 1) and scans the last 20 bars for the closest\nclosest qualifying swing point.\n\n```pinescript\n//@version=6\nindicator(\"f_room Example\", overlay=false)\n\n// Function: distance in ATRs from last close to nearest swing high above o\nor swing low below\n// Lookback: 20 bars\nf_room(highs, lows, atr) =>\n    // Detect swing highs and lows (left=1, right=1)\n    float pivotHigh = ta.pivothigh(highs, 1, 1)\n    float pivotLow  = ta.pivotlow(lows, 1, 1)\n\n",
+   "lat": 18.9,
+   "tok": 4026
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Count-Up Animation \u2014 0 to 61</title>\n    <style>\n        *,\n        *::before,\n        *::after {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n\n        html {\n            scroll-behavior: smooth;\n        }\n\n        body {\n            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n            background: #0a0a0f;\n            color: #ffffff;\n            overflow-x: hidden;\n            -webkit-font-smoothing: antialiased;\n            -moz-osx-font-smoothing: grayscale;\n     ",
+   "lat": 57.7,
+   "tok": 11771
+  },
+  "code_art": {
+   "grade": 0.8,
+   "text": "I\u2019ll generate a front-facing SVG portrait of a 36-year-old woman with fair \nskin and brown hair, using only inline vector shapes and layered shading fo\nfor facial structure.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n    <defs>\n        <!-- Background Gradients -->\n        <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n            <stop offset=\"0%\" stop-color=\"#4a5a6a\"/>\n            <stop offset=\"100%\" stop-color=\"#1a1a2e\"/>\n        </radialGradient>\n        <radialGradient id=\"vignette\" cx=\"50%\" cy=\"50%\" r=\"70%\">\n            <stop offset=\"60%\" stop-color=\"#000\" stop-opacity=\"0\"/>\n            <stop offset=\"100%\" stop-color=\"#000\"",
+   "lat": 68.9,
+   "tok": 11527
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 10.0,
+   "tok": 1522
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 2.7,
+   "tok": 136
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 2.1,
+   "tok": 81
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "Total closed entries:  \n80 + 36 + 7 + 28 = 151\n\nTotal R:\n\n- Wins: 80 \u00d7 +0.459R = +36.720R  \n- Losses: 36 \u00d7 \u22120.416R = \u221214.976R  \n- Partial wins: +0.440R total  \n- Breakeven scratches: 28 \u00d7 0.0R = 0.000R  \n\nNet total R:\n\n36.720 \u2212 14.976 + 0.440 = 22.184R\n\nExpectancy per trade:\n\n22.184R \u00f7 151 trades = 0.1469R/trade\n\nSo expectancy \u2248 **+0.147R per trade**.\n\nProfit factor:\n\nGross profit = 36.720 + 0.440 = 37.160R  \nGross loss = 14.976R  \n\nProfit factor = 37.160 \u00f7 14.976 = 2.4813\n\nSo profit factor \u2248 **2.48**.\n\nFinal results:\n\n- Expectancy: **+0.147R per trade**\n- Profit factor: **2.48**",
+   "lat": 8.0,
+   "tok": 1095
+  },
+  "trade_logic": {
+   "grade": 0.75,
+   "text": "Strategy A has higher expectancy: \\(0.30 \\times 4R + 0.70 \\times (-1R) = +0\n+0.5R\\) per trade. Strategy B\u2019s expectancy is \\(0.75 \\times 0.2R + 0.25 \\ti\n\\times (-1R) = -0.1R\\) per trade, assuming 75% scratches at +0.2R and 25% f\nfull losses. A wins less often, but its 4R winners create a large enough as\nasymmetric payoff to beat B\u2019s high win rate of tiny gains versus full losse\nlosses.",
+   "lat": 6.3,
+   "tok": 721
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "Risk amount = $10,000 \u00d7 1% = $100\n\nRisk per 1.00 lot = 25 pips \u00d7 $10 = $250\n\nPosition size = $100 \u00f7 $250 = 0.4 lots\n\n**Position size: 0.40 lots**",
+   "lat": 1.8,
+   "tok": 172
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "A 24-week gestational age combined with a death date of March 4 is a quasi-\nquasi-identifier because in a small NICU audit these two facts almost certa\ncertainly point to a single infant. Very few babies are born at exactly 24 \nweeks, and even fewer die on any given day. When you put those attributes t\ntogether, you strip away anonymity without needing a name or medical record\nrecord number. Anyone familiar with the unit\u2019s recent admissions can re-ide\nre-identify that baby and the family instantly. In a small dataset, rare co\ncombinations are identifiers.",
+   "lat": 4.4,
+   "tok": 269
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor measures the ratio of total gross profit to total gross loss,\nloss, showing how much reward is generated per unit of risk, while expectan\nexpectancy is the average net profit or loss per trade across the entire sa\nsample. Because profit factor is a ratio of sums, a single extreme loss in \nthe long tail can disproportionately collapse it, whereas expectancy spread\nspreads that outlier across all trades and remains a more stable measure of\nof edge. Therefore, expectancy survives a long tail better than profit fact\nfactor.",
+   "lat": 6.7,
+   "tok": 1002
+  },
   "code_b1": {
    "grade": 1.0,
    "text": "```python\ndef solve(s):\n    k = 2\n    count = {}\n    left = 0\n    max_len = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > k:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
@@ -119,27 +459,171 @@
    "tok": 1192
   }
  },
- "kimi-k3": {
+ "deepseek-v4.1-flash": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    count = {}\n    left = 0\n    longest = 0\n    \n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        \n        while len(count) > 2:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n        \n        longest = max(longest, right - left + 1)\n    \n    return longest",
+   "lat": 2.2,
+   "tok": 356
+  },
+  "code_pine": {
+   "grade": 0.8,
+   "text": "```pine\n//@version=6\nf_room(highs, lows, atr) =>\n    lb = 20\n    float hh = ta.highest(highs, lb)\n    float ll = ta.lowest(lows, lb)\n    float roomUp = (hh - close) / atr\n    float roomDn = (close - ll) / atr\n    math.min(roomUp, roomDn)\n```",
+   "lat": 64.8,
+   "tok": 11597
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "Here's a standalone HTML page that animates a countdown from 61 to 0 when t\nthe section scrolls into view, using IntersectionObserver and wall-clock ti\ntiming to stay accurate even if the tab is backgrounded.\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n<title>Scroll Countdown \u2014 61 &rarr; 0</title>\n<style>\n  :root { color-scheme: dark; }\n  * { box-sizing: border-box; }\n  html { scroll-behavior: smooth; }\n  body {\n    margin: 0;\n    background: radial-gradient(120% 90% at 50% -10%, #17263d 0%, #0a0d13 5\n55%, #06070a 100%);\n    color: #e8eef7;\n    font-family: ui-sans-serif, system-ui, -apple-sys",
+   "lat": 51.1,
+   "tok": 9596
+  },
+  "code_art": {
+   "grade": 0.8,
+   "text": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" />\n      <stop offset=\"100%\" stop-color=\"#dce1e6\" />\n    </radialGradient>\n    \n    <!-- Face Gradient -->\n    <radialGradient id=\"faceGrad\" cx=\"50%\" cy=\"40%\" r=\"55%\">\n      <stop offset=\"0%\" stop-color=\"#fef4f0\" />\n      <stop offset=\"70%\" stop-color=\"#fceee9\" />\n      <stop offset=\"100%\" stop-color=\"#e8c8c0\" />\n    </radialGradient>\n    \n    <!-- Hair Gradient -->\n    <linearGradient id=\"hairGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offs",
+   "lat": 70.1,
+   "tok": 12381
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 18.4,
+   "tok": 2750
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 1.9,
+   "tok": 281
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 1.4,
+   "tok": 155
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "**Gross profit**\n\n- Full wins: \\(80 \\times 0.459R = 36.72R\\)\n- Partial wins: \\(+0.44R\\)\n- Total gross profit: \\(36.72R + 0.44R = 37.16R\\)\n\n**Gross loss**\n\n- Losses: \\(36 \\times 0.416R = 14.976R\\)\n- Gross loss: \\(14.976R\\)\n\n**Net R**\n\n\\[\n37.16R - 14.976R = 22.184R\n\\]\n\n**Expectancy per trade**\n\nTotal closed entries:\n\n\\[\n80 + 36 + 7 + 28 = 151\n\\]\n\n\\[\n\\text{Expectancy} = \\frac{22.184R}{151} = 0.1469139R\n\\]\n\nSo expectancy is approximately:\n\n\\[\n\\boxed{0.1469R \\text{ per trade}}\n\\]\n\n**Profit factor**\n\n\\[\n\\text{Profit Factor} = \\frac{\\text{Gross Profit}}{\\text{Gross Loss}}\n= \\frac{37.16R}{14.976R}\n= 2.4813\n\\]\n\n\\[\n\\boxed{\\text{Profit Factor} \\approx 2.48}\n\\]\n\n**Summary**\n\n\\[\n\\boxed{\\text{Expectancy} ",
+   "lat": 7.8,
+   "tok": 1621
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "Thinking...\nWe need answer. Need parse. Need answer in 3 sentences. Need determine expe\nexpectation. Strategy A: wins 30% with 4R targets, loses -1R. So expectancy\nexpectancy = 0.30*4 + 0.70*(-1) = 1.2 -0.7 = +0.5R per trade.\n\nStrategy B: wins 75% with -1R stops and +0.2R scratches. Need interpret: 75\n75% wins? with -1R stops and +0.2R scratches. Could mean win rate 75%, loss\nlosses -1R, scratches +0.2R? Need know proportions? \"wins 75% with -1R stop\nstops and +0.2R scratches\" Ambiguous. Maybe B: 75% win rate, -1R stops, +0.\n+0.2R scratches. If wins are? Maybe \"wins 75%\" means non-loss? Hmm. Need in\ninfer: Strategy B wins 75% with -1R stops and +0.2R scratches. Same risk pe\nper trade. Which ",
+   "lat": 93.5,
+   "tok": 386
+  },
+  "trade_sizing": {
+   "grade": 0.0,
+   "text": "",
+   "lat": 0.2,
+   "tok": 1
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "",
+   "lat": 0.0,
+   "tok": 1
+  },
+  "long_pf": {
+   "grade": 0.33,
+   "text": "",
+   "lat": 0.0,
+   "tok": 1
+  },
   "code_b1": {
    "grade": 1.0,
-   "text": "```python\ndef solve(s):\n    from collections import defaultdict\n    count = defaultdict(int)\n    left = best = 0\n    for right, c in enumerate(s):\n        count[c] += 1\n        while len(count) > 2:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
-   "lat": 4.5,
-   "tok": 309
+   "text": "def solve(s):\n    count = {}\n    left = 0\n    best = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > 2:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "lat": 5.4,
+   "tok": 357
   },
   "trade_b1": {
-   "grade": 0.0,
-   "text": "**Gross profit:** (80 \u00d7 0.459) + 0.44 = 36.72 + 0.44 = **+37.16R**\n\n**Gross loss:** 36 \u00d7 0.416 = **14.976R**\n\n**Net R:** 37.16 \u2212 14.976 = **22.184R**\n\n**Expectancy per trade:** 22.184 / 151 = **\u2248 +0.147R**\n\n**Profit factor:** 37.16 / 14.976 = **\u2248 2.48**\n\nCheck: 80 + 36 + 7 + 28 = 151 \u2713",
-   "lat": 6.9,
-   "tok": 254
+   "grade": 1.0,
+   "text": "Gross wins: \\(80 \\times 0.459 = 36.72R\\)  \nPartial wins: \\(+0.44R\\)  \nGross profit: \\(36.72 + 0.44 = 37.16R\\)\n\nGross losses: \\(36 \\times 0.416 = 14.976R\\)\n\nNet P&L: \\(37.16 - 14.976 = 22.184R\\)\n\nExpectancy per trade:  \n\\[\n\\frac{22.184}{151}=0.1469R\n\\]\n\nProfit factor:  \n\\[\n\\frac{37.16}{14.976}=2.4813\n\\]\n\n**Expectancy: +0.1469R per trade**  \n**Profit factor: 2.48**",
+   "lat": 15.9,
+   "tok": 715
   },
   "med_b1": {
    "grade": 1.0,
-   "text": "**B) Orogastric decompression and preoperative workup for duodenoduodenosto\nduodenoduodenostomy** \u2014 findings indicate **duodenal atresia**.",
-   "lat": 5.7,
-   "tok": 354
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\nClassic **double bubble with no distal gas** suggests **duodenal atresia**.\natresia**. Next: **OG/NG decompression, IV fluids, evaluate associated anom\nanomalies**, then proceed to **duodenoduodenostomy**.",
+   "lat": 22.0,
+   "tok": 1419
   }
  },
  "gemini-3.8-flash": {
+  "code_art": {
+   "grade": 1.0,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 1000\" width=\"100%\" height=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bg-grad\" cx=\"50%\" cy=\"45%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#3a4454\"/>\n      <stop offset=\"50%\" stop-color=\"#232a35\"/>\n      <stop offset=\"100%\" stop-color=\"#12151b\"/>\n    </radialGradient>\n    <radialGradient id=\"bg-glow\" cx=\"50%\" cy=\"40%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#e8dcd5\" stop-opacity=\"0.12\"/>\n      <stop offset=\"100%\" stop-color=\"#232a35\" stop-opacity=\"0\"/>\n    </radialGradient>\n\n    <!-- Skin Tones & Lighting -->\n    <radialGradient id=\"skin-base\" cx=\"48%\" cy=\"42%\" r=\"45%\">\n      <stop offset=\"0%\" stop",
+   "lat": 363.0,
+   "tok": 8747
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 12.3,
+   "tok": 1
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 7.2,
+   "tok": 1
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 8.9,
+   "tok": 1
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "### 1. Total Returns by Category\n\n* **Wins:** $80 \\times +0.459\\text{R} = +36.72\\text{R}$\n* **Partial Wins:** $+0.44\\text{R}$\n* **Losses:** $36 \\times -0.416\\text{R} = -14.976\\text{R}$\n* **Breakeven Scratches:** $28 \\times 0.0\\text{R} = 0.00\\text{R}$\n\n---\n\n### 2. Gross Gains, Gross Losses & Net R\n\n* **Gross Profit:** $36.72\\text{R} + 0.44\\text{R} = 37.16\\text{R}$\n* **Gross Loss:** $14.976\\text{R}$\n* **Net R:** $37.16\\text{R} - 14.976\\text{R} = +22.184\\text{R}$\n\n---\n\n### 3. Expectancy Per Trade\n\n$$\\text{Expectancy} = \\frac{\\text{Net R}}{\\text{Total Trades}} = \\frac{22.184\\text{R}}{151} \\approx \\mathbf{+0.1469\\text{R}}\\quad (\\approx +0.147\\text{R})$$\n\n---\n\n### 4. Profit Factor\n\n$$\\text{Profit ",
+   "lat": 19.9,
+   "tok": 210
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "**Strategy A** has a significantly higher expectancy at **+0.50R** per trade compared to Strategy B at **-0.10R**. \n\nStrategy A generates positive expectancy because large winners easily offset frequent losses: $(0.30 \\times 4\\text{R}) - (0.70 \\times 1\\text{R}) = +0.50\\text{R}$. \n\nConversely, Strategy B loses money over time because its modest gains cannot overcome the -1R stops despite a high win rate: $(0.75 \\times 0.2\\text{R}) - (0.25 \\times 1\\text{R}) = -0.10\\text{R}$.",
+   "lat": 14.6,
+   "tok": 119
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "**0.40 lots**\n\n### Working:\n1. **Risk Amount:**  \n   $$\\$10{,}000 \\times 1\\% = \\$100$$\n\n2. **Risk per 1.00 Lot:**  \n   $$25 \\text{ pips} \\times \\$10/\\text{pip} = \\$250$$\n\n3. **Position Size:**  \n   $$\\frac{\\$100}{\\$250} = 0.40 \\text{ lots}$$",
+   "lat": 9.8,
+   "tok": 60
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "A quasi-identifier is non-unique clinical or demographic data that isolates an individual when combined with context. In a small NICU, 24-week deliveries are rare, and deaths on an exact calendar date are even rarer. Combining an extreme gestational age of 24 weeks with March 4 reduces your sample size to a single patient. Anyone with access to handover logs, death registers, or memory of that duty shift will immediately link the audit record directly to that infant and family. To preserve patient confidentiality, you must obscure these variables by binning gestational age into broader categories and replacing specific calendar dates with intervals or aggregate timeframes.",
+   "lat": 16.9,
+   "tok": 170
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor evaluates aggregate cash efficiency by dividing total gross gains by total gross losses, reflecting past profitability without accounting for trade frequency, sample size, or path risk. \n\nExpectancy quantifies the average statistical edge per trade by weighting the probability and magnitude of winning outcomes against losing outcomes. \n\nExpectancy survives a long tail because it measures the underlying probability distribution across extensive trade sequences, whereas profit factor can be artificially inflated by small samples or instantly erased by rare outlier losses.",
+   "lat": 123.1,
+   "tok": 148
+  },
+  "code_algo": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s: str) -> int:\n    char_counts = {}\n    left = 0\n    max_len = 0\n\n    for right, char in enumerate(s):\n        char_counts[char] = char_counts.get(char, 0) + 1\n\n        while len(char_counts) > 2:\n            left_char = s[left]\n            char_counts[left_char] -= 1\n            if char_counts[left_char] == 0:\n                del char_counts[left_char]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "lat": 11.5,
+   "tok": 118
+  },
+  "code_pine": {
+   "grade": 0.6,
+   "text": "```pinescript\n//@version=6\n\n// @function Calculates distance in ATRs from close to the nearest 20-bar swing high above or swing low below.\n// @param highs Series of high prices.\n// @param lows Series of low prices.\n// @param atr Series of ATR values.\n// @returns Distance to the nearest qualifying swing level in ATR units as a float.\nf_room(series float highs, series float lows, series float atr) =>\n    float sh = ta.highest(highs, 20)\n    float sl = ta.lowest(lows, 20)\n\n    float dist_high = sh > close and atr > 0 ? (sh - close) / atr : na\n    float dist_low  = sl < close and atr > 0 ? (close - sl) / atr : na\n\n    not na(dist_high) and not na(dist_low) ? math.min(dist_high, dist_low) : not n",
+   "lat": 386.6,
+   "tok": 185
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Scroll Counter (61 to 0)</title>\n  <style>\n    *, *::before, *::after {\n      box-sizing: border-box;\n      margin: 0;\n      padding: 0;\n    }\n\n    body {\n      font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n      background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0f172a 100%);\n      color: #f8fafc;\n      min-height: 250vh;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n    }\n\n    .hero-section {\n      height: 90vh;\n      display: flex;\n      flex-direction:",
+   "lat": 67.6,
+   "tok": 2376
+  },
   "code_b1": {
    "grade": 1.0,
    "text": "```python\ndef solve(s: str) -> int:\n    counts = {}\n    left = 0\n    max_len = 0\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n        while len(counts) > 2:\n            counts[s[left]] -= 1\n            if counts[s[left]] == 0:\n                del counts[s[left]]\n            left += 1\n        max_len = max(max_len, right - left + 1)\n    return max_len\n```",
@@ -157,6 +641,98 @@
    "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Explanation:**  \nThe \"double bubble\" sign with no distal air is pathognomonic for **duodenal atresia**. Duodenal atresia is not an immediate surgical emergency requiring emergency crash laparotomy; the correct next steps are gastric decompression (OGT/NGT), fluid resuscitation, and preoperative workup (including screening for associated anomalies such as Trisomy 21 and congenital heart defects) prior to definitive surgical repair (duodenoduodenostomy).",
    "lat": 10.3,
    "tok": 125
+  }
+ },
+ "kimi-k3": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    count = {}\n    left = 0\n    best = 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > 2:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        if right - left + 1 > best:\n            best = right - left + 1\n    return best\n```",
+   "lat": 6.7,
+   "tok": 492
+  },
+  "code_pine": {
+   "grade": 1.0,
+   "text": "```\nf_room(highs, lows, atr) =>\n    ph = ta.pivothigh(highs, 2, 2)\n    pl = ta.pivotlow(lows, 2, 2)\n    float room = na\n    if atr > 0\n        for i = 0 to 17\n            h = ph[i]\n            l = pl[i]\n            if not na(h) and h > close\n                dh = (h - close) / atr\n                room := na(room) ? dh : math.min(room, dh)\n            if not na(l) and l < close\n                dl = (close - l) / atr\n                room := na(room) ? dl : math.min(room, dl)\n    room\n```",
+   "lat": 114.0,
+   "tok": 12251
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Scroll Countdown: 61 \u2192 0</title>\n<style>\n  :root {\n    --bg: #0b1020;\n    --accent: #6ee7ff;\n    --accent2: #a78bfa;\n  }\n  * { box-sizing: border-box; margin: 0; padding: 0; }\n  html { scroll-behavior: smooth; }\n  body {\n    font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Helvetica, A\nArial, sans-serif;\n    background: var(--bg);\n    color: #e8ecf8;\n    min-height: 100vh;\n  }\n  .hero {\n    height: 130vh;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    gap: 1.25rem;\n    text-align: cente",
+   "lat": 57.6,
+   "tok": 6081
+  },
+  "code_art": {
+   "grade": 0.8,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 700\" width=\"600\" h\nheight=\"700\">\n<defs>\n<radialGradient id=\"bg\" cx=\"300\" cy=\"250\" r=\"430\" gradientUnits=\"userSpaceO\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#ece5db\"/><stop offset=\"0.65\" stop-color=\"#ded\nstop-color=\"#ded4c7\"/><stop offset=\"1\" stop-color=\"#c9b9a9\"/>\n</radialGradient>\n<linearGradient id=\"faceSkin\" x1=\"0\" y1=\"140\" x2=\"0\" y2=\"440\" gradientUnits\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#f9e3cb\"/><stop offset=\"0.5\" stop-color=\"#f3d3\nstop-color=\"#f3d3ae\"/><stop offset=\"1\" stop-color=\"#e7b489\"/>\n</linearGradient>\n<linearGradient id=\"neckSkin\" x1=\"0\" y1=\"398\" x2=\"0\" y2=\"526\" gradientUnits",
+   "lat": 228.1,
+   "tok": 17951
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 3.0,
+   "tok": 160
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 2.5,
+   "tok": 167
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 2.7,
+   "tok": 201
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "# Trade Expectancy & Profit Factor\n\n## Step 1: Verify trade count\n$$80 + 36 + 7 + 28 = 151 \\checkmark$$\n\n## Step 2: Sum total R\n\n| Component | Calculation | Total R |\n|---|---|---|\n| Wins | 80 \u00d7 0.459 | +36.720 |\n| Losses | 36 \u00d7 (\u22120.416) | \u221214.976 |\n| Partial wins | given | +0.440 |\n| Scratches | 28 \u00d7 0.0 | 0.000 |\n\n$$\\text{Net R} = 36.720 - 14.976 + 0.440 = +22.184\\text{R}$$\n\n## Step 3: Expectancy per trade\n\n$$E = \\frac{22.184}{151} = \\textbf{+0.1469R per trade} \\approx +0.147\\text{\n+0.147\\text{R}$$\n\nCross-check via probability-weighted form:\n$$E = \\frac{80}{151}(0.459) + \\frac{36}{151}(-0.416) + \\frac{0.44}{151}$$\n$$= 0.2432 - 0.0992 + 0.0029 = 0.1469\\text{R} \\checkmark$$\n\n## Step 4: Profi",
+   "lat": 12.6,
+   "tok": 895
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "**Strategy A has the higher expectancy.** Expectancy = (win rate \u00d7 average \nwin) \u2212 (loss rate \u00d7 average loss): Strategy A yields (0.30 \u00d7 4R) \u2212 (0.70 \u00d7 \n1R) = **+0.50R per trade**, while Strategy B yields (0.75 \u00d7 0.2R) \u2212 (0.25 \u00d7\n\u00d7 1R) = **\u22120.10R per trade**. Despite losing far more often, Strategy A's a\nasymmetric 4:1 payoff more than compensates for its low win rate, whereas S\nStrategy B's frequent small scratches can't absorb the occasional full 1R l\nlosses that erase five wins at a time.",
+   "lat": 5.3,
+   "tok": 365
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "**Position size: 0.40 lots**\n\n**Working:**\n\n1. **Dollar risk allowed** = Account size \u00d7 Risk %\n   = $10,000 \u00d7 0.01 = **$100**\n\n2. **Risk per 1.00 lot** = Stop in pips \u00d7 Pip value per lot\n   = 25 pips \u00d7 $10 = **$250 per lot**\n\n3. **Position size** = Dollar risk \u00f7 Risk per lot\n   = $100 \u00f7 $250 = **0.40 lots**\n\nCheck: 0.40 lots \u00d7 25 pips \u00d7 $10 = $100 risked \u2713",
+   "lat": 3.3,
+   "tok": 152
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "In a small NICU, a death at 24 weeks is a rare event, and rarity is the pro\nproblem. A quasi-identifier is a detail that identifies no one alone but id\nidentifies someone in combination. Gestational age, date of death, and the \nunit itself form such a combination: in a given year, exactly one baby matc\nmatches all three. Staff, bereaved families, or anyone reading a death noti\nnotice can link that record to a named infant. Deleting the name and hospit\nhospital number changes nothing because the clinical facts themselves ident\nidentify the child. Treat these rows as identifiable: aggregate extreme ges\ngestations, suppress or coarsen dates, and keep analysis within the audit's\naudit's governan",
+   "lat": 13.4,
+   "tok": 1531
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor divides total gross profits by total gross losses, so it meas\nmeasures how efficiently gains outweighed losses across the whole sample wi\nwithout revealing how those results were distributed trade by trade. Expect\nExpectancy is the probability-weighted average outcome per trade, folding w\nwin rate and payoff size into a single measure of edge that stays meaningfu\nmeaningful no matter how many trades are reviewed. Expectancy is the one th\nthat survives a long tail, because rare extreme losses are already priced i\ninto the average, whereas a profit factor can be inflated by clustered wins\nwins and then shattered by a single outsized losing event.",
+   "lat": 13.6,
+   "tok": 1414
+  },
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    from collections import defaultdict\n    count = defaultdict(int)\n    left = best = 0\n    for right, c in enumerate(s):\n        count[c] += 1\n        while len(count) > 2:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "lat": 4.5,
+   "tok": 309
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "**Gross profit:** (80 \u00d7 0.459) + 0.44 = 36.72 + 0.44 = **+37.16R**\n\n**Gross loss:** 36 \u00d7 0.416 = **14.976R**\n\n**Net R:** 37.16 \u2212 14.976 = **22.184R**\n\n**Expectancy per trade:** 22.184 / 151 = **\u2248 +0.147R**\n\n**Profit factor:** 37.16 / 14.976 = **\u2248 2.48**\n\nCheck: 80 + 36 + 7 + 28 = 151 \u2713",
+   "lat": 6.9,
+   "tok": 254
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) Orogastric decompression and preoperative workup for duodenoduodenosto\nduodenoduodenostomy** \u2014 findings indicate **duodenal atresia**.",
+   "lat": 5.7,
+   "tok": 354
   }
  }
 }

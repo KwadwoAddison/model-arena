@@ -279,7 +279,7 @@ tr:first-child td.model{font-size:1.3rem}
     <p class="lede rv rv-d1">Composite of the latest completed suite, all graded domains pooled. Correctness gates everything: a fast wrong answer scores exactly zero.</p>
     <div class="board rv rv-d1" style="overflow-x:auto">
       <table><thead><tr>
-        <th></th><th>Model</th><th>Score</th><th>Profile</th><th>Avg tokens</th><th>Avg latency</th>
+        <th></th><th>Model</th><th>Composite</th><th>Bar</th><th>Graded</th><th>Avg tokens</th><th>Avg latency</th>
       </tr></thead><tbody id="boardBody"></tbody></table>
     </div>
     <p class="rv" style="margin-top:18px;font-size:.78rem;color:var(--muted)" id="boardNote">Loading live results…</p>
@@ -390,8 +390,12 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
   let live=null;
   try{const r=await fetch('data/results/latest.json');if(r.ok)live=await r.json()}catch(e){}
   const med=(live&&Object.keys(live.medium||{}).length)?live.medium:null;
-  // normalize: [score%, tok, lat] arrays from either live object {n,corr,lat,tok} or fallback array
-  const norm = med ? Object.fromEntries(Object.entries(med).map(([m,a])=>[m,[a.n? Math.round(a.corr/a.n*100) : 0, a.tok, a.lat]])) : FALLBACK_MED;
+  // normalize: [composite%, correctness%, tok, lat] — rank by published composite
+  const comp=live&&live.composite||{};
+  const norm = med ? Object.fromEntries(Object.entries(med).map(([m,a])=>{
+    const corr = a.n? Math.round(a.corr/a.n*100) : 0;
+    return [m, [comp[m]? comp[m].total : corr, corr, a.tok, a.lat]];
+  })) : FALLBACK_MED;
   // board
   const tb=document.getElementById('boardBody');
   const entries=Object.entries(norm).sort((a,b)=>b[1][0]-a[1][0]);
@@ -399,9 +403,10 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
     const tr=document.createElement('tr');
     tr.innerHTML=`<td class="rank">${i===0?'<span class="crown">✦</span>':String(i+1).padStart(2,'0')}</td>
     <td class="model">${DISP[m]||m}</td>
-    <td><b>${c[0]}%</b></td>
+    <td><b>${c[0]}</b><small style="display:block;color:var(--muted);font-size:.62rem">composite /100</small></td>
     <td class="bar-cell"><div class="tr2"><div class="fl" data-w="${c[0]}%"></div></div></td>
-    <td>~${c[1]} tok</td><td>${c[2]}s</td>`;
+    <td>${c[1]}% graded</td>
+    <td>~${c[2]} tok</td><td>${c[3]}s</td>`;
     tb.appendChild(tr);
   });
   document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · bench.py runs → aggregate.py builds → this page reads. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';

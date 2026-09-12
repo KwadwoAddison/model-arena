@@ -1,0 +1,57 @@
+{
+ "suite": "full",
+ "reasoning": "default",
+ "stamp": "20260912_1057",
+ "grading_rules": {
+  "code_algo": "Code executed against 7 fixed secret cases (incl. edge cases). 1.0 = all pass, 0.5 = \u22655/7, else 0.",
+  "code_pine": "Structural checks, each weighted 0.2: defines f_room(highs, lows, atr); uses pivothigh/pivotlow; uses ta.atr or atr param; no request.security (lookahead ban); returns a float expression.",
+  "code_html": "Structural checks, 0.2 each: single file, IntersectionObserver present, count-up targets 0 from 61, background-safe mechanism (rAF loop or visibilitychange guard), zero external URLs.",
+  "code_art": "Deterministic SVG inspection, 0.2 each: parses as valid XML; \u22655 distinct fills (skin/hair/lips/eyes/background); bilateral symmetry (mirrored element pairs around centre); facial stack order (eye shapes above nose region above mouth region); uses gradients or \u22653 shading opacities.",
+  "med_neo": "Exact key match: B (duodenal obstruction workup). One letter, blind key.",
+  "med_surg": "Exact key match: D (both cystic structures, nothing else).",
+  "med_pharm": "Exact key match: C (hold + assess, classic citrate toxicity sign).",
+  "trade_expect": "Both numbers within \u00b10.03 of the blind key (expectancy 0.147R, PF 2.48). 0.5 each. No partial credit for vibes.",
+  "trade_logic": "0.25 each: states A expectancy +0.50R; states B expectancy -0.10R; picks A; no more than 3 sentences.",
+  "trade_sizing": "Both within tolerance: 0.40 lots and $100 risk. 0.5 each.",
+  "long_privacy": "0.34 each: \u2264120 words; zero bullet lines; zero hedging tokens (might/perhaps/maybe/'I think').",
+  "long_pf": "0.34 each: exactly 3 sentences; names both terms; zero numeric examples."
+ },
+ "runs": [
+  {
+   "model": "gemini-3.8-flash",
+   "task": "code_algo",
+   "domain": "coding",
+   "text": "```python\ndef solve(s: str) -> int:\n    char_counts = {}\n    left = 0\n    max_len = 0\n\n    for right, char in enumerate(s):\n        char_counts[char] = char_counts.get(char, 0) + 1\n\n        while len(char_counts) > 2:\n            left_char = s[left]\n            char_counts[left_char] -= 1\n            if char_counts[left_char] == 0:\n                del char_counts[left_char]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "latency_s": 11.5,
+   "thinking_chars": 0,
+   "tokens_est": 118,
+   "reasoning": "medium",
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "code_pine",
+   "domain": "coding",
+   "text": "```pinescript\n//@version=6\n\n// @function Calculates distance in ATRs from close to the nearest 20-bar swing high above or swing low below.\n// @param highs Series of high prices.\n// @param lows Series of low prices.\n// @param atr Series of ATR values.\n// @returns Distance to the nearest qualifying swing level in ATR units as a float.\nf_room(series float highs, series float lows, series float atr) =>\n    float sh = ta.highest(highs, 20)\n    float sl = ta.lowest(lows, 20)\n\n    float dist_high = sh > close and atr > 0 ? (sh - close) / atr : na\n    float dist_low  = sl < close and atr > 0 ? (close - sl) / atr : na\n\n    not na(dist_high) and not na(dist_low) ? math.min(dist_high, dist_low) : not na(dist_high) ? dist_high : dist_low\n```",
+   "latency_s": 386.6,
+   "thinking_chars": 0,
+   "tokens_est": 185,
+   "reasoning": "medium",
+   "correctness": 0.6,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "code_html",
+   "domain": "coding",
+   "text": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Scroll Counter (61 to 0)</title>\n  <style>\n    *, *::before, *::after {\n      box-sizing: border-box;\n      margin: 0;\n      padding: 0;\n    }\n\n    body {\n      font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n      background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0f172a 100%);\n      color: #f8fafc;\n      min-height: 250vh;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n    }\n\n    .hero-section {\n      height: 90vh;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      justify-content: center;\n      text-align: center;\n      padding: 2rem;\n    }\n\n    .hero-title {\n      font-size: clamp(2rem, 5vw, 3.5rem);\n      font-weight: 800;\n      letter-spacing: -0.02em;\n      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      margin-bottom: 1rem;\n    }\n\n    .hero-desc {\n      color: #94a3b8;\n      font-size: 1.125rem;\n      max-width: 480px;\n      line-height: 1.6;\n    }\n\n    .scroll-hint {\n      margin-top: 3rem;\n      display: flex;\n      flex-direction: column;\n      align-items: center;\n      gap: 0.5rem;\n      color: #64748b;\n      font-size: 0.875rem;\n      font-weight: 500;\n      letter-spacing: 0.05em;\n      text-transform: uppercase;\n      animation: float 2.4s ease-in-out infinite;\n    }\n\n    .arrow-icon {\n      width: 20px;\n      height: 20px;\n      stroke: #38bdf8;\n      stroke-width: 2.5;\n      fill: none;\n      stroke-linecap: round;\n      stroke-linejoin: round;\n    }\n\n    @keyframes float {\n      0%, 100% { transform: translateY(0); }\n      50% { transform: translateY(8px); }\n    }\n\n    .counter-wrapper {\n      margin: 10vh 0;\n      width: 90%;\n      max-width: 520px;\n      padding: 3.5rem 2.5rem;\n      background: rgba(30, 41, 59, 0.75);\n      border: 1px solid rgba(255, 255, 255, 0.1);\n      border-radius: 1.75rem;\n      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);\n      backdrop-filter: blur(16px);\n      text-align: center;\n      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;\n    }\n\n    .counter-wrapper.active {\n      border-color: rgba(56, 189, 248, 0.3);\n      transform: translateY(-4px);\n    }\n\n    .badge {\n      display: inline-flex;\n      align-items: center;\n      gap: 0.5rem;\n      font-size: 0.8125rem;\n      font-weight: 600;\n      letter-spacing: 0.05em;\n      text-transform: uppercase;\n      padding: 0.35rem 0.85rem;\n      border-radius: 9999px;\n      background: rgba(56, 189, 248, 0.1);\n      color: #38bdf8;\n      border: 1px solid rgba(56, 189, 248, 0.25);\n    }\n\n    .status-dot {\n      width: 7px;\n      height: 7px;\n      border-radius: 50%;\n      background: #38bdf8;\n      box-shadow: 0 0 8px #38bdf8;\n    }\n\n    .badge.completed {\n      background: rgba(52, 211, 153, 0.1);\n      color: #34d399;\n      border-color: rgba(52, 211, 153, 0.3);\n    }\n\n    .badge.completed .status-dot {\n      background: #34d399;\n      box-shadow: 0 0 8px #34d399;\n    }\n\n    .counter-value {\n      font-size: clamp(5.5rem, 18vw, 8.5rem);\n      font-weight: 800;\n      font-variant-numeric: tabular-nums;\n      line-height: 1.05;\n      letter-spacing: -0.05em;\n      margin: 1.25rem 0;\n      background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);\n      -webkit-background-clip: text;\n      -webkit-text-fill-color: transparent;\n      user-select: none;\n    }\n\n    .meter-container {\n      width: 100%;\n      height: 6px;\n      background: rgba(255, 255, 255, 0.08);\n      border-radius: 9999px;\n      overflow: hidden;\n      margin-bottom: 1rem;\n    }\n\n    .meter-bar {\n      height: 100%;\n      width: 100%;\n      background: linear-gradient(90deg, #38bdf8, #818cf8);\n      transform-origin: ",
+   "latency_s": 67.6,
+   "thinking_chars": 0,
+   "tokens_est": 2376,
+   "reasoning": "medium",
+   "correctness": 1.0,
+   "token_eff": 1.0
+  }
+ ]
+}
