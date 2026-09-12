@@ -1,0 +1,327 @@
+{
+ "suite": "quick",
+ "reasoning": "high",
+ "stamp": "20260912_0845",
+ "runs": [
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "code_b1",
+   "text": "def solve(s):\n    \"\"\"\n    Constraint: Find the longest substring with at most 2 distinct characters.\n    Method: Sliding window with character frequencies.\n    Verification: Matches exhaustive substring enumeration by invariant reasoning.\n    Avoided failure: Shrinking only once instead of until the window is valid.\n    \"\"\"\n    counts = {}\n    left = best = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            old = s[left]\n            counts[old] -= 1\n            if counts[old] == 0:\n                del counts[old]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "latency_s": 14.9,
+   "thinking_chars": 0,
+   "tokens_est": 170,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "trade_b1",
+   "text": "Constraint: Use all 151 closed entries, include partial wins in gross profit, and treat breakeven scratches as 0R.\n\n### Arithmetic\n\nGross full-win profit:\n\n\\[\n80 \\times 0.459R = 36.720R\n\\]\n\nGross partial-win profit:\n\n\\[\n7\\text{ partial wins total} = 0.440R\n\\]\n\nGross loss:\n\n\\[\n36 \\times -0.416R = -14.976R\n\\]\n\nNet result:\n\n\\[\n36.720R + 0.440R - 14.976R = 22.184R\n\\]\n\nExpectancy per trade:\n\n\\[\n\\frac{22.184R}{151} = 0.1469R\n\\]\n\nProfit factor:\n\n\\[\n\\frac{\\text{gross profit}}{\\lvert\\text{gross loss}\\rvert}\n=\n\\frac{36.720R+0.440R}{14.976R}\n=\n\\frac{37.160}{14.976}\n=2.4813\n\\]\n\n### Independent verification\n\nCategory-weighted expectancy:\n\n\\[\n\\left(\\frac{80}{151}\\times0.459\\right)\n+\\frac{0.440}{151}\n-\\left(\\frac{36}{151}\\times0.416\\right)\n=0.1469R\n\\]\n\nFailure mode avoided: dividing by only the 123 non-breakeven trades instead of all 151 closed entries.\n\n**Final answer: Expectancy = +0.147R per trade; profit factor = 2.48.**",
+   "latency_s": 18.4,
+   "thinking_chars": 0,
+   "tokens_est": 231,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "med_b1",
+   "text": "**Constraint:** Choose the immediate management for a stable neonate with bilious vomiting and a complete \u201cdouble-bubble\u201d obstruction.\n\n**Solution:** This is classic **duodenal atresia**. Keep the infant NPO, insert an OGT/NGT for decompression, give IV fluids, obtain pediatric surgical and associated-anomaly evaluation, then perform duodenoduodenostomy.\n\n**Independent verification:** Radiographic localization\u2014air in the stomach and proximal duodenum with **no distal gas**\u2014indicates complete duodenal obstruction. Pediatric surgical guidance recommends gastric decompression and stabilization before repair; contrast enema is not the routine next step with this classic pattern. [NHS neonatal guideline](https://www.rightdecisions.scot.nhs.uk/media/1qfp5e41/scans-postnatal-guideline-jan-2025-duodenal-atresia-inpatient.pdf), [ACR criteria](https://acsearch.acr.org/docs/69445/Narrative)\n\n**Failure mode avoided:** Choosing immediate exploratory laparotomy without initial decompression and stabilization; stable duodenal atresia usually does not require crash surgery.\n\n**Final answer: B) OGT + duodenoduodenostomy workup.**",
+   "latency_s": 46.8,
+   "thinking_chars": 0,
+   "tokens_est": 282,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-5.6-sol-pro",
+   "task": "long_b1",
+   "text": "Constraint: explain in under 120 words, without bullets or hedging.\n\nSolution: Gestational age of 24 weeks and death on March 4 are not direct identifiers, but their combination is rare in a small NICU dataset.\n\nIndependent verification: Under a k-anonymity check, grouping records by gestational age and death date would likely leave this baby in a group of one, allowing linkage to rotas, handover notes, or family knowledge.\n\nFailure mode avoided: treating the absence of a name or hospital number as proof of anonymity.\n\nFinal answer: The 24-week gestation and exact death date together form a quasi-identifier because they can single out the baby when combined with locally available information.",
+   "latency_s": 18.5,
+   "thinking_chars": 0,
+   "tokens_est": 175,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s):\n    \"\"\"\n    Constraint: Return the longest substring length with at most 2 distinct characters.\n    Solution: Maintain a sliding window and character counts.\n    Verification: Independent manual substring enumeration confirmed boundary cases.\n    Failure avoided: Remove zero-count characters so distinct counts stay accurate.\n    \"\"\"\n    counts = {}\n    left = best = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            outgoing = s[left]\n            counts[outgoing] -= 1\n            if counts[outgoing] == 0:\n                del counts[outgoing]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best\n```",
+   "latency_s": 21.1,
+   "thinking_chars": 0,
+   "tokens_est": 184,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "trade_b1",
+   "text": "Use all **151 closed entries** for expectancy, and treat the partial wins\u2019 **+0.44R as their combined total**.\n\nThe arithmetic:\n\n- Entry count: \\(80+36+7+28=151\\)\n- Gross profit: \\(80(0.459)+0.44=37.16R\\)\n- Gross loss magnitude: \\(36(0.416)=14.976R\\)\n- Net result: \\(37.16-14.976=22.184R\\)\n\n\\[\n\\text{Expectancy}=\\frac{22.184R}{151}=\\boxed{+0.146914R\\text{ per trade}}\n\\]\n\n\\[\n\\text{Profit factor}=\\frac{37.16}{14.976}=\\boxed{2.481303}\n\\]\n\nFor an independent check, pair 36 full wins with the 36 losses, leaving 44 full wins:\n\n\\[\n36(0.459-0.416)+44(0.459)+0.44\n=1.548+20.196+0.44=22.184R\n\\]\n\nAlso, \\(1+\\text{net}/\\text{gross loss}=1+22.184/14.976=2.481303\\), confirming profit factor.\n\nOne failure mode avoided: excluding the 28 scratches from the expectancy denominator, which would overstate expectancy.\n\n**Final answer: expectancy = +0.1469R per trade; profit factor = 2.4813.**",
+   "latency_s": 27.9,
+   "thinking_chars": 0,
+   "tokens_est": 220,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "med_b1",
+   "text": "1. **Constraint:** Choose the single best next step for a neonate with bilious vomiting and a **double bubble with no distal gas**.\n\n2. **Solution:** This strongly suggests **duodenal atresia**. Start orogastric tube decompression, keep the baby nil by mouth, give IV fluids, and obtain urgent pediatric surgical assessment for repair after stabilization. [MSD Manual](https://www.msdmanuals.com/professional/pediatrics/congenital-gastrointestinal-anomalies/duodenal-obstruction)\n\n3. **Independent check:** Anatomically, the two bubbles represent the stomach and proximal duodenum; absent downstream gas supports complete duodenal obstruction. This matches the [radiology reference](https://www.ncbi.nlm.nih.gov/books/NBK543791/figure/ch15.Fig2/).\n\n4. **Failure mode avoided:** Anchoring on the anal finding and choosing a distal bowel investigation. If an absent anal opening is intended, it also requires assessment, but does not explain this proximal obstruction pattern.\n\n**Final answer: B) OGT + duodenoduodenostomy workup.**",
+   "latency_s": 28.7,
+   "thinking_chars": 0,
+   "tokens_est": 258,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gpt-6-astra",
+   "task": "long_b1",
+   "text": "Constraint: Explain to a house officer in \u2264120 words, without bullets or hedging; solve, independently verify, identify one avoided failure mode, then conclude.\n\nThe quasi-identifier is the combination of 24-week gestational age and death on March 4. In a small NICU, these details narrow the group and enable linkage to a named baby through staff knowledge or ward records.\n\nIndependent verification: [HHS de-identification guidance](https://www.hhs.gov/hipaa/for-professionals/special-topics/de-identification/index.html) requires removing the month and day of death under its Safe Harbor method.\n\nFailure mode avoided: assuming that removing the name makes the audit anonymous.\n\nFinal answer: The baby\u2019s clinical details are quasi-identifiers because they enable indirect identification; the baby itself is not a quasi-identifier.",
+   "latency_s": 26.8,
+   "thinking_chars": 0,
+   "tokens_est": 208,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3",
+   "task": "code_b1",
+   "text": "## 1. Constraint restated\n\nGiven a string `s`, return the length of the longest **contiguous substring\nsubstring** containing **at most 2 distinct characters** (k = 2). Deliverab\nDeliverable is a single function `solve(s)`, no tests. Edge cases: empty st\nstring \u2192 0; a string with only 1 distinct character \u2192 `len(s)`.\n\n## 2. Solution\n\nSliding window with two pointers and a count dict:\n- Expand `right` one char at a time, incrementing its count.\n- While the window holds more than 2 distinct chars, shrink from `left` (de\n(decrementing counts, deleting keys that hit 0).\n- Track the max window size `right - left + 1`.\n\n## 3. Independent verification\n\nCross-checked against a brute-force O(n\u00b2) reference (for each start `i`, ex\nextend `j` while the set of chars stays \u2264 2):\n\n```python\ndef brute(s):\n    best = 0\n    for i in range(len(s)):\n        seen = set()\n        for j in range(i, len(s)):\n            seen.add(s[j])\n            if len(seen) > 2:\n                break\n            best = max(best, j - i + 1)\n    return best\n```\n\nAgreement on hand-traced inputs: `\"\"` \u2192 0, `\"a\"` \u2192 1, `\"eceba\"` \u2192 3 (`\"ece\"\n(`\"ece\"`), `\"ccaabbb\"` \u2192 5 (`\"aabbb\"`), `\"ababab\"` \u2192 6, `\"abcdef\"` \u2192 2. Cor\nCorrectness argument: after shrinking at each `right`, `[left, right]` is t\nthe longest valid window ending at `right` (any earlier start was already i\ninvalid, and distinct counts only grow as `right` advances). Since every va\nvalid substring ends at some index, the max over all `right` is the global \nanswer. Time O(n) (each index enters/leaves the window once), space O(1) (\u2264\n(\u2264 3 dict keys).\n\n## 4. Failure mode avoided\n\nForgetting to delete keys whose count drops to 0. Then `len(count)` never f\nfalls back to \u2264 2, the `while` loop collapses the window to nothing (or run\nruns off the end). E.g., on `\"eceba\"` at the `'b'` step, the dict becomes `\n`{e:0, c:0, b:0}`, `len` stays 3, and the loop crashes with `IndexError`. A\nAvoided via the explicit `del` when a count reaches zero.\n\n## 5. Final answer\n\n```python\ndef solve(s):\n    k = 2\n    count = {}\n    left = 0\n    best = 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > k:\n            old = s[left]\n            count[old] -= 1\n            if count[old] == 0:\n                del count[old]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "latency_s": 41.3,
+   "thinking_chars": 17786,
+   "tokens_est": 5041,
+   "correctness": 1.0,
+   "token_eff": 0.0
+  },
+  {
+   "model": "glm-5.3",
+   "task": "trade_b1",
+   "text": "## 1. Constraint restated\n\n151 total closed trades, partitioned as: 80 wins averaging **+0.459R** each\neach, 36 losses averaging **\u22120.416R** each, 7 partial wins aggregating **+0\n**+0.44R total** (not per trade), and 28 breakeven scratches at **0.0R**. R\nRequired outputs: expectancy per trade (mean R) and profit factor (gross pr\nprofit \u00f7 |gross loss|).\n\n**Count check:** 80 + 36 + 7 + 28 = 151 \u2713 (matches stated total, so no miss\nmissing trades)\n\n## 2. Solve\n\n**Gross profit** (wins + partials; scratches add 0):\n- Wins: 80 \u00d7 0.459 = **36.72R**\n- Partials: **+0.44R**\n- Gross profit = 36.72 + 0.44 = **37.16R**\n\n**Gross loss** (magnitude):\n- Losses: 36 \u00d7 0.416 = **14.976R**\n\n**Net:**\n- 37.16 \u2212 14.976 = **+22.184R**\n\n**Expectancy per trade:**\n- 22.184 \u00f7 151 = **+0.1469R** (\u2248 +0.147R per trade)\n\n**Profit factor:**\n- 37.16 \u00f7 14.976 = **2.481** (\u2248 2.48)\n\n## 3. Independent verification\n\n**Expectancy via probability weighting** (different computational path):\n- P(win) = 80/151 = 0.52980; contribution: 0.52980 \u00d7 0.459 = +0.24318\n- P(loss) = 36/151 = 0.23841; contribution: 0.23841 \u00d7 (\u22120.416) = \u22120.09918\n- P(partial) = 0.44/151 = +0.00291; scratches = 0\n- Probabilities sum to 1.00000 \u2713\n- Sum: 0.24318 \u2212 0.09918 + 0.00291 = **+0.14691R** \u2713 matches\n\n**PF via the identity PF = 1 + Net/|Gross loss|** (reduced-fraction path: 3\n37160/14976 = 4645/1872):\n- 1 + (22.184 \u00f7 14.976) = 1 + 1.4813 = **2.4813** \u2713 matches\n\n## 4. Failure mode avoided\n\nTreating the partial wins' **+0.44R as a per-trade average** (i.e., computi\ncomputing 7 \u00d7 0.44 = 3.08R). That would inflate gross profit to 39.80R, exp\nexpectancy to +0.164R, and PF to 2.66. The word *\"totaling\"* flags it as an\nan aggregate \u2014 I added 0.44R once, not multiplied by 7.\n\n## Final answer\n\n- **Expectancy \u2248 +0.1469R per trade (\u2248 +0.147R)**\n- **Profit factor \u2248 2.48** (2.481)\n\nA robust journal: gross win rate 53%, losses small relative to wins, and ev\nevery 1R risked in losses is returned with ~1.48R of net profit on top.",
+   "latency_s": 38.0,
+   "thinking_chars": 13465,
+   "tokens_est": 3860,
+   "correctness": 1.0,
+   "token_eff": 0.3916666666666666
+  },
+  {
+   "model": "glm-5.3",
+   "task": "med_b1",
+   "text": "## 1. Restating the constraint\n\nA 2-day-old **term** infant (well at birth \u2014 APGAR 9/10, so stable) present\npresents with **bilious vomiting**. Perineal exam shows **no patent anal/pe\nanal/perineal fistula** (i.e., anorectal malformation-with-fistula is off t\nthe table). Abdominal X-ray: **\"double bubble\" with NO distal bowel gas**. \nI must pick the single best next step from A\u2013E.\n\n## 2. Solving\n\n**Localize the obstruction:**\n- Double bubble = distended stomach + proximal duodenum \u2192 obstruction **at \nthe duodenum**.\n- **No distal gas** = obstruction is **complete** (not partial/stenosis/web\npartial/stenosis/web).\n- **Bilious** emesis = obstruction is **distal to the ampulla of Vater** (~\n(~80% of duodenal atresias).\n- Onset day 2 (after first feeds), term, stable, no perineal anomaly \u2192 clas\nclassic **duodenal atresia** (annular pancreas/web in the differential, man\nmanaged the same way).\n\n**Malrotation/volvulus is unlikely:** volvulus typically shows *distal gas*\ngas* (often a corkscrew pattern), abdominal distension, and a sick baby. Co\nComplete obstruction without distal gas = fixed congenital atresia, **not**\n**not** a strangulating emergency.\n\n**Standard management of duodenal atresia:**\n1. **OG/NG tube** (Replogle) decompression + IV resuscitation, correct elec\nelectrolytes.\n2. **Preoperative workup** of associated anomalies before anesthesia \u2014 ~30%\n~30% have congenital **heart disease** and ~25\u201330% have **trisomy 21**; ech\necho, renal/karyotype assessment.\n3. Definitive repair: **diamond-shaped duodenoduodenostomy** (Kimura) \u2014 sem\nsemi-elective, not emergency laparotomy.\n\n**Eliminating distractors:**\n- **A) Contrast enema** \u2014 for *distal* obstructions (meconium ileus, HD, mi\nmicrocolon); useless proximal to the ligament of Treitz; delays care.\n- **C) Rectal biopsy** \u2014 for Hirschsprung (distal obstruction, multiple dil\ndilated loops, delayed meconium), not a double bubble.\n- **D) Urgent laparotomy** \u2014 baby is stable; operating before decompression\ndecompression/resuscitation and cardiac workup risks anesthetic catastrophe\ncatastrophe in undiagnosed CHD.\n- **E) Observe** \u2014 complete obstruction; watchful waiting risks aspiration,\naspiration, dehydration, alkalosis.\n\n## 3. Independent verification (different method)\n\nCross-checked against the **radiographic-pattern algorithm for neonatal obs\nobstruction**:\n| X-ray pattern | Diagnosis | Next step |\n|---|---|---|\n| Double bubble, **no distal gas** | Duodenal atresia | **NGT decompression\ndecompression + workup + duodenoduodenostomy** \u2713 |\n| Double bubble, **with** distal gas | Volvulus/stenosis | Urgent contrast \nUGI study or laparotomy |\n| Multiple dilated loops | Ileal atresia/meconium ileus | Contrast enema |\n| Distal obstruction, delayed meconium | Hirschsprung | Rectal biopsy |\n\nThe independent algorithm and pediatric-surgery teaching both converge on d\ndecompress \u2192 work up (echo, T21) \u2192 duodenoduodenostomy. **B confirmed.**\n\n## 4. Failure mode avoided\n\n**Anchoring bias**: treating *all* neonatal bilious vomiting as midgut volv\nvolvulus and rushing to urgent laparotomy (D). I avoided this by weighting \nthe key discriminator \u2014 **absence of distal gas** \u2014 which distinguishes a f\nfixed, complete congenital atresia (safe to stabilize and work up first) fr\nfrom a strangulating volvulus (needs immediate surgery). Skipping the worku\nworkup also risks missing Down syndrome/CHD in ~30% of these babies.\n\n## Final answer\n\n**B) OGT + duodenoduodenostomy workup** \u2014 oro/nasogastric decompression and\nand resuscitation, cardiac/genetic evaluation, then diamond-fashion duodeno\nduodenoduodenostomy.",
+   "latency_s": 90.9,
+   "thinking_chars": 17563,
+   "tokens_est": 5290,
+   "correctness": 1.0,
+   "token_eff": 0.0
+  },
+  {
+   "model": "glm-5.3",
+   "task": "long_b1",
+   "text": "**Restated constraint:** The final answer must be at most 120 words, prose \nonly, addressed to a house officer, explaining why a 24-week GA baby who di\ndied March 4 is a quasi-identifier in a small NICU audit, with no hedging.\n\n**Solve:** A quasi-identifier is any attribute that re-identifies someone w\nwhen combined with others. Gestational age of 24 weeks is rare; death is a \nrare outcome; a specific date anchors to one day. In a low-census unit, the\nthese intersect in an equivalence class of one, so k-anonymity fails even w\nwith names removed.\n\n**Independent verification:** HIPAA Safe Harbor independently classifies ex\nexact dates (other than year) as identifiers that must be removed for de-id\nde-identification. The regulatory test and the k-anonymity statistical test\ntest agree.\n\n**Failure mode avoided:** Assuming that deleting name and MRN equals de-ide\nde-identification in a small sample.\n\n**Final answer:**\n\nA quasi-identifier is data that names no one alone but re-identifies them c\ncombined with other fields. Twenty-four weeks gestation is rare: a small NI\nNICU admits only one or two such infants a year. Adding death narrows it fu\nfurther, and a specific date, March 4, pins a single day. Staff rosters, be\nbereavement cards, funeral notices, or a family's social media confirm the \nmatch in seconds. Even without name or medical record number, this combinat\ncombination points to one baby, an equivalence class of one. Treat these fi\nfields as identifying: report the date as month or quarter, aggregate gesta\ngestational-age bands, and suppress any cell smaller than five.",
+   "latency_s": 16.1,
+   "thinking_chars": 8505,
+   "tokens_est": 2526,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "code_b1",
+   "text": "**Constraint restated:** Given a string `s`, return the length of the longe\nlongest *contiguous* substring containing at most 2 distinct characters (k \nis fixed at 2, not a parameter). Edge cases: empty string \u2192 0; strings with\nwith \u2264 2 distinct characters overall \u2192 `len(s)`. Must be named `solve(s)`, \nreturn an `int`, and appear with no tests.\n\n**Solve:** Use a sliding window with a frequency map. Expand `right` one ch\ncharacter at a time, adding to the map. Whenever the map has more than 2 ke\nkeys, advance `left`, decrementing counts and deleting keys that hit zero. \nTrack `max(right - left + 1)`. Each index enters and leaves the window at m\nmost once \u2192 O(n) time, O(1) space (map holds \u2264 3 keys).\n\n**Verify by an independent method:** Cross-checked against a brute force th\nthat examines every start index and extends while the distinct set stays \u2264 \n2:\n- `\"eceba\"` \u2192 brute force: best is `\"ece\"` = 3; sliding window returns 3. \u2713\n\u2713\n- `\"ccaabbb\"` \u2192 brute force: `\"aabbb\"` = 5; sliding window returns 5. \u2713\n- `\"aabacc\"` \u2192 brute force: `\"aaba\"` = 4; sliding window returns 4. \u2713\n- `\"\"` \u2192 0; `\"aaaa\"` \u2192 4; `\"ababab\"` \u2192 6. \u2713\n- Correctness argument: for each `r`, let L(r) be the smallest valid left e\nendpoint; since any window valid for `r+1` is valid for `r`, L is monotone \nnon-decreasing, and the loop keeps `left = L(right)` exactly (it stops shri\nshrinking the instant the window is valid, never overshoots). So the max wi\nwindow length over all `r` is optimal.\n\n**Failure mode avoided:** Tracking the window's characters with a *set* ins\ninstead of a frequency counter. With a set, you can't tell when a character\ncharacter's last occurrence has left the window, so shrinking either remove\nremoves a character prematurely (wrong distinct count, too-short windows) o\nor never removes it (window never shrinks), and fixing it requires an O(n) \nrescan per step. Deleting keys exactly when their count hits zero prevents \nboth the bug and the rescan.\n\n**Final answer:**\n\n```python\ndef solve(s):\n    count = {}\n    left = 0\n    best = 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > 2:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "latency_s": 44.5,
+   "thinking_chars": 14437,
+   "tokens_est": 4193,
+   "correctness": 1.0,
+   "token_eff": 0.094090909090909
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "trade_b1",
+   "text": "**Constraint restated:** From 151 closed entries \u2014 80 wins @ +0.459R avg, 3\n36 losses @ \u22120.416R avg, 7 partial wins *totaling* +0.44R (a sum, not a per\nper-trade average), 28 scratches at 0.0R \u2014 compute expectancy per trade (ne\n(net R \u00f7 number of trades) and profit factor (gross profit \u00f7 gross loss).\n\n**Solve**\n\nCount check: 80 + 36 + 7 + 28 = 151 \u2713\n\nTotal R by bucket:\n- Wins: 80 \u00d7 0.459 = **+36.720R**\n- Losses: 36 \u00d7 (\u22120.416) = **\u221214.976R**\n- Partial wins: **+0.440R** (enters once \u2014 it's already the total)\n- Scratches: 28 \u00d7 0 = **0.000R** (adds nothing to numerator, but stays in t\nthe denominator)\n\nNet R = 36.720 \u2212 14.976 + 0.440 + 0 = **+22.184R**\n\nExpectancy = 22.184 \u00f7 151 = **+0.1469R per trade** (\u2248 +0.147R)\n\nGross profit = 36.720 + 0.440 = **37.160R**\nGross loss = **14.976R**\n\nProfit factor = 37.160 \u00f7 14.976 = **2.481**\n\n**Independent verification**\n\nCross-check via the identity: expectancy must equal (PF \u2212 1) \u00d7 (gross loss \n\u00f7 N).\n- Gross loss \u00f7 N = 14.976 \u00f7 151 = 0.09918R\n- (2.481 \u2212 1) \u00d7 0.09918 = 1.481 \u00d7 0.09918 = 0.1469R \u2713 matches the direct co\ncomputation.\n\nAlso re-derived net from the PF components: 37.160 \u2212 14.976 = 22.184R \u2713, an\nand confirmed the partials: 0.44 \u00f7 7 = 0.06286R each; 7 \u00d7 0.06286 = 0.44R, \nso no double count.\n\n**Failure mode avoided**\n\nMisreading \"7 partial wins *totaling* +0.44R\" as 7 \u00d7 0.44R = 3.08R. That si\nsingle wording error would inflate the result to net +24.824R, expectancy \u2248\n\u2248 +0.164R, and PF \u2248 2.66 \u2014 overstating performance by ~12%. (Related trap a\navoided: dividing by 123 non-scratch trades instead of 151, which would ove\noverstate expectancy at ~0.180R.)\n\n**Final answer**\n\n- Net result: **+22.184R** across 151 trades\n- **Expectancy \u2248 +0.147R per trade** (0.1469R)\n- **Profit factor \u2248 2.48** (37.160R \u00f7 14.976R)",
+   "latency_s": 38.8,
+   "thinking_chars": 9837,
+   "tokens_est": 2903,
+   "correctness": 1.0,
+   "token_eff": 0.7904166666666668
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "med_b1",
+   "text": "## Constraint restated\nNewborn (2 days old, term, otherwise well) with **bilious vomiting** and an\nan abdominal X\u2011ray showing a **\"double bubble\" with no distal gas**. I must\nmust identify the next management step, given the obstruction is at the duo\nduodenum (bilious = distal to the ampulla of Vater) and appears **complete*\n**complete** (no gas distally). The absent anal fistula rules out an anorec\nanorectal malformation as the cause.\n\n## Solution\n**Double bubble + gasless distal abdomen = duodenal atresia** (or duodenal \nweb/annular pancreas) \u2014 a complete congenital duodenal obstruction.\n\nManagement sequence:\n1. **Orogastric tube** for gastric decompression (prevent aspiration, relie\nrelieve distension)\n2. **IV fluids** and correct electrolytes\n3. **Workup for associated anomalies**: ~30% have trisomy 21 (karyotype), e\nechocardiogram (cardiac defects), VACTERL screen\n4. **Duodenoduodenostomy** (Kimura diamond anastomosis) once stabilized \u2014 t\nthis is definitive repair, done *urgently but not emergently*\n\n## Independent verification (elimination + algorithm check)\n- **A) Contrast enema** \u2014 used for *distal* obstruction (Hirschsprung, meco\nmeconium ileus, small left colon) when there is distal gas. Not needed here\nhere; no distal gas.\n- **C) Rectal biopsy** \u2014 for Hirschsprung; that presents with distension, d\ndelayed meconium, and *distal* gas. Wrong picture.\n- **D) Urgent laparotomy** \u2014 reserved for midgut volvulus (a vascular emerg\nemergency). The classic double bubble with zero distal gas argues *against*\n*against* volvulus; duodenal atresia is not ischemic, so immediate scalpel \nis unnecessary.\n- **E) Observe** \u2014 unsafe with bilious vomiting in a neonate; implies compl\ncomplete obstruction until proven otherwise.\n- Cross-check with pediatric surgery algorithm: decompress \u2192 resuscitate \u2192 \nrepair. Only if **distal gas were present** would an upper GI contrast stud\nstudy be required first to exclude malrotation/volvulus. Everything converg\nconverges on **B**.\n\n## Failure mode avoided\n**Anchoring on volvulus and rushing to emergent laparotomy (D).** A gasless\ngasless pattern plus bilious vomiting tempts this, but the classic double b\nbubble with *no* distal gas indicates an atresia, not a twisting emergency.\nemergency. Conversely, I also avoided the opposite trap: had there been any\nany distal gas, I would *not* have skipped an upper GI series to exclude vo\nvolvulus before definitive repair.\n\n## Final answer\n**B) OGT + duodenoduodenostomy workup** \u2014 orogastric decompression, fluid r\nresuscitation, evaluation for associated anomalies (Down syndrome, cardiac)\ncardiac), then duodenoduodenostomy.",
+   "latency_s": 24.0,
+   "thinking_chars": 6360,
+   "tokens_est": 2250,
+   "correctness": 1.0,
+   "token_eff": 0.75
+  },
+  {
+   "model": "glm-5.3-flash",
+   "task": "long_b1",
+   "text": "**Constraint restated:** Deliver a \u2264120-word, bullet-free, unhedged explana\nexplanation, pitched at a house officer, of why the combination \"24-week GA\nGA baby, died March 4\" acts as a quasi-identifier in a small NICU audit.\n\n**Solve:** A quasi-identifier is an attribute that is non-identifying alone\nalone but becomes identifying when combined. In a small unit, 24-week gesta\ngestation is rare (few admissions yearly), and an exact death date narrows \nthe cohort to one.\n\n**Verify independently:** Apply a k-anonymity test \u2014 count audit rows shari\nsharing the tuple (GA, death date). The cell size is one (k=1), so the tupl\ntuple is effectively unique and re-identifying.\n\n**Failure mode avoided:** Mistaking removal of names for de-identification \nwhile leaving quasi-identifiers intact.\n\n**Final answer:**\nIn a small NICU, quasi-identifiers are attributes that seem innocuous alone\nalone but identify a patient when combined. A 24-week gestation sits at the\nthe limit of viability, so only a handful of such infants are admitted each\neach year, and the audit's denominator is tiny. Adding an exact death date,\ndate, March 4, collapses that pool to one baby. Anyone with incidental acce\naccess \u2014 other parents, staff, or someone who saw a funeral notice \u2014 can re\nreverse-engineer the identity without ever seeing a name. The pair behaves \nlike a fingerprint, violating k-anonymity (k=1). Suppress or generalise it:\nit: report gestational age in bands and dates as month or quarter, so no au\naudit cell remains unique.",
+   "latency_s": 11.5,
+   "thinking_chars": 4999,
+   "tokens_est": 1629,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "code_b1",
+   "text": "Restating the constraint: `k` is fixed at `2`, so we need the longest conti\ncontiguous substring containing at most two distinct characters.\n\nSolution: Use a sliding window with two pointers and a frequency dictionary\ndictionary. Expand the right pointer, and whenever the window has more than\nthan 2 distinct characters, shrink from the left until it is valid again.\n\nVerification: For `s = \"eceba\"`, the window `\"ece\"` has length `3`; brute-f\nbrute-force checking confirms no longer valid substring exists. Edge cases \n`\"\"`, `\"a\"`, `\"aa\"` return `0`, `1`, `2` respectively.\n\nFailure mode avoided: Using `if` instead of `while` when shrinking the wind\nwindow. A single removal may not reduce the distinct count if the left char\ncharacter still has other occurrences in the window.\n\n```python\ndef solve(s):\n    left = 0\n    freq = {}\n    best = 0\n\n    for right, ch in enumerate(s):\n        freq[ch] = freq.get(ch, 0) + 1\n\n        while len(freq) > 2:\n            left_ch = s[left]\n            freq[left_ch] -= 1\n            if freq[left_ch] == 0:\n                del freq[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best\n```",
+   "latency_s": 10.5,
+   "thinking_chars": 7267,
+   "tokens_est": 2108,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "trade_b1",
+   "text": "**Restated constraint:** Compute expectancy per trade and profit factor fro\nfrom the 151 closed entries, using the given R-multiple outcomes.\n\n### Arithmetic\n\nTotal net R:\n\n\\[\n80 \\times 0.459 = 36.720\n\\]\n\n\\[\n36 \\times -0.416 = -14.976\n\\]\n\nPartial wins total:\n\n\\[\n+0.44\n\\]\n\nBreakeven scratches:\n\n\\[\n0.00\n\\]\n\n\\[\n\\text{Net R} = 36.720 + 0.44 - 14.976 = 22.184\n\\]\n\nExpectancy per trade:\n\n\\[\n\\frac{22.184}{151} = 0.1469139\n\\]\n\n\\[\n\\boxed{+0.1469R \\text{ per trade}}\n\\]\n\nGross profit:\n\n\\[\n36.720 + 0.44 = 37.160\n\\]\n\nGross loss:\n\n\\[\n14.976\n\\]\n\nProfit factor:\n\n\\[\n\\frac{37.160}{14.976} = 2.4813\n\\]\n\n\\[\n\\boxed{2.48}\n\\]\n\n### Independent verification\n\nUsing weighted per-trade contribution:\n\n\\[\n\\left(\\frac{80}{151}\\right)(0.459)\n+\n\\left(\\frac{36}{151}\\right)(-0.416)\n+\n\\left(\\frac{0.44}{151}\\right)\n+\n\\left(\\frac{28}{151}\\right)(0)\n\\]\n\n\\[\n= 0.2431788 - 0.0991788 + 0.0029139\n\\]\n\n\\[\n= 0.1469139\n\\]\n\nThis matches the expectancy calculation.\n\n### Failure mode avoided\n\nI avoided treating the partial wins\u2019 \u201c+0.44R\u201d as an average per partial win\nwin. The wording says \u201ctotaling +0.44R,\u201d so I added it once to gross profit\nprofit, not \\(7 \\times 0.44R\\).\n\n**Final answer:**  \nExpectancy per trade: **+0.1469R**  \nProfit factor: **2.48**",
+   "latency_s": 24.6,
+   "thinking_chars": 11236,
+   "tokens_est": 3114,
+   "correctness": 1.0,
+   "token_eff": 0.7024999999999999
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "med_b1",
+   "text": "**Constraint restated:** Choose the next best step for a 2-day-old term neo\nneonate with bilious vomiting and abdominal X-ray showing a \u201cdouble bubble\u201d\nbubble\u201d with no distal gas.\n\n**Solve:**  \nA double bubble with **no distal gas** in a neonate with bilious vomiting i\nis classic for **duodenal atresia**, a complete proximal intestinal obstruc\nobstruction. The immediate next step is not emergency surgery but stabiliza\nstabilization: **orogastric tube decompression**, IV fluids, electrolyte co\ncorrection, and preoperative workup before definitive repair with **duodeno\n**duodenoduodenostomy**.\n\n**Independent verification:**  \n- Bilious vomiting in a newborn is a surgical emergency until proven otherw\notherwise.  \n- \u201cDouble bubble, no distal gas\u201d localizes obstruction to the duodenum, fav\nfavoring duodenal atresia over malrotation with volvulus.  \n- Malrotation with volvulus would require urgent laparotomy, but the classi\nclassic X-ray here points to duodenal atresia, which allows time for stabil\nstabilization and workup.  \n- Contrast enema and rectal biopsy are not indicated for this presentation.\npresentation.\n\n**Failure mode avoided:**  \nAvoiding the error of sending the baby for **urgent laparotomy** immediatel\nimmediately without first stabilizing and confirming the likely diagnosis o\nof duodenal atresia.\n\n**Final answer:** **B) OGT + duodenoduodenostomy workup**",
+   "latency_s": 12.6,
+   "thinking_chars": 5621,
+   "tokens_est": 1752,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4-pro",
+   "task": "long_b1",
+   "text": "Restated constraint: Provide a maximum 120-word, bullet-free, definitive ex\nexplanation to a house officer about why that infant is a quasi-identifier \nin a small NICU audit.\n\nSolution: The combination of 24-week gestational age and death on March 4 i\nis rare enough to act as a unique key in a small unit.\n\nIndependent verification: Cross-tabulating gestational age and date of deat\ndeath in a small audit yields a cell count of one, so k-anonymity equals on\none and re-identification risk is high.\n\nFailure mode avoided: I avoided assuming that removing name and medical rec\nrecord number alone makes data anonymous.\n\nFinal answer: In a small NICU audit, a 24-week gestational age infant who d\ndied on March 4 is a quasi-identifier because that combination is rare enou\nenough to single out one baby. The unit\u2019s patient population is small, so s\nstaff or auditors can link those two facts to a specific infant without nee\nneeding a name or medical record number. Gestational age and date of death \nare not direct identifiers, but together they function as a unique key. Re-\nRe-identification occurs when someone who knows the unit\u2019s census or care e\nevents sees that record and immediately recognizes the only 24-week death t\nthat day. Therefore the data are not anonymous.",
+   "latency_s": 19.4,
+   "thinking_chars": 9749,
+   "tokens_est": 2756,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "code_b1",
+   "text": "Constraint restated: return the length of the longest contiguous substring \nof `s` containing at most 2 distinct characters.\n\nSolution: maintain a sliding window `[left, right]` with a frequency map. E\nExpand `right`; when the window has more than 2 distinct characters, advanc\nadvance `left` until valid. Track the maximum valid window length.\n\nVerification: the same result can be checked independently by brute-forcing\nbrute-forcing every substring and counting its distinct characters for smal\nsmall strings.\n\nFailure mode avoided: updating the maximum length while the window is still\nstill invalid. The update happens only after shrinking back to at most 2 di\ndistinct characters.\n\n```python\ndef solve(s):\n    left = 0\n    counts = {}\n    best = 0\n\n    for right, ch in enumerate(s):\n        counts[ch] = counts.get(ch, 0) + 1\n\n        while len(counts) > 2:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best\n```",
+   "latency_s": 6.4,
+   "thinking_chars": 4110,
+   "tokens_est": 1299,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "trade_b1",
+   "text": "**Constraint restated:** Use all 151 closed entries. Treat the 7 partial wi\nwins as totaling +0.44R, not +0.44R each. Include the 28 breakeven scratche\nscratches as 0.0R trades. Compute expectancy per closed trade and profit fa\nfactor.\n\n**Solve:**\n\n- Full wins: \\(80 \\times 0.459 = 36.72R\\)\n- Losses: \\(36 \\times (-0.416) = -14.976R\\)\n- Partial wins total: \\(+0.44R\\)\n- Scratches: \\(28 \\times 0.0 = 0R\\)\n\nNet R:\n\n\\[\n36.72 - 14.976 + 0.44 = 22.184R\n\\]\n\nExpectancy per trade:\n\n\\[\n\\frac{22.184}{151} = 0.1469139R \\approx +0.1469R\n\\]\n\nGross profit:\n\n\\[\n36.72 + 0.44 = 37.16R\n\\]\n\nGross loss:\n\n\\[\n14.976R\n\\]\n\nProfit factor:\n\n\\[\n\\frac{37.16}{14.976} = 2.4813034 \\approx 2.48\n\\]\n\n**Independent verification:**\n\n\\[\nE = \\left(\\frac{80}{151}\\right)(0.459) + \\left(\\frac{36}{151}\\right)(-0.416\n\\left(\\frac{36}{151}\\right)(-0.416) + \\left(\\frac{0.44}{151}\\right) + \\left\n\\left(\\frac{28}{151}\\right)(0)\n\\]\n\n\\[\nE = 0.2431788 - 0.0991788 + 0.0029139 = 0.1469139R\n\\]\n\nProfit factor check:\n\n\\[\nPF = \\frac{80(0.459) + 0.44}{36(0.416)} = \\frac{37.16}{14.976} = 2.4813\n\\]\n\n**Failure mode avoided:** I did not exclude the 28 breakeven scratches from\nfrom the expectancy denominator; they are closed trades at 0.0R, so the den\ndenominator remains 151.\n\n**Final answer:**  \nExpectancy per trade \\(\\approx +0.1469R\\).  \nProfit factor \\(\\approx 2.48\\).",
+   "latency_s": 19.6,
+   "thinking_chars": 13218,
+   "tokens_est": 3636,
+   "correctness": 1.0,
+   "token_eff": 0.4850000000000001
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "med_b1",
+   "text": "**Constraint:** Must restate the constraint, solve, verify independently, l\nlist one avoided failure mode, then give the final answer.\n\n**Solve:** A 2-day-old term neonate with bilious vomiting and an abdominal \nX-ray showing a \u201cdouble bubble\u201d with no distal gas has classic **duodenal a\natresia**. The immediate step is **NPO, orogastric/nasogastric decompressio\ndecompression, IV fluids, electrolyte/glucose monitoring, and evaluation fo\nfor associated anomalies**, followed by definitive surgical repair, typical\ntypically **duodenoduodenostomy**. Contrast enema, rectal biopsy, and obser\nobservation are not appropriate.\n\n**Independent verification:** The double-bubble sign localizes obstruction \nto the duodenum, and absent distal gas indicates complete obstruction. This\nThis is not Hirschsprung disease or a lower GI obstruction, so rectal biops\nbiopsy/contrast enema would be misdirected. Urgent laparotomy is reserved f\nfor suspected volvulus/perforation or instability, not routine duodenal atr\natresia.\n\n**Failure mode avoided:** Avoided reflexively choosing urgent laparotomy be\nbefore initial stabilization/decompression, and avoided misdiagnosing a dis\ndistal bowel obstruction requiring rectal biopsy/contrast enema.\n\n**Final answer:** **B) OGT + duodenoduodenostomy workup** \u2014 i.e., orogastri\norogastric decompression and preparation for duodenoduodenostomy.",
+   "latency_s": 15.8,
+   "thinking_chars": 10114,
+   "tokens_est": 2872,
+   "correctness": 1.0,
+   "token_eff": 0.4044444444444444
+  },
+  {
+   "model": "deepseek-v4.1-flash",
+   "task": "long_b1",
+   "text": "Constraint: \u2264120 words, no bullets, no hedging. Restated. Solve: A 24-week \nGA infant who died March 4 is not named, but in a small NICU that rare gest\ngestation plus exact death date can make one record unique. Verification: u\nuniqueness logic shows small cell counts identify individuals. Failure mode\nmode avoided: treating anonymised data as automatically non-identifying. Fi\nFinal: House officer, few 24-week babies die on that date, so the pair can \nsingle out one infant when linked to other audit fields. Treat it as a quas\nquasi-identifier; generalise or suppress date and gestation before sharing.",
+   "latency_s": 11.8,
+   "thinking_chars": 8862,
+   "tokens_est": 2367,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "code_b1",
+   "text": "**Constraint Restatement:**\nFind the length of the longest contiguous substring in a given string `s` containing at most $k = 2$ distinct characters. The function must be named `solve(s)` and contain no test code.\n\n**Solve:**\nWe use a sliding window (two pointers, `left` and `right`) along with a frequency map `counts` to track character occurrences in the current window:\n1. Initialize `left = 0`, `max_len = 0`, and an empty dictionary `counts`.\n2. Iterate `right` and character `ch` over `s`. Increment `counts[ch]`.\n3. If `len(counts) > 2`, increment `left` and decrement the frequency of `s[left]` until a character count drops to 0, at which point remove it from `counts`.\n4. Update `max_len = max(max_len, right - left + 1)`.\n5. Return `max_len`. This runs in $O(n)$ time and $O(1)$ auxiliary space.\n\n**Verification by Independent Method:**\nConsider `s = \"eceba\"`:\n- *Brute-force checking all valid substrings:*\n  - Substrings with $\\le 2$ distinct characters: `\"e\"` (1), `\"ec\"` (2), `\"ece\"` (3), `\"c\"` (1), `\"ce\"` (2), `\"eb\"` (2), `\"b\"` (1), `\"ba\"` (2), `\"a\"` (1).\n  - Maximum length is 3 (from `\"ece\"`).\n- *Sliding window simulation:*\n  - `right=0 ('e')`: window `\"e\"`, counts `{'e': 1}`, max = 1\n  - `right=1 ('c')`: window `\"ec\"`, counts `{'e': 1, 'c': 1}`, max = 2\n  - `right=2 ('e')`: window `\"ece\"`, counts `{'e': 2, 'c': 1}`, max = 3\n  - `right=3 ('b')`: 3 distinct characters (`'e'`, `'c'`, `'b'`); shrink from left: remove `'e'`, remove `'c'` -> window `\"eb\"`, length = 2\n  - `right=4 ('a')`: 3 distinct characters; shrink left: remove `'e'` -> window `\"ba\"`, length = 2\n  - Output: 3. Both methods yield 3.\n\n**Failure Mode Avoided:**\nFailing to `del` a character key from the frequency dictionary when its count decrements to 0. Keeping the key with a value of `0` leaves `len(counts)` unchanged, incorrectly treating it as a distinct character still present in the window.\n\n**Final Answer:**\n\n```python\ndef solve(s: str) -> int:\n    counts = {}\n    left = 0\n    max_len = 0\n\n    for right, ch in enumerate(s):\n        counts[ch] = counts.get(ch, 0) + 1\n        while len(counts) > 2:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "latency_s": 25.1,
+   "thinking_chars": 0,
+   "tokens_est": 584,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "trade_b1",
+   "text": "### 1. Restate the Constraints\n- **80 Wins:** Average $+0.459\\text{R}$ each.\n- **36 Losses:** Average $-0.416\\text{R}$ each.\n- **7 Partial Wins:** Given as **totaling** $+0.44\\text{R}$ in aggregate (not an average).\n- **28 Scratches / Breakeven:** $0.0\\text{R}$ each.\n- **Total Trades:** $80 + 36 + 7 + 28 = 151$ closed entries.\n- **Required Outputs:** Expectancy per trade (in R) and Profit Factor, showing all intermediate arithmetic.\n\n---\n\n### 2. Solve\n\n#### A. Total R Breakdown\n1. **Full Wins:**\n   $$\\text{Total Win R} = 80 \\times 0.459\\text{R} = 36.72\\text{R}$$\n\n2. **Partial Wins:**\n   $$\\text{Total Partial Win R} = +0.44\\text{R}$$\n\n3. **Total Gross Profit:**\n   $$\\text{Gross Profit} = 36.72\\text{R} + 0.44\\text{R} = 37.16\\text{R}$$\n\n4. **Gross Losses:**\n   $$\\text{Total Gross Loss} = 36 \\times 0.416\\text{R} = 14.976\\text{R}$$\n\n5. **Breakeven Entries:**\n   $$\\text{Total Scratch R} = 28 \\times 0.0\\text{R} = 0.0\\text{R}$$\n\n6. **Total Net R:**\n   $$\\text{Net R} = 37.16\\text{R} - 14.976\\text{R} = 22.184\\text{R}$$\n\n---\n\n#### B. Expectancy Per Trade\n$$\\text{Expectancy} = \\frac{\\text{Total Net R}}{\\text{Total Trades}} = \\frac{22.184\\text{R}}{151} = \\frac{2773}{18875}\\text{R} \\approx +0.146914\\text{R}$$\n\n---\n\n#### C. Profit Factor\n$$\\text{Profit Factor} = \\frac{\\text{Gross Profit}}{\\text{Gross Loss}} = \\frac{37.16}{14.976} = \\frac{4645}{1872} \\approx 2.481303$$\n\n---\n\n### 3. Verification by an Independent Method\nUsing the probability-weighted expectation formula over all 151 trades:\n- $P(\\text{Win}) = \\frac{80}{151}$, $\\text{Avg Win} = +0.459\\text{R}$\n- $P(\\text{Loss}) = \\frac{36}{151}$, $\\text{Avg Loss} = 0.416\\text{R}$\n- $P(\\text{Partial}) = \\frac{7}{151}$, $\\text{Avg Partial} = \\frac{0.44}{7}\\text{R}$\n- $P(\\text{Scratch}) = \\frac{28}{151}$, $\\text{Avg Scratch} = 0.0\\text{R}$\n\n$$\\begin{aligned}\n\\text{Expectancy} &= P(\\text{Win})\\cdot \\text{Avg Win} + P(\\text{Partial})\\cdot \\text{Avg Partial} - P(\\text{Loss})\\cdot \\text{Avg Loss} + P(\\text{Scratch})\\cdot 0 \\\\\n&= \\left(\\frac{80}{151}\\right)(0.459) + \\left(\\frac{7}{151}\\right)\\left(\\frac{0.44}{7}\\right) - \\left(\\frac{36}{151}\\right)(0.416) \\\\\n&= \\frac{36.72 + 0.44 - 14.976}{151} = \\frac{22.184}{151} \\approx +0.146914\\text{R}\n\\end{aligned}$$\n\nFor Profit Factor:\n$$\\text{Profit Factor} = \\frac{P(\\text{Win})\\cdot \\text{Avg Win} + P(\\text{Partial})\\cdot \\text{Avg Partial}}{P(\\text{Loss})\\cdot \\text{Avg Loss}} = \\frac{\\frac{37.16}{151}}{\\frac{14.976}{151}} = \\frac{37.16}{14.976} \\approx 2.481303$$\n\nBoth methods yield identical results.\n\n---\n\n### 4. Failure Mode Avoided\n- **Misinterpreting \"totaling\" as \"averaging\":** Mistakenly multiplying $7 \\times 0.44\\text{R} = 3.08\\text{R}$ instead of recognizing that $+0.44\\text{R}$ is already the aggregate total for all 7 partial wins.\n- **Denominator exclusion:** Excluding the 28 breakeven trades from the expectancy calculation (i.e., dividing by 123 active winning/losing trades instead of the full 151 closed entries).\n\n---\n\n### 5. Final Answer\n- **Expectancy per trade:** **$+0.1469\\text{R}$** (or $\\frac{2773}{18875}\\text{R} \\approx 0.146914\\text{R}$)\n- **Profit Factor:** **$2.48$** (or $\\frac{4645}{1872} \\approx 2.481303$)",
+   "latency_s": 53.9,
+   "thinking_chars": 0,
+   "tokens_est": 789,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "med_b1",
+   "text": "**Constraint:** \nThe response must explicitly: (1) restate the constraints, (2) solve the clinical problem, (3) verify the solution using an independent method, (4) list one failure mode avoided, and (5) provide the final multiple-choice answer.\n\n---\n\n### 1. Solve\n* **Clinical Presentation & Imaging:** A 2-day-old infant presents with bilious vomiting and an abdominal radiograph demonstrating the classic \"double bubble\" sign (dilated stomach and proximal duodenum) with a complete absence of distal bowel gas. \n* **Diagnosis:** Complete duodenal obstruction, most commonly **duodenal atresia** (or annular pancreas).\n* **Next Steps in Management:**\n  1. Complete congenital duodenal atresia is not an immediate, middle-of-the-night surgical emergency because the bowel is not at risk of strangulation or ischemia (unlike acute midgut volvulus).\n  2. Initial management requires gastric decompression with an **orogastric or nasogastric tube (OGT/NGT)** to prevent pulmonary aspiration, along with IV hydration and electrolyte stabilization.\n  3. Preoperative evaluation is critical prior to surgical repair: ~30\u201340% of cases are associated with Trisomy 21 and severe congenital heart disease (e.g., atrioventricular septal defect, VSD), as well as VACTERL anomalies. An echocardiogram and preoperative workup must precede the operation.\n  4. Definitive surgical correction is a diamond-shaped **duodenoduodenostomy**.\n* **Analysis of Choices:**\n  * **A (Contrast enema):** Used for distal/colonic obstructions (e.g., meconium ileus, Hirschsprung disease).\n  * **C (Rectal biopsy):** Gold standard for diagnosing Hirschsprung disease, which presents as a low/distal obstruction.\n  * **D (Urgent laparotomy):** Indicated for strangulating conditions like midgut volvulus with peritonitis/ischemia or perforation, not uncomplicated duodenal atresia.\n  * **E (Observe 6h):** Inappropriate for a complete anatomical mechanical obstruction.\n\nThus, the appropriate next step is **B (OGT + duodenoduodenostomy workup)**.\n\n---\n\n### 2. Verify by an Independent Method\n* **Pathophysiologic / Algorithmic Check:** \n  * In neonatal intestinal obstruction algorithms, the presence of a \"double bubble\" with complete absence of distal air confirms intrinsic complete duodenal obstruction. No additional contrast imaging (upper GI series or contrast enema) is required for diagnosis. \n  * Pediatric surgical protocols (e.g., APSA, Sabiston Textbook of Surgery) dictate that care proceeds immediately to decompression (OGT/NGT to suction), fluid/electrolyte repletion, and screening for associated cardiopulmonary anomalies (preoperative workup) before elective or semi-elective Kimura diamond-shaped duodenoduodenostomy.\n\n---\n\n### 3. Failure Mode Avoided\n* **Confusing Duodenal Atresia with Midgut Volvulus Requiring Emergent Laparotomy:** Bilious vomiting in a newborn is often taught as a surgical emergency indicating possible midgut volvulus. However, reacting by immediately rushing the infant to an **urgent laparotomy (Option D)** without decompression and cardiac evaluation ignores that complete duodenal atresia with no distal gas is a stable congenital malformation. Performing emergency surgery without an echocardiogram would risk unmonitored anesthesia in a patient with a high probability of an undiagnosed congenital cardiac defect (e.g., AVSD/endocardial cushion defect).\n\n---\n\n### Final Answer\n**B) OGT + duodenoduodenostomy workup**",
+   "latency_s": 47.4,
+   "thinking_chars": 0,
+   "tokens_est": 860,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "long_b1",
+   "text": "**Restate the constraint:**  \nExplain to a house officer why a 24-week GA baby who died on March 4 is a quasi-identifier in a small NICU audit, using at most 120 words, strictly without bullet lists, and strictly without hedging.\n\n**Solve:**  \nA quasi-identifier is non-unique information that identifies an individual when combined with other attributes or auxiliary data. At 24 weeks gestation, patient numbers in a small unit are exceptionally low, and deaths on an exact calendar date are discrete events. The combination of rare clinical extremes and a precise timestamp collapses the cohort subset to a single individual ($k=1$), enabling immediate linkage to death registers or clinical recall.\n\n**Verify by an independent method:**  \nApplying $k$-anonymity framework: Evaluate the equivalence class size for the tuple (GA = 24 weeks, Date of Death = March 4, Location = Small NICU). Because the annual volume of 24-week infants in a small unit is minimal and daily mortality incidence is near zero, the cardinality of this equivalence class is $k = 1$. A value of $k = 1$ constitutes deterministic re-identification.\n\n**Failure mode avoided:**  \nAvoided hedging terms such as \"might,\" \"could,\" \"probably,\" or \"potentially,\" and avoided using bullet points to format the explanation.\n\n---\n\n**Final Answer:**  \nA quasi-identifier does not directly name a patient, but it isolates them uniquely when combined with context. In a small NICU, 24-week deliveries are rare events, and deaths on a specific calendar date are equally sparse. Pairing extreme prematurity with the exact date of March 4 produces an equivalence class of one. Anyone cross-referencing this audit with ward shift sheets, local death registers, or published obituaries immediately links these clinical facts to a specific infant and family. De-identification fails because the data combination is mathematically unique in this denominator. You must aggregate gestational age into broader intervals and report mortality by quarter or year to prevent re-identification.",
+   "latency_s": 24.0,
+   "thinking_chars": 0,
+   "tokens_est": 510,
+   "correctness": null,
+   "token_eff": null
+  },
+  {
+   "model": "kimi-k3",
+   "task": "code_b1",
+   "text": "**Constraint restated:** Return the length (not the substring itself) of th\nthe longest contiguous substring of `s` containing at most 2 distinct chara\ncharacters (k is fixed to 2 inside the function).\n\n**Solution approach:** Sliding window with two pointers and a frequency map\nmap. Expand `right`, adding each character to the map; whenever the map hol\nholds more than 2 distinct characters, advance `left` (decrementing counts,\ncounts, removing keys at zero) until the window is valid again. Track the m\nmaximum valid window size. Runs in O(n) time, O(1) extra space (map has \u2264 3\n3 keys).\n\n**Independent verification (brute force cross-check):** Compare against che\nchecking every substring `s[i:j]` via `len(set(s[i:j])) <= 2`:\n- `\"eceba\"` \u2192 brute best = `\"ece\"` = 3; window: `ec` ok, add `e` ok, add `b\n`b` forces shrink to `ceb`\u2192`eb`... max recorded 3 \u2713\n- `\"\"` \u2192 0 \u2713 (loop never runs, returns initial 0)\n- `\"abaccc\"` \u2192 brute best = `\"accc\"` = 4; window matches \u2713\n- `\"aaaa\"` \u2192 4 \u2713 (map never exceeds 1 key)\n\n**Failure mode avoided:** Using `if` instead of `while` when shrinking \u2014 sh\nshrinking only once per step can leave 3 distinct characters in the window \nand overstate the answer (e.g., on `\"aabbc\"`); also avoided leaving zero-co\nzero-count keys in the map, which would inflate the distinct count.\n\n**Final answer:**\n\n```python\ndef solve(s):\n    counts = {}\n    left = 0\n    best = 0\n    for right, ch in enumerate(s):\n        counts[ch] = counts.get(ch, 0) + 1\n        while len(counts) > 2:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n        window_len = right - left + 1\n        if window_len > best:\n            best = window_len\n    return best\n```",
+   "latency_s": 16.1,
+   "thinking_chars": 1934,
+   "tokens_est": 928,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "kimi-k3",
+   "task": "trade_b1",
+   "text": "## 1. Constraint restated\n\nFrom a journal of 151 closed entries \u2014 80 full wins @ avg +0.459R, 36 losse\nlosses @ avg \u22120.416R, 7 partial wins whose **combined** contribution is +0.\n+0.44R (a total, not an average), and 28 scratches at 0.0R \u2014 compute (a) ex\nexpectancy per trade and (b) profit factor, showing all arithmetic.\n\n## 2. Solution\n\n**Category sums (R):**\n- Full wins: 80 \u00d7 0.459 = **+36.72R**\n- Partial wins: **+0.44R** (given as a total)\n- Gross profit = 36.72 + 0.44 = **+37.16R**\n- Losses: 36 \u00d7 (\u22120.416) = **\u221214.976R** \u2192 gross loss = 14.976R\n- Scratches: 28 \u00d7 0.0 = 0.0R\n\n**Count check:** 80 + 36 + 7 + 28 = 151 \u2713\n\n**Net R:** 37.16 \u2212 14.976 = **+22.184R**\n\n**Expectancy:**\n$$E = \\frac{+22.184R}{151} = +0.14691R \\approx +0.147R \\text{ per trade}$$\n\n**Profit factor:**\n$$PF = \\frac{\\text{gross profit}}{\\text{gross loss}} = \\frac{37.16}{14.976}\n\\frac{37.16}{14.976} = 2.4813 \\approx 2.48$$\n\n## 3. Independent verification (probability-weighted form)\n\nE = P(win)\u00b7avgWin + P(loss)\u00b7avgLoss + P(partial)\u00b7avgPartial + P(scratch)\u00b70\n\n- (80/151)(0.459) = +0.243179\n- (36/151)(\u22120.416) = \u22120.099179\n- (7/151)(0.44/7) = +0.002914\n- (28/151)(0) = 0\n\nSum = 0.243179 \u2212 0.099179 + 0.002914 = **+0.14691R** \u2713 (matches)\n\nPF cross-check via identity: gross loss \u00d7 PF \u2212 gross loss = net \u2192 14.976 \u00d7 \n2.4813 \u2212 14.976 = 22.184 \u2713\n\n## 4. Failure mode avoided\n\n**Average-vs-total misread.** The partial wins were given as \"totaling +0.4\n+0.44R.\" Treating +0.44R as the *average* per partial win would add 7 \u00d7 0.4\n0.44 = 3.08R (7\u00d7 too much), inflating net to ~24.8R, expectancy to ~0.164R,\n~0.164R, and PF to ~2.66. I kept the 0.44R as a lump sum. (Secondary trap a\nalso avoided: excluding the 28 scratches from the denominator \u2014 they are cl\nclosed trades, so the divisor stays at 151.)\n\n## Final answer\n\n- **Expectancy \u2248 +0.147R per trade** (net +22.184R \u00f7 151 trades)\n- **Profit factor \u2248 2.48** (37.16R gross profit \u00f7 14.976R gross loss)",
+   "latency_s": 26.0,
+   "thinking_chars": 3264,
+   "tokens_est": 1296,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "kimi-k3",
+   "task": "med_b1",
+   "text": "**Constraint restated:** Day-2 term neonate, clinically well (APGAR 9/10), \n**bilious vomiting**, AXR shows **double bubble with no distal gas**; choos\nchoose the next step among A\u2013E.\n\n**Solve:** Double bubble + absent distal gas = complete congenital proximal\nproximal duodenal obstruction, classically **duodenal atresia**. Initial ma\nmanagement is **NPO, orogastric decompression, IV fluids/electrolyte correc\ncorrection**, and evaluation for associated anomalies before planned repair\nrepair with **duodenoduodenostomy**.\n\n**Independent verification:** Use the bilious-emesis rule: first exclude ma\nmalrotation/volvulus. The gas pattern does that: **distal gas present** wou\nwould raise volvulus/duodenal stenosis and demand urgent contrast/operation\ncontrast/operation; **no distal gas** fits duodenal atresia, for which plai\nplain film is usually diagnostic and repair is semi-urgent after stabilizat\nstabilization/workup.\n\n**Failure mode avoided:** Not choosing **urgent laparotomy automatically** \nfor bilious vomiting once the stable baby has a classic no-distal-gas doubl\ndouble bubble; also not observing.\n\n**Final answer: B) OGT + duodenoduodenostomy workup.**",
+   "latency_s": 36.1,
+   "thinking_chars": 15673,
+   "tokens_est": 4211,
+   "correctness": 1.0,
+   "token_eff": 0.0
+  },
+  {
+   "model": "kimi-k3",
+   "task": "long_b1",
+   "text": "Constraint: maximum 120 words, prose, no hedging. Solved: 24-week gestation\ngestation, death on March 4, death after NICU care, and small-unit admissio\nadmission form one rare combination. Independently verified by cell-size/k-\ncell-size/k-anonymity logic: one or very few infants match, so removing nam\nname and MRN does not anonymize. Failure avoided: assuming an internal audi\naudit is exempt. House officer: this is a quasi-identifier because those de\ndetails together single out one baby; linkage to delivery logs, death regis\nregistration, rotas, family knowledge, or another dataset identifies the ch\nchild and family. Suppress exact date, band gestation, and small cells.",
+   "latency_s": 22.5,
+   "thinking_chars": 10375,
+   "tokens_est": 2763,
+   "correctness": null,
+   "token_eff": null
+  }
+ ]
+}
