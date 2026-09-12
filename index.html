@@ -111,29 +111,38 @@ section{position:relative}
 .step .delta{font-family:var(--serif);font-size:1.6rem;font-variant-numeric:tabular-nums}
 .step .delta small{font-family:var(--sans);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-top:2px}
 .step .delta.pos{color:var(--teal)}.step .delta.neg{color:var(--crimson)}.step .delta.zero{color:var(--muted)}
-/* ---------- CH5: board — the standings, newspaper table ---------- */
+/* ---------- CH5: board — the racecard ---------- */
 .board{margin-top:40px}
 table{width:100%;border-collapse:collapse}
-th{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);text-align:left;
-  padding:12px 14px;border-bottom:2px solid var(--ink)}
-td{padding:15px 14px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;font-size:.94rem}
-td.model{font-family:var(--serif);font-size:1.12rem}
-tr.me td{background:rgba(201,162,39,.07)}
-.rank{font-family:var(--serif);color:var(--muted);font-size:1.05rem}
-.crown{color:var(--gold)}
+th{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-align:left;
+  padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:16px 12px;border-bottom:1px solid var(--line-2);font-variant-numeric:tabular-nums;font-size:.92rem}
+td.model{font-family:var(--serif);font-size:1.15rem}
+tbody tr{opacity:0;transform:translateX(-14px);transition:opacity .5s,transform .5s}
+tbody tr.on{opacity:1;transform:none}
+.rank{font-family:var(--serif);color:var(--muted);font-size:1.7rem;font-weight:500;line-height:1}
+tr:first-child .rank{color:var(--gold)}
+tr:first-child td.model{font-size:1.3rem}
+.foil{font-size:1.05rem;color:var(--gold);text-shadow:0 1px 0 rgba(201,162,39,.35)}
 .bar-cell{min-width:120px}
-.bar-cell .tr2{height:7px;background:var(--paper-2);border-radius:2px;overflow:hidden}
-.bar-cell .fl{height:100%;width:0;background:var(--teal);border-radius:2px;transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
-/* ---------- CH6: strengths — duel cards ---------- */
-.duels{margin-top:46px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
-.duel{background:var(--paper);padding:34px 30px}
-.duel h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:16px}
-.duel h3 small{font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
-.duel ul{list-style:none}
-.duel li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:.92rem;color:#4c463c;line-height:1.5}
-.duel li b{color:var(--ink);font-weight:600}
-.duel li.plus::before{content:"▲";color:var(--teal);font-size:.7rem;margin-right:9px}
-.duel li.minus::before{content:"▼";font-size:.7rem;margin-right:9px;color:var(--crimson)}
+.bar-cell .tr2{height:6px;background:var(--paper-2);border-radius:1px;overflow:hidden}
+.bar-cell .fl{height:100%;width:0;background:var(--teal);border-radius:1px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+/* ---------- CH6: strengths — the ledger ---------- */
+.ledger{margin-top:46px;border-top:2px solid var(--ink)}
+.row{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:baseline;
+  padding:26px 4px;border-bottom:1px solid var(--line);position:relative}
+.row .pos{font-family:var(--serif);font-size:2.1rem;color:var(--muted);min-width:70px;line-height:1}
+.row.top .pos{color:var(--gold);font-size:2.6rem}
+.row .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px}
+.row .mname{font-family:var(--serif);font-size:clamp(1.3rem,3vw,2rem);letter-spacing:-.01em}
+.row.top .mname{font-size:clamp(1.7rem,3.6vw,2.5rem)}
+.row .tag{font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);
+  border:1px solid var(--teal);border-radius:3px;padding:3px 9px}
+.row .line{font-family:var(--serif);font-size:clamp(1.02rem,2vw,1.3rem);margin-top:10px;color:var(--ink)}
+.row .marg{margin-top:9px;font-size:.8rem;color:var(--crimson)}
+.row .marg::before{content:"▼ ";font-size:.62rem}
+.row .marg-quiet{color:var(--muted)}
+@media(max-width:720px){.row{grid-template-columns:1fr;gap:8px}.row .pos{font-size:1.4rem}}
 /* ---------- CH7: method — dark, quiet ---------- */
 .method ol{margin:26px 0 0;list-style:none;counter-reset:m}
 .method li{counter-increment:m;position:relative;padding:20px 0 20px 64px;border-bottom:1px solid rgba(244,239,230,.09);
@@ -242,7 +251,7 @@ tr.me td{background:rgba(201,162,39,.07)}
     <div class="num rv">V — What the numbers mean</div>
     <h2 class="rv">Every contender has a weakness.<br>That's the point.</h2>
     <p class="lede rv rv-d1">A benchmark that flatters nobody tells you who to hire for which job. These read-outs update from real runs; the first sweep already drew blood.</p>
-    <div class="duels" id="duels"></div>
+    <div class="ledger" id="ledger"></div>
   </div>
 </section>
 
@@ -353,11 +362,13 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
     tb.appendChild(tr);
   });
   document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · bench.py runs → aggregate.py builds → this page reads. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';
-  requestAnimationFrame(()=>document.querySelectorAll('.fl').forEach(f=>f.style.width=f.dataset.w));
+  // staggered racecard tick-in
+  document.querySelectorAll('#boardBody tr').forEach((tr,i)=>setTimeout(()=>{tr.classList.add('on');
+    const f=tr.querySelector('.fl'); if(f) f.style.width=f.dataset.w;}, 240*i+150));
   // fill parade stats from board
   entries.forEach(([m,c])=>{const el=document.querySelector(`[data-m="${m}"]`);if(el)el.innerHTML=`${c[0]}%<small>graded score</small>`});
-  // duel cards
-  const duels=document.getElementById('duels');
+  // the ledger (duel cards v2): dominant line + crimson marginalia, scaled by finish
+  const ledger=document.getElementById('ledger');
   const notes={
    "deepseek-v4.1-flash":[["Fastest correct model in the family (9.6s avg, 100%).","Clean minimal code under tight budget (~350 tok on code task)."],["Verbose on arithmetic when the prompt under-specifies (~1.8K tok avg).","Newest member — sample size still thin; rank pending 5 graded runs."]],
    "gpt-5.6-sol-pro":[["Token efficiency king: 100% at ~126 tok avg.","The only model whose prose stays disciplined at high effort."],["Slowest of the 100% tier (23.6s avg).","Astra-family quirk: trade arithmetic missed at low effort."]],
@@ -366,11 +377,24 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
    "gemini-3.8-flash":[["Second-cheapest prose (184 tok avg)."],["Missed the composition-arithmetic task (67%).","Route fragility: zen REST 500s; CLI-only."]]
   };
   const order=["deepseek-v4.1-flash","gpt-5.6-sol-pro","gpt-6-astra","kimi-k3","gemini-3.8-flash"];
-  order.forEach(m=>{
+  const headline={
+   "deepseek-v4.1-flash":"Fastest correct model in the family — 9.6 seconds, perfect score.",
+   "gpt-5.6-sol-pro":"The efficiency king: perfect score at roughly 126 tokens a task.",
+   "gpt-6-astra":"The cheap specialist — until the arithmetic turns compositional.",
+   "kimi-k3":"Quick on clinical recall; the arithmetic ledger shows a red line.",
+   "gemini-3.8-flash":"Lean prose on a fragile route; the arithmetic beat it too."
+  };
+  order.forEach((m,i)=>{
     const n=notes[m]; if(!n)return;
-    const d=document.createElement('div');d.className='duel';
-    d.innerHTML=`<h3>${DISP[m]}</h3><ul>${n[0].map(x=>`<li class="plus"><b>Strength.</b> ${x}</li>`).join('')}${n[1].map(x=>`<li class="minus"><b>Watch.</b> ${x}</li>`).join('')}</ul>`;
-    duels.appendChild(d);
+    const d=document.createElement('div');d.className='row'+(i===0?' top':'');
+    d.innerHTML=`<div class="pos">${String(i+1).padStart(2,'0')}</div>
+    <div>
+      <div class="head"><span class="mname">${DISP[m]}</span>${i===0?'<span class="tag">Ledger leader</span>':''}</div>
+      <div class="line">${headline[m]}</div>
+      <div class="marg">${n[1][0]}</div>
+      ${n[1][1]?`<div class="marg marg-quiet">${n[1][1]}</div>`:''}
+    </div>`;
+    ledger.appendChild(d);
   });
   // ladder: low vs high per model (waits for high sweep)
   const lad=document.getElementById('ladder'); lad.innerHTML='';
