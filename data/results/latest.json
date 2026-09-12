@@ -1,6 +1,55 @@
 {
- "generated": "2026-09-12T08:39:49",
- "low": {},
+ "generated": "2026-09-12T08:47:04",
+ "low": {
+  "gpt-5.6-sol-pro": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 24.5,
+   "tok": 80
+  },
+  "gpt-6-astra": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 20.1,
+   "tok": 90
+  },
+  "glm-5.3": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 23.6,
+   "tok": 560
+  },
+  "glm-5.3-flash": {
+   "n": 3,
+   "corr": 2.5,
+   "lat": 8.2,
+   "tok": 558
+  },
+  "deepseek-v4-pro": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 4.7,
+   "tok": 620
+  },
+  "deepseek-v4.1-flash": {
+   "n": 3,
+   "corr": 3.0,
+   "lat": 14.4,
+   "tok": 830
+  },
+  "gemini-3.8-flash": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 11.6,
+   "tok": 112
+  },
+  "kimi-k3": {
+   "n": 3,
+   "corr": 2.0,
+   "lat": 5.7,
+   "tok": 306
+  }
+ },
  "medium": {
   "deepseek-v4.1-flash": {
    "n": 3,
