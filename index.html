@@ -407,9 +407,11 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
     <td class="bar-cell"><div class="tr2"><div class="fl" data-w="${c[0]}%"></div></div></td>
     <td>${c[1]}% graded</td>
     <td>~${c[2]} tok</td><td>${c[3]}s</td>`;
+    tr.classList.add('clickable');
+    tr.addEventListener('click',()=>DZ.openD(m));
     tb.appendChild(tr);
   });
-  document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · bench.py runs → aggregate.py builds → this page reads. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';
+  document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · 12 graded tasks · click any row for the full dossier. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';
   // staggered racecard tick-in
   document.querySelectorAll('#boardBody tr').forEach((tr,i)=>setTimeout(()=>{tr.classList.add('on');
     const f=tr.querySelector('.fl'); if(f) f.style.width=f.dataset.w;}, 240*i+150));
