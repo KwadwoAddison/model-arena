@@ -159,9 +159,16 @@ def run(models=None, suite="quick", reasoning=None):
             t = TASKS[tid]
             res = {"task": tid, "domain": t["domain"], "model": mid, "reasoning": reasoning}
             try:
-                if "codex" in entry["command"]:
+                prov = entry.get("provider", "")
+                if prov.startswith("openai"):
                     r = call_codex(entry["command"].split()[-1] if "-m" in entry["command"] else None, t["prompt"])
                     r["text"] = sanitize(r["text"])
+                elif "opencode" in prov:
+                    t0 = time.time()
+                    p2 = subprocess.run(["opencode", "run", "-m", "opencode/gemini-3.8-flash"],
+                                        input=t["prompt"], capture_output=True, text=True, timeout=600)
+                    dt = time.time() - t0
+                    r = {"text": sanitize(p2.stdout.strip()), "thinking_chars": 0, "latency_s": round(dt, 1)}
                 else:
                     tag = entry["command"].split()[2]
                     r = call_ollama(tag, t["prompt"], reasoning)

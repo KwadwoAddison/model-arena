@@ -1,0 +1,47 @@
+{
+ "suite": "quick",
+ "reasoning": "default",
+ "stamp": "20260912_0831",
+ "runs": [
+  {
+   "model": "gemini-3.8-flash",
+   "task": "code_b1",
+   "text": "```python\ndef solve(s: str) -> int:\n    counts = {}\n    left = 0\n    max_len = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            left_char = s[left]\n            counts[left_char] -= 1\n            if counts[left_char] == 0:\n                del counts[left_char]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "latency_s": 16.7,
+   "thinking_chars": 0,
+   "tokens_est": 109,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "trade_b1",
+   "text": "### 1. Total R Breakdown\n\n* **Wins:** $80 \\times +0.459\\text{R} = +36.720\\text{R}$\n* **Partial Wins:** $+0.440\\text{R}$ *(given as total)*\n* **Losses:** $36 \\times -0.416\\text{R} = -14.976\\text{R}$\n* **Breakeven Scratches:** $28 \\times 0.0\\text{R} = 0.000\\text{R}$\n\n---\n\n### 2. Profit Factor\n\n$$\\text{Gross Profit} = 36.720\\text{R} + 0.440\\text{R} = 37.160\\text{R}$$\n$$\\text{Gross Loss} = 14.976\\text{R}$$\n\n$$\\text{Profit Factor} = \\frac{\\text{Gross Profit}}{\\text{Gross Loss}} = \\frac{37.160}{14.976} \\approx \\mathbf{2.481}$$\n\n---\n\n### 3. Expectancy Per Trade\n\n$$\\text{Net R} = 37.160\\text{R} - 14.976\\text{R} = +22.184\\text{R}$$\n\n$$\\text{Expectancy} = \\frac{\\text{Net R}}{\\text{Total Trades}} = \\frac{+22.184\\text{R}}{151} \\approx \\mathbf{+0.147\\text{R}}$$ *(or $+0.1469\\text{R}$ per trade)*",
+   "latency_s": 22.9,
+   "thinking_chars": 0,
+   "tokens_est": 198,
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "med_b1",
+   "text": "**Correct Answer:** **B) OGT + duodenoduodenostomy workup**\n\n### Explanation:\n* **Diagnosis:** The classic abdominal radiograph finding of a **\"double bubble\" sign with no distal gas** in a neonate with bilious vomiting is pathognomonic for **complete duodenal atresia** (or severe intrinsic duodenal obstruction, such as an annular pancreas or duodenal web).\n* **Management:** Unlike midgut volvulus, duodenal atresia is **not** an immediate surgical emergency requiring emergent/urgent laparotomy. \n* **Initial Next Steps:**\n  1. **Decompression & Resuscitation:** Place an orogastric/nasogastric tube (OGT/NGT) to decompress the stomach and prevent aspiration, and initiate IV fluid resuscitation and electrolyte correction.\n  2. **Preoperative Workup:** Screen for associated congenital anomalies (30\u201340% have Trisomy 21, and many have cardiac/VACTERL anomalies) via echocardiography and renal ultrasound before proceeding to definitive operative repair (**duodenoduodenostomy**).",
+   "latency_s": 18.8,
+   "thinking_chars": 0,
+   "tokens_est": 246,
+   "correctness": 1.0,
+   "token_eff": 1.0
+  },
+  {
+   "model": "gemini-3.8-flash",
+   "task": "long_b1",
+   "text": "A quasi-identifier is information that does not name a patient directly but isolates their identity when combined with contextual knowledge. In a small NICU, extreme prematurity at 24 weeks is an uncommon clinical event, and an in-hospital death on a precise date is equally distinct. Because the total unit cohort is tiny, anyone with access to duty rosters, handover notes, or public death notices will immediately link these two data points to that specific infant. Omitting the name and hospital number fails to preserve anonymity. To maintain confidentiality in small clinical audits, you must collapse these variables into broader gestational brackets and quarterly mortality figures.",
+   "latency_s": 18.8,
+   "thinking_chars": 0,
+   "tokens_est": 172,
+   "correctness": null,
+   "token_eff": null
+  }
+ ]
+}

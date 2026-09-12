@@ -181,10 +181,18 @@ setTimeout(()=>{document.querySelectorAll('.rv:not(.on)').forEach(el=>el.classLi
 
 // STATIC FALLBACK DATA (last verified run) — replaced by fetch when served over HTTP
 const FALLBACK={
-  snapshot:"2026-09-12 08:08 smoke (2 models, 3 graded domains)",
+  snapshot:"2026-09-12 08:19 quick suite — 8 models x 4 tasks (gemini re-run 08:31), 3 auto-graded domains; prose rubric pending",
   weights:[["Correctness",40],["Reasoning quality",20],["Token efficiency",15],["Adherence",15],["Latency",10]],
   board:[
-    ["DeepSeek V4.1 Flash","—","1.00 code / 1.00 med","—","1.00 / 1.00","2.5–18.9s","—"],
+    ["GPT-5.6 Sol Pro","3.0/3 graded","21.2s avg","~129 tok avg"],
+    ["GLM-5.3","3.0/3 graded","15.2s avg","~1958 tok avg"],
+    ["GLM-5.3 Flash","3.0/3 graded","12.3s avg","~1366 tok avg"],
+    ["DeepSeek V4 Pro","3.0/3 graded","11.3s avg","~1390 tok avg"],
+    ["DeepSeek V4.1 Flash","3.0/3 graded","8.3s avg","~1516 tok avg"],
+    ["GPT-6 Astra","2.0/3 graded","20.5s avg","~128 tok avg"],
+    ["Kimi K3","2.0/3 graded","14.7s avg","~1052 tok avg"],
+    ["Gemini 3.8 Flash","2.0/3 graded","19.3s avg","~181 tok avg"],
+  ],,
     ["GLM-5.3","—","1.00 code / 1.00 med","—","1.00 / 1.00","13.5–34.4s","—"],
   ],
   ladder_note:"Ladder sweep pending first full run",
