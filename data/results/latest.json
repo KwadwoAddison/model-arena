@@ -1,53 +1,70 @@
 {
- "generated": "2026-09-12T09:01:08",
+ "generated": "2026-09-12T09:16:28",
+ "weights": {
+  "correctness": 0.4,
+  "reasoning": 0.2,
+  "token_eff": 0.15,
+  "latency": 0.1,
+  "adherence": 0.15
+ },
+ "grading_rules": {},
+ "par": 1219.0,
  "low": {
   "gpt-5.6-sol-pro": {
    "n": 3,
    "corr": 2.0,
    "lat": 24.5,
-   "tok": 80
+   "tok": 80,
+   "pct": 67
   },
   "gpt-6-astra": {
    "n": 3,
    "corr": 2.0,
    "lat": 20.1,
-   "tok": 90
+   "tok": 90,
+   "pct": 67
   },
   "glm-5.3": {
    "n": 3,
    "corr": 2.0,
    "lat": 23.6,
-   "tok": 560
+   "tok": 560,
+   "pct": 67
   },
   "glm-5.3-flash": {
    "n": 3,
    "corr": 2.5,
    "lat": 8.2,
-   "tok": 558
+   "tok": 558,
+   "pct": 83
   },
   "deepseek-v4-pro": {
    "n": 3,
    "corr": 3.0,
    "lat": 4.7,
-   "tok": 620
+   "tok": 620,
+   "pct": 100
   },
   "deepseek-v4.1-flash": {
    "n": 3,
    "corr": 3.0,
    "lat": 14.4,
-   "tok": 830
+   "tok": 830,
+   "pct": 100
   },
   "gemini-3.8-flash": {
    "n": 3,
    "corr": 2.0,
    "lat": 11.6,
-   "tok": 112
+   "tok": 112,
+   "pct": 67
   },
   "kimi-k3": {
    "n": 3,
    "corr": 2.0,
    "lat": 5.7,
-   "tok": 306
+   "tok": 306,
+   "pct": 67
   }
  },
  "medium": {
@@ -55,49 +72,57 @@
    "n": 3,
    "corr": 3.0,
    "lat": 9.6,
-   "tok": 1825
+   "tok": 1825,
+   "pct": 100
   },
   "glm-5.3": {
    "n": 3,
    "corr": 3.0,
    "lat": 14.9,
-   "tok": 1942
+   "tok": 1942,
+   "pct": 100
   },
   "gpt-5.6-sol-pro": {
    "n": 3,
    "corr": 3.0,
    "lat": 23.6,
-   "tok": 126
+   "tok": 126,
+   "pct": 100
   },
   "gpt-6-astra": {
    "n": 3,
    "corr": 2.0,
    "lat": 22.1,
-   "tok": 117
+   "tok": 117,
+   "pct": 67
   },
   "glm-5.3-flash": {
    "n": 3,
    "corr": 3.0,
    "lat": 12.3,
-   "tok": 1279
+   "tok": 1279,
+   "pct": 100
   },
   "deepseek-v4-pro": {
    "n": 3,
    "corr": 3.0,
    "lat": 14.0,
-   "tok": 1773
+   "tok": 1773,
+   "pct": 100
   },
   "kimi-k3": {
    "n": 3,
    "corr": 2.0,
    "lat": 15.8,
-   "tok": 1159
+   "tok": 1159,
+   "pct": 67
   },
   "gemini-3.8-flash": {
    "n": 3,
    "corr": 2.0,
    "lat": 19.5,
-   "tok": 184
+   "tok": 184,
+   "pct": 67
   }
  },
  "high": {
@@ -105,49 +130,504 @@
    "n": 3,
    "corr": 3.0,
    "lat": 26.7,
-   "tok": 228
+   "tok": 228,
+   "pct": 100
   },
   "gpt-6-astra": {
    "n": 3,
    "corr": 3.0,
    "lat": 25.9,
-   "tok": 221
+   "tok": 221,
+   "pct": 100
   },
   "glm-5.3": {
    "n": 3,
    "corr": 3.0,
    "lat": 56.7,
-   "tok": 4730
+   "tok": 4730,
+   "pct": 100
   },
   "glm-5.3-flash": {
    "n": 3,
    "corr": 3.0,
    "lat": 35.8,
-   "tok": 3115
+   "tok": 3115,
+   "pct": 100
   },
   "deepseek-v4-pro": {
    "n": 3,
    "corr": 3.0,
    "lat": 15.9,
-   "tok": 2325
+   "tok": 2325,
+   "pct": 100
   },
   "deepseek-v4.1-flash": {
    "n": 3,
    "corr": 3.0,
    "lat": 13.9,
-   "tok": 2602
+   "tok": 2602,
+   "pct": 100
   },
   "gemini-3.8-flash": {
    "n": 3,
    "corr": 3.0,
    "lat": 42.1,
-   "tok": 744
+   "tok": 744,
+   "pct": 100
   },
   "kimi-k3": {
    "n": 3,
    "corr": 3.0,
    "lat": 26.1,
-   "tok": 2145
+   "tok": 2145,
+   "pct": 100
   }
- }
+ },
+ "domains": {
+  "deepseek-v4.1-flash": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 5.4,
+      "tok": 357,
+      "chars": 378
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 1.0,
+      "lat": 15.9,
+      "tok": 715,
+      "chars": 365
+     }
+    },
+    "pct": 100
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 22.0,
+      "tok": 1419,
+      "chars": 246
+     }
+    },
+    "pct": 100
+   }
+  },
+  "glm-5.3": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 3.2,
+      "tok": 334,
+      "chars": 360
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 0.0,
+      "lat": 61.6,
+      "tok": 591,
+      "chars": 339
+     }
+    },
+    "pct": 67
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 5.9,
+      "tok": 754,
+      "chars": 748
+     }
+    },
+    "pct": 100
+   }
+  },
+  "gpt-5.6-sol-pro": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 16.6,
+      "tok": 103,
+      "chars": 411
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 0.0,
+      "lat": 25.3,
+      "tok": 55,
+      "chars": 221
+     }
+    },
+    "pct": 67
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 31.5,
+      "tok": 82,
+      "chars": 327
+     }
+    },
+    "pct": 100
+   }
+  },
+  "gpt-6-astra": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 18.0,
+      "tok": 97,
+      "chars": 389
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 1.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 0.0,
+      "lat": 21.4,
+      "tok": 94,
+      "chars": 377
+     }
+    },
+    "pct": 33
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 20.9,
+      "tok": 80,
+      "chars": 320
+     }
+    },
+    "pct": 100
+   }
+  },
+  "glm-5.3-flash": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 14.4,
+      "tok": 1111,
+      "chars": 398
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.5,
+    "tasks": {
+     "trade_b1": {
+      "corr": 0.5,
+      "lat": 7.0,
+      "tok": 267,
+      "chars": 347
+     }
+    },
+    "pct": 83
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 3.1,
+      "tok": 296,
+      "chars": 410
+     }
+    },
+    "pct": 100
+   }
+  },
+  "deepseek-v4-pro": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 2.3,
+      "tok": 308,
+      "chars": 414
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 1.0,
+      "lat": 2.8,
+      "tok": 360,
+      "chars": 385
+     }
+    },
+    "pct": 100
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 8.9,
+      "tok": 1192,
+      "chars": 177
+     }
+    },
+    "pct": 100
+   }
+  },
+  "kimi-k3": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 4.5,
+      "tok": 309,
+      "chars": 386
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 1.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 0.0,
+      "lat": 6.9,
+      "tok": 254,
+      "chars": 286
+     }
+    },
+    "pct": 33
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 5.7,
+      "tok": 354,
+      "chars": 139
+     }
+    },
+    "pct": 100
+   }
+  },
+  "gemini-3.8-flash": {
+   "coding": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "code_b1": {
+      "corr": 1.0,
+      "lat": 12.0,
+      "tok": 99,
+      "chars": 395
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 1.0,
+    "tasks": {
+     "trade_b1": {
+      "corr": 0.0,
+      "lat": 12.6,
+      "tok": 113,
+      "chars": 452
+     }
+    },
+    "pct": 33
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_b1": {
+      "corr": 1.0,
+      "lat": 10.3,
+      "tok": 125,
+      "chars": 499
+     }
+    },
+    "pct": 100
+   }
+  }
+ },
+ "best_worst": {
+  "deepseek-v4.1-flash": {
+   "strongest": "coding",
+   "weakest": "medicine",
+   "strongest_pct": 100,
+   "weakest_pct": 100
+  },
+  "glm-5.3": {
+   "strongest": "coding",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 67
+  },
+  "gpt-5.6-sol-pro": {
+   "strongest": "coding",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 67
+  },
+  "gpt-6-astra": {
+   "strongest": "coding",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 33
+  },
+  "glm-5.3-flash": {
+   "strongest": "coding",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 83
+  },
+  "deepseek-v4-pro": {
+   "strongest": "coding",
+   "weakest": "medicine",
+   "strongest_pct": 100,
+   "weakest_pct": 100
+  },
+  "kimi-k3": {
+   "strongest": "coding",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 33
+  },
+  "gemini-3.8-flash": {
+   "strongest": "coding",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 33
+  }
+ },
+ "composite": {
+  "deepseek-v4.1-flash": {
+   "correctness": 100,
+   "reasoning": 100,
+   "token_eff": 67,
+   "latency": 79,
+   "adherence": 100,
+   "total": 93.0
+  },
+  "glm-5.3": {
+   "correctness": 100,
+   "reasoning": 87,
+   "token_eff": 63,
+   "latency": 67,
+   "adherence": 100,
+   "total": 88.5
+  },
+  "gpt-5.6-sol-pro": {
+   "correctness": 100,
+   "reasoning": 87,
+   "token_eff": 100,
+   "latency": 48,
+   "adherence": 100,
+   "total": 92.2
+  },
+  "gpt-6-astra": {
+   "correctness": 67,
+   "reasoning": 87,
+   "token_eff": 100,
+   "latency": 51,
+   "adherence": 67,
+   "total": 74.4
+  },
+  "glm-5.3-flash": {
+   "correctness": 100,
+   "reasoning": 93,
+   "token_eff": 95,
+   "latency": 73,
+   "adherence": 100,
+   "total": 95.2
+  },
+  "deepseek-v4-pro": {
+   "correctness": 100,
+   "reasoning": 100,
+   "token_eff": 69,
+   "latency": 69,
+   "adherence": 100,
+   "total": 92.2
+  },
+  "kimi-k3": {
+   "correctness": 67,
+   "reasoning": 87,
+   "token_eff": 100,
+   "latency": 65,
+   "adherence": 67,
+   "total": 75.8
+  },
+  "gemini-3.8-flash": {
+   "correctness": 67,
+   "reasoning": 87,
+   "token_eff": 100,
+   "latency": 57,
+   "adherence": 67,
+   "total": 75.0
+  }
+ },
+ "art": {}
 }

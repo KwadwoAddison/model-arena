@@ -1,0 +1,162 @@
+{
+ "deepseek-v4.1-flash": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    count = {}\n    left = 0\n    best = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > 2:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "lat": 5.4,
+   "tok": 357
+  },
+  "trade_b1": {
+   "grade": 1.0,
+   "text": "Gross wins: \\(80 \\times 0.459 = 36.72R\\)  \nPartial wins: \\(+0.44R\\)  \nGross profit: \\(36.72 + 0.44 = 37.16R\\)\n\nGross losses: \\(36 \\times 0.416 = 14.976R\\)\n\nNet P&L: \\(37.16 - 14.976 = 22.184R\\)\n\nExpectancy per trade:  \n\\[\n\\frac{22.184}{151}=0.1469R\n\\]\n\nProfit factor:  \n\\[\n\\frac{37.16}{14.976}=2.4813\n\\]\n\n**Expectancy: +0.1469R per trade**  \n**Profit factor: 2.48**",
+   "lat": 15.9,
+   "tok": 715
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\nClassic **double bubble with no distal gas** suggests **duodenal atresia**.\natresia**. Next: **OG/NG decompression, IV fluids, evaluate associated anom\nanomalies**, then proceed to **duodenoduodenostomy**.",
+   "lat": 22.0,
+   "tok": 1419
+  }
+ },
+ "glm-5.3": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    k = 2\n    count, left, best = {}, 0, 0\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "lat": 3.2,
+   "tok": 334
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "**Totals:**\n- Wins: 80 \u00d7 0.459 = 36.72R\n- Losses: 36 \u00d7 0.416 = 14.976R\n- Partials: +0.44R; scratches: 0R\n- Gross profit = 36.72 + 0.44 = 37.16R\n- Gross loss = 14.976R\n- Net = 37.16 \u2212 14.976 = 22.184R\n- Trades check: 80 + 36 + 7 + 28 = 151 \u2713\n\n**Expectancy:**\n22.184 / 151 = **0.147R per trade**\n\n**Profit factor:**\n37.16 / 14.976 = **2.48**",
+   "lat": 61.6,
+   "tok": 591
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Rationale:** Double bubble **without** distal gas = *complete* duodenal o\nobstruction \u2192 most likely **duodenal atresia** (vs. volvulus, which has dis\ndistal gas and needs urgent laparotomy). Atresia is not a surgical emergenc\nemergency: stabilize with NG/OGT decompression, correct electrolytes/fluids\nelectrolytes/fluids, and screen for associated anomalies (cardiac echo for \nDown syndrome, VACTERL) before duodenoduodenostomy.\n\n- **A/C)** Contrast enema/biopsy are for distal obstruction (Hirschsprung, \natresia with microcolon) \u2014 not needed here.\n- **D)** Urgent laparotomy is for malrotation/volvulus (distal gas present,\npresent, sick baby).\n- **E)** ",
+   "lat": 5.9,
+   "tok": 754
+  }
+ },
+ "gpt-5.6-sol-pro": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    left = 0\n    counts = {}\n    longest = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            left_char = s[left]\n            counts[left_char] -= 1\n            if counts[left_char] == 0:\n                del counts[left_char]\n            left += 1\n\n        longest = max(longest, right - left + 1)\n\n    return longest",
+   "lat": 16.6,
+   "tok": 103
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "- Gross wins: `(80 \u00d7 0.459R) + 0.44R = 37.16R`\n- Gross losses: `36 \u00d7 0.416R = 14.976R`\n- Net: `37.16R \u2212 14.976R = 22.184R`\n\n**Expectancy:** `22.184R \u00f7 151 = +0.147R per trade`\n\n**Profit factor:** `37.16R \u00f7 14.976R = 2.48`",
+   "lat": 25.3,
+   "tok": 55
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT decompression + duodenoduodenostomy workup.**\n\nClassic **duodenal atresia**: bilious vomiting with a double bubble and no distal gas. Keep NPO, decompress, give IV fluids, assess associated anomalies, then repair. [Baylor guideline](https://www.bcm.edu/neonatology-intranet/intranet/clinical/guidelines/guidelines.pdf)",
+   "lat": 31.5,
+   "tok": 82
+  }
+ },
+ "gpt-6-astra": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    counts = {}\n    left = best = 0\n\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n\n        while len(counts) > 2:\n            outgoing = s[left]\n            counts[outgoing] -= 1\n            if counts[outgoing] == 0:\n                del counts[outgoing]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "lat": 18.0,
+   "tok": 97
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "- **Gross profit:** \\(80(0.459R) + 0.44R = 37.16R\\)\n- **Gross loss:** \\(36(0.416R) = 14.976R\\)\n- **Net result:** \\(37.16R - 14.976R = 22.184R\\)\n\n**Expectancy per trade:**  \n\\[\n\\frac{22.184R}{151} = \\boxed{+0.1469R}\n\\]\n\n**Profit factor:**  \n\\[\n\\frac{37.16R}{14.976R} = \\boxed{2.4813}\n\\]\n\nThe 28 scratches count toward expectancy\u2019s denominator and contribute zero profit or loss.",
+   "lat": 21.4,
+   "tok": 94
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT + duodenoduodenostomy workup.** Double bubble with **no distal gas** is classic for duodenal atresia. Keep NPO, decompress with an orogastric tube, give IV fluids, and arrange pediatric surgical repair after stabilization. [Source](https://pediatrics.jabsom.hawaii.edu/educational-resources/pedtext/s10c09.html)",
+   "lat": 20.9,
+   "tok": 80
+  }
+ },
+ "glm-5.3-flash": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    k = 2  # at most k distinct characters\n    count = {}\n    left = 0\n    best = 0\n    for right, c in enumerate(s):\n        count[c] = count.get(c, 0) + 1\n        while len(count) > k:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "lat": 14.4,
+   "tok": 1111
+  },
+  "trade_b1": {
+   "grade": 0.5,
+   "text": "**Totals**\n- Gross win: 80 \u00d7 0.459 = 36.72 R; partials: +0.44 R \u2192 37.16 R\n- Gross loss: 36 \u00d7 (\u22120.416) = \u221214.976 R\n- Net: 37.16 \u2212 14.976 = **+22.184 R** (28 scratches contribute 0)\n\n**Expectancy per trade**\n22.184 \u00f7 151 = **+0.1469 R per trade** (~0.147R)\n\n**Profit factor**\n37.16 \u00f7 14.976 = **2.481**\n\n(Trade count check: 80 + 36 + 7 + 28 = 151 \u2713)",
+   "lat": 7.0,
+   "tok": 267
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\nDouble bubble **without distal gas** in a term neonate with bilious emesis \n= duodenal atresia. Place an orogastric tube for decompression, evaluate fo\nfor associated anomalies (cardiac, Down syndrome, VACTERL), then proceed to\nto duodenoduodenostomy.\n\n(Contrast enema is only needed if distal gas is present \u2014 to rule out malro\nmalrotation/volvulus or second atresia.)",
+   "lat": 3.1,
+   "tok": 296
+  }
+ },
+ "deepseek-v4-pro": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    k = 2\n    count = {}\n    left = 0\n    max_len = 0\n\n    for right, ch in enumerate(s):\n        count[ch] = count.get(ch, 0) + 1\n\n        while len(count) > k:\n            left_ch = s[left]\n            count[left_ch] -= 1\n            if count[left_ch] == 0:\n                del count[left_ch]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len\n```",
+   "lat": 2.3,
+   "tok": 308
+  },
+  "trade_b1": {
+   "grade": 1.0,
+   "text": "Total R:\n\n- Wins: \\(80 \\times 0.459 = 36.72\\)\n- Losses: \\(36 \\times -0.416 = -14.976\\)\n- Partial wins: \\(+0.44\\)\n- Scratches: \\(0\\)\n\nNet total:  \n\\[\n36.72 - 14.976 + 0.44 = 22.184\n\\]\n\nExpectancy per trade:  \n\\[\n\\frac{22.184}{151} = 0.1469R\n\\]\n\nProfit factor:  \n\\[\n\\frac{36.72 + 0.44}{14.976} = \\frac{37.16}{14.976} = 2.48\n\\]\n\n**Expectancy: +0.147R per trade**  \n**Profit factor: 2.48**",
+   "lat": 2.8,
+   "tok": 360
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "B) OGT + duodenoduodenostomy workup  \n(Double bubble with no distal gas suggests duodenal atresia; initial step i\nis decompression and surgical workup, not emergent laparotomy.)",
+   "lat": 8.9,
+   "tok": 1192
+  }
+ },
+ "kimi-k3": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s):\n    from collections import defaultdict\n    count = defaultdict(int)\n    left = best = 0\n    for right, c in enumerate(s):\n        count[c] += 1\n        while len(count) > 2:\n            count[s[left]] -= 1\n            if count[s[left]] == 0:\n                del count[s[left]]\n            left += 1\n        best = max(best, right - left + 1)\n    return best\n```",
+   "lat": 4.5,
+   "tok": 309
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "**Gross profit:** (80 \u00d7 0.459) + 0.44 = 36.72 + 0.44 = **+37.16R**\n\n**Gross loss:** 36 \u00d7 0.416 = **14.976R**\n\n**Net R:** 37.16 \u2212 14.976 = **22.184R**\n\n**Expectancy per trade:** 22.184 / 151 = **\u2248 +0.147R**\n\n**Profit factor:** 37.16 / 14.976 = **\u2248 2.48**\n\nCheck: 80 + 36 + 7 + 28 = 151 \u2713",
+   "lat": 6.9,
+   "tok": 254
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) Orogastric decompression and preoperative workup for duodenoduodenosto\nduodenoduodenostomy** \u2014 findings indicate **duodenal atresia**.",
+   "lat": 5.7,
+   "tok": 354
+  }
+ },
+ "gemini-3.8-flash": {
+  "code_b1": {
+   "grade": 1.0,
+   "text": "```python\ndef solve(s: str) -> int:\n    counts = {}\n    left = 0\n    max_len = 0\n    for right, char in enumerate(s):\n        counts[char] = counts.get(char, 0) + 1\n        while len(counts) > 2:\n            counts[s[left]] -= 1\n            if counts[s[left]] == 0:\n                del counts[s[left]]\n            left += 1\n        max_len = max(max_len, right - left + 1)\n    return max_len\n```",
+   "lat": 12.0,
+   "tok": 99
+  },
+  "trade_b1": {
+   "grade": 0.0,
+   "text": "### Arithmetic\n\n* **Gross Profit:** $(80 \\times 0.459\\text{R}) + 0.44\\text{R} = 36.72\\text{R} + 0.44\\text{R} = 37.16\\text{R}$\n* **Gross Loss:** $36 \\times 0.416\\text{R} = 14.976\\text{R}$\n* **Net R:** $37.16\\text{R} - 14.976\\text{R} = 22.184\\text{R}$\n\n---\n\n### Results\n\n* **Expectancy per Trade:**  \n  $$\\frac{22.184\\text{R}}{151} \\approx \\mathbf{+0.147\\text{R}}$$\n\n* **Profit Factor:**  \n  $$\\frac{37.16\\text{R}}{14.976\\text{R}} \\approx \\mathbf{2.48}$$",
+   "lat": 12.6,
+   "tok": 113
+  },
+  "med_b1": {
+   "grade": 1.0,
+   "text": "**B) OGT + duodenoduodenostomy workup**\n\n**Explanation:**  \nThe \"double bubble\" sign with no distal air is pathognomonic for **duodenal atresia**. Duodenal atresia is not an immediate surgical emergency requiring emergency crash laparotomy; the correct next steps are gastric decompression (OGT/NGT), fluid resuscitation, and preoperative workup (including screening for associated anomalies such as Trisomy 21 and congenital heart defects) prior to definitive surgical repair (duodenoduodenostomy).",
+   "lat": 10.3,
+   "tok": 125
+  }
+ }
+}

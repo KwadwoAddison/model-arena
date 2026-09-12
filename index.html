@@ -143,6 +143,47 @@ tr:first-child td.model{font-size:1.3rem}
 .row .marg::before{content:"▼ ";font-size:.62rem}
 .row .marg-quiet{color:var(--muted)}
 @media(max-width:720px){.row{grid-template-columns:1fr;gap:8px}.row .pos{font-size:1.4rem}}
+/* ---------- dossier ---------- */
+.dossier{position:fixed;inset:0;z-index:50;display:none;overflow-y:auto;background:rgba(20,17,12,.55)}
+.dossier.open{display:block}
+.sheet{max-width:860px;margin:56px auto 80px;background:var(--paper);color:var(--ink);padding:56px 60px 64px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.sheet .close{position:absolute;top:18px;right:24px;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);cursor:pointer;background:none;border:1px solid var(--line);padding:7px 14px;border-radius:3px}
+.sheet .close:hover{color:var(--ink);border-color:var(--ink)}
+.d-head{border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:26px;overflow:hidden}
+.d-name{font-family:var(--serif);font-size:clamp(2rem,5vw,3rem);line-height:1.02;letter-spacing:-.02em}
+.d-sub{margin-top:8px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.d-total{float:right;text-align:right}
+.d-total .big{font-family:var(--serif);font-size:clamp(2.4rem,6vw,3.6rem);color:var(--teal);line-height:1}
+.d-total .lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.d-h{font-family:var(--serif);font-size:1.15rem;margin:34px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.d-h small{font-family:var(--sans);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-left:10px}
+.dombar{display:grid;grid-template-columns:110px 1fr 52px;gap:14px;align-items:center;margin:10px 0}
+.dombar .dn{font-family:var(--serif);font-size:.95rem}
+.dombar .db{height:9px;background:var(--paper-2);border:1px solid var(--line);position:relative}
+.dombar .db i{position:absolute;inset:0;right:auto;background:var(--teal);width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.dombar .db.warn i{background:var(--crimson)}
+.dombar .dv{font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.taskrow{display:grid;grid-template-columns:1fr 90px 70px 70px;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.86rem;align-items:baseline}
+.taskrow .tn{font-family:var(--serif)}
+.taskrow .ts{font-variant-numeric:tabular-nums;text-align:right}
+.taskrow .ts.fail{color:var(--crimson)}
+.taskrow.hdr{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--ink)}
+.rule{font-size:.8rem;color:#5a5347;line-height:1.55;padding:8px 0;border-bottom:1px dotted var(--line)}
+.rule b{color:var(--ink);font-weight:600}
+.artframe{border:1px solid var(--ink);background:var(--paper-2);padding:18px;margin:16px 0;display:flex;gap:24px;align-items:center}
+.artframe .artbox{width:200px;height:250px;border:1px solid var(--line);background:#fff;flex-shrink:0;overflow:hidden}
+.artframe .artbox svg{width:100%;height:100%}
+.artframe .noart{width:200px;height:250px;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);text-align:center;padding:10px;flex-shrink:0}
+.artframe .verdict{font-size:.85rem;color:#4c463c;line-height:1.6}
+.comprow{display:grid;grid-template-columns:170px 1fr 130px;gap:14px;align-items:center;padding:9px 0;border-bottom:1px dotted var(--line);font-size:.86rem}
+.comprow .cn{font-family:var(--serif)}
+.comprow .cb{height:8px;background:var(--paper-2);border:1px solid var(--line)}
+.comprow .cb i{display:block;height:100%;background:var(--ink);width:0;transition:width 1s}
+.comprow .cx{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.78rem;text-align:right}
+.clickable{cursor:pointer;transition:background .2s}
+.clickable:hover{background:rgba(15,107,107,.05)}
+.c-hint{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-top:6px}
+@media(max-width:720px){.sheet{margin:20px 10px 40px;padding:34px 22px}.d-total{float:none;margin-bottom:14px}.taskrow{grid-template-columns:1fr 60px 55px 55px;font-size:.78rem}.comprow{grid-template-columns:110px 1fr 90px}}
 /* ---------- CH7: method — dark, quiet ---------- */
 .method ol{margin:26px 0 0;list-style:none;counter-reset:m}
 .method li{counter-increment:m;position:relative;padding:20px 0 20px 64px;border-bottom:1px solid rgba(244,239,230,.09);
@@ -304,8 +345,10 @@ const parade=document.getElementById('parade');
 FAMILY.forEach(([id,name,role,fresh],i)=>{
   const d=document.createElement('div');d.className='contender'+(fresh?' fresh':'');
   d.innerHTML=`<div class="idx">${String(i+1).padStart(2,'0')}</div>
-  <div><div class="name">${name}</div><div class="role">${role}</div></div>
+  <div><div class="name">${name}</div><div class="role">${role}</div><div class="c-hint">Open dossier →</div></div>
   <div class="stat" data-m="${id}">—<small>score</small></div>`;
+  d.classList.add('clickable');
+  d.addEventListener('click',()=>DZ.openD(id));
   parade.appendChild(d);
 });
 
@@ -393,7 +436,10 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
       <div class="line">${headline[m]}</div>
       <div class="marg">${n[1][0]}</div>
       ${n[1][1]?`<div class="marg marg-quiet">${n[1][1]}</div>`:''}
+      <div class="c-hint">Open dossier →</div>
     </div>`;
+    d.classList.add('clickable');
+    d.addEventListener('click',()=>DZ.openD(m));
     ledger.appendChild(d);
   });
   // ladder: low vs high per model (waits for high sweep)
@@ -415,9 +461,85 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
       lad.appendChild(div);
     });
   }
+  // expose for dossier engine
+  window.__LIVE=live;
+  window.__ROSTER=Object.fromEntries(Object.keys(DISP).map(k=>[k,{display:DISP[k],roles:[]}]));
   // hero meta
   document.getElementById('hero-n').textContent=entries.length;
   if(live) document.getElementById('boardNote').textContent='Live from latest.json · '+live.generated+' · every bench.py run refreshes this board.';
+})();
+</script>
+<!-- dossier overlay -->
+<div class="dossier" id="dossier"><div class="sheet" id="sheet"></div></div>
+<script>
+// ---------- dossier engine: click a model anywhere -> full graded report ----------
+const DZ=(()=>{ 
+  const RULE_LABEL={unit:"Unit-executed",mcq:"Blind key",numeric:"Numeric key",heuristic:"Structural checks",art:"SVG inspection"};
+  function openD(mid){
+    const live=window.__LIVE; if(!live) return;
+    const comp=(live.composite||{})[mid]||{};
+    const doms=(live.domains||{})[mid]||{};
+    const bw=live.best_worst&&live.best_worst[mid]||{};
+    const high=(live.high||{})[mid], low=(live.low||{})[mid], med=(live.medium||{})[mid]||{};
+    const rules=live.grading_rules||{};
+    const art=(live.art||{})[mid];
+    const sheet=document.getElementById('sheet');
+    const TOTAL=comp.total!=null?comp.total:'—';
+    // composite arithmetic lines (exactly how the rank was computed)
+    const cl=[
+      ['Correctness','40%',comp.correctness,med.n?('correct on '+med.n+' graded tasks → '+comp.correctness+'/100'):'pending'],
+      ['Reasoning','20%',comp.reasoning,high?('0.6 × high '+ (high.pct??'—') + ' + 0.4 × low ' + (low?low.pct:'—') + ' → ' + comp.reasoning + '/100'):'pending'],
+      ['Token efficiency','15%',comp.token_eff,med?('family-median par '+ (live.par||'—') + ' tok; used ~'+med.tok+' → '+comp.token_eff+'/100'):'pending'],
+      ['Latency','10%',comp.latency,med?('avg '+med.lat+'s, capped at 45s → '+comp.latency+'/100'):'pending'],
+      ['Adherence','15%',comp.adherence,'instruction-following tasks (longform) → '+(comp.adherence??'—')+'/100']
+    ];
+    // domain bars
+    const domNames={coding:'Coding',medicine:'Medicine',trading:'Trading',longform:'Longform',vision:'Vision',other:'Other'};
+    const domHtml=Object.entries(doms).map(([d,v])=>{
+      const warn=v.pct<67?' warn':'';
+      const tasks=Object.entries(v.tasks).map(([t,td])=>
+        `<div class="taskrow"><span class="tn">${t}</span><span class="ts ${td.corr<1?'fail':''}">${Math.round(td.corr*100)}% grade</span><span class="ts">${td.tok??'—'} tok</span><span class="ts">${td.lat??'—'}s</span></div>`).join('');
+      return `<div class="dombar"><span class="dn">${domNames[d]||d}</span><span class="db${warn}"><i data-w="${v.pct}"></i></span><span class="dv">${v.pct}</span></div>${tasks}`;
+    }).join('');
+    // rules list
+    const ruleHtml=Object.entries(rules).map(([t,r])=>`<div class="rule"><b>${t}</b> — ${r}</div>`).join('')||'<div class="rule">Rules ship with the next full-suite file.</div>';
+    // art
+    let artHtml;
+    if(art&&art.svg&&/<svg/i.test(art.svg)){
+      const m=art.svg.match(/<svg[\s\S]*?<\/svg>/i);
+      artHtml=`<div class="artframe">${m?`<div class="artbox">${m[0]}</div>`:''}<div class="verdict"><b>Portrait via pure SVG code</b> — graded ${Math.round(art.corr*100)}/100 on five published checks (valid XML · ≥5-fill palette · bilateral symmetry · facial stack · gradient/opacity shading). ${art.tok??'—'} tokens, ${art.lat??'—'}s.</div></div>`;
+    } else {
+      artHtml=`<div class="artframe"><div class="noart">No portrait on file yet — art task pending for this model.</div><div class="verdict">The art task scores a pure-SVG face of a 36-year-old woman on structure, palette, symmetry and shading craft. Runs in the full suite.</div></div>`;
+    }
+    // ladder mini
+    const ladHtml=(low||high)?`<div class="taskrow"><span class="tn">low effort</span><span class="ts">${low?low.pct:'—'}</span><span class="ts">${low?low.tok+' tok':'—'}</span><span class="ts">${low?low.lat+'s':'—'}</span></div>
+      <div class="taskrow"><span class="tn">high effort</span><span class="ts">${high?high.pct:'—'}</span><span class="ts">${high?high.tok+' tok':'—'}</span><span class="ts">${high?high.lat+'s':'—'}</span></div>`:'';
+    sheet.innerHTML=`
+      <button class="close" id="dzClose">Close</button>
+      <div class="d-head">
+        <div class="d-total"><div class="big">${TOTAL}</div><div class="lbl">composite / 100</div></div>
+        <div class="d-name">${DISP[mid]||mid}</div>
+        <div class="d-sub">model dossier · ${bw.strongest?('strongest: '+bw.strongest+' ('+bw.strongest_pct+'%)'):''}${bw.weakest?(' · thinnest: '+bw.weakest+' ('+bw.weakest_pct+'%)'):''} · role: ${(window.__ROSTER&&window.__ROSTER[mid]&&window.__ROSTER[mid].roles||[]).join(', ')||'—'}</div>
+      </div>
+      <div class="d-h">Where it excels <small>per-domain graded pct</small></div>
+      ${domHtml||'<div class="rule">No graded runs yet.</div>'}
+      <div class="d-h">Reasoning sweep <small>low vs high effort</small></div>
+      ${ladHtml||'<div class="rule">Sweep pending.</div>'}
+      <div class="d-h">Craft test <small>code_art — the portrait</small></div>
+      ${artHtml}
+      <div class="d-h">How the rank was computed <small>published weights, live arithmetic</small></div>
+      ${cl.map(([n,w,v,expl])=>`<div class="comprow"><span class="cn">${n} <small style="color:var(--muted)">${w}</small></span><span class="cb"><i data-w="${v||0}"></i></span><span class="cx">${expl}</span></div>`).join('')}
+      <div class="d-h">Grading rules <small>same for every model, blind keys</small></div>
+      ${ruleHtml}
+      <div class="d-h">Raw outputs <small>verbatim, first 4000 chars per task</small></div>
+      <div class="rule">${(window.__RAW&&window.__RAW[mid])?Object.entries(window.__RAW[mid]).map(([t,tx])=>`<b>${t}</b>: ${String(tx).slice(0,240).replace(/</g,'&lt;')}…`).join('<br><br>'):'Included in each full-suite results file.'}</div>`;
+    document.getElementById('dossier').classList.add('open');
+    document.getElementById('dzClose').onclick=closeD;
+    requestAnimationFrame(()=>sheet.querySelectorAll('.db i,.cb i').forEach(el=>el.style.width=el.dataset.w+'%'));
+  }
+  function closeD(){document.getElementById('dossier').classList.remove('open')}
+  document.getElementById('dossier').addEventListener('click',e=>{if(e.target.id==='dossier')closeD()});
+  return {openD,closeD};
 })();
 </script>
 </body>
