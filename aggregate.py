@@ -40,6 +40,10 @@ def runs_for(eff, current_only=True):
             if "error" in r or r.get("correctness") is None: continue
             if current_only and r["task"] not in CURRENT_TASKS: continue
             key = (r["model"], r["task"])
+            prev = merged.get(key)
+            # a transport failure (empty reply) must never overwrite a real captured answer
+            if prev is not None and prev.get("text","").strip() and not r.get("text","").strip():
+                continue
             merged[key] = r
     return list(merged.values())
 

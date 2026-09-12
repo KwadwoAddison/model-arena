@@ -284,7 +284,7 @@ def run(models=None, suite="quick", reasoning=None, only=None):
                     tag = entry["command"].split()[2]
                     r = call_ollama(tag, t["prompt"])
                     r["text"] = sanitize(r["text"])
-                res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:4000],
+                res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:20000] if tid == "code_art" else r["text"][:4000],
                        "latency_s": r["latency_s"], "thinking_chars": r["thinking_chars"],
                        "tokens_est": tokens_estimate(r["text"]) + r["thinking_chars"] // 4, "reasoning": eff}
                 res["correctness"] = grade_dispatch(tid, r["text"])

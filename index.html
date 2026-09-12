@@ -411,7 +411,7 @@ const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm
     tr.addEventListener('click',()=>DZ.openD(m));
     tb.appendChild(tr);
   });
-  document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · 12 graded tasks · click any row for the full dossier. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';
+  document.getElementById('boardNote').textContent= live? 'Live: '+live.generated+' · 12 graded tasks · single-run results — close ranks (≤2 pts) are ties, not orderings · click any row for the full dossier. Correctness is the gate; efficiency never rescues a wrong answer.' : 'Bundled snapshot (offline). Serve over HTTP for live data.';
   // staggered racecard tick-in
   document.querySelectorAll('#boardBody tr').forEach((tr,i)=>setTimeout(()=>{tr.classList.add('on');
     const f=tr.querySelector('.fl'); if(f) f.style.width=f.dataset.w;}, 240*i+150));
