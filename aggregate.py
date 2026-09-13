@@ -45,7 +45,8 @@ def runs_for(eff, current_only=True):
             if prev is not None and prev.get("text","").strip() and not r.get("text","").strip():
                 continue
             merged[key] = r
-    return list(merged.values())
+    # a model+task whose ONLY capture is an empty reply is excluded entirely (not scored 0)
+    return [r for r in merged.values() if r.get("text","").strip()]
 
 def agg(rows):
     out = {}
@@ -137,10 +138,15 @@ def art_artifacts(rows):
             svg = _complete_svg(r.get("text","") or "")
             return (svg is not None, r["correctness"] if svg is not None else -1,
                     len(svg or ""), len(r.get("text","") or ""))
-        best = max(rs, key=lambda r: (_complete_svg(r.get("text","") or "") is not None,
-                                      (r["correctness"] if _complete_svg(r.get("text","") or "") else -1),
-                                      len(_complete_svg(r.get("text","") or "") or ""),
-                                      len(r.get("text","") or "")))
+        # newest-complete-wins: iterate in order, remember last complete; else highest corr
+        best_complete = None
+        for r in rs:
+            if _complete_svg(r.get("text","") or "") is not None:
+                best_complete = r  # files processed oldest->newest, so later rows win
+        if best_complete is not None:
+            best = best_complete
+        else:
+            best = max(rs, key=lambda r: r["correctness"])
         svg = _complete_svg(best.get("text","") or "")
         arts[m] = {"corr": best["correctness"], "svg": (svg or "")[:20000],
                    "tok": best.get("tokens_est"), "lat": best.get("latency_s")}

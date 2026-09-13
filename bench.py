@@ -34,9 +34,9 @@ TASKS = {
     grade="heuristic",
     rule="Structural checks, 0.2 each: single file, IntersectionObserver present, count-up targets 0 from 61, background-safe mechanism (rAF loop or visibilitychange guard), zero external URLs."),
   "code_art": dict(domain="coding", par_tokens=3500, suite="full",
-    prompt="Using ONLY inline SVG code (no <image>, no base64, no external assets), draw a head-and-shoulders portrait of a 36-year-old woman with fair skin and brown hair, front-facing. Craft the face with real structure: eyes, nose, mouth, hair with shading. Output only the <svg> code.",
+    prompt="Using ONLY inline SVG code (no <image>, no base64, no external assets), draw a head-and-shoulders portrait of a middle-aged white woman with blonde hair, front-facing. Craft the face with real structure: eyes, nose, mouth, blonde hair with shading. Output only the <svg> code.",
     grade="art",
-    rule="Deterministic SVG inspection, 0.2 each: parses as valid XML; ≥5 distinct fills (skin/hair/lips/eyes/background); bilateral symmetry (mirrored element pairs around centre); facial stack order (eye shapes above nose region above mouth region); uses gradients or ≥3 shading opacities."),
+    rule="Deterministic SVG inspection, 0.1 each (10 checks): valid XML; ≥6 distinct fills; ≥6 mirrored element pairs; head outline present; eye pair at eye level; vertical facial ordering; nose-region element; hair mass (≥6 paths); neck/shoulders; gradients or ≥4 shading opacities."),
   # --- medicine: curriculum MCQs with keys ---
   "med_neo": dict(domain="medicine", par_tokens=1800, suite="full",
     prompt="A 2-day-old term baby, APGAR 9/10, bilious vomiting, no anal fistula. Abdominal X-ray: double bubble, no distal gas. Next step? A) contrast enema B) OGT + duodenoduodenostomy workup C) rectal biopsy D) urgent laparotomy E) observe 6h. Reply with the letter only.",
@@ -280,6 +280,8 @@ def grade_art(text):
     return round(min(1.0, s), 2)
 
 def grade_dispatch(task_id, text):
+    if not (text or "").strip():
+        return 0.0  # an empty submission earns nothing, under every published rule
     t = TASKS[task_id]
     g = t["grade"]
     if g == "unit": return grade_unit(text)
@@ -326,7 +328,7 @@ def run(models=None, suite="quick", reasoning=None, only=None):
                     tag = entry["command"].split()[2]
                     r = call_ollama(tag, t["prompt"])
                     r["text"] = sanitize(r["text"])
-                res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:20000] if tid == "code_art" else r["text"][:4000],
+                res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:40000] if tid == "code_art" else r["text"][:4000],
                        "latency_s": r["latency_s"], "thinking_chars": r["thinking_chars"],
                        "tokens_est": tokens_estimate(r["text"]) + r["thinking_chars"] // 4, "reasoning": eff}
                 if prov_err: res["error"] = prov_err

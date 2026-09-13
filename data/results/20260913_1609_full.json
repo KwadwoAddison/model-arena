@@ -1,0 +1,45 @@
+{
+ "suite": "full",
+ "reasoning": "default",
+ "stamp": "20260913_1609",
+ "grading_rules": {
+  "code_algo": "Code executed against 7 fixed secret cases (incl. edge cases). 1.0 = all pass, 0.5 = \u22655/7, else 0.",
+  "code_pine": "Structural checks, each weighted 0.2: defines f_room(highs, lows, atr); uses pivothigh/pivotlow; uses ta.atr or atr param; no request.security (lookahead ban); returns a float expression.",
+  "code_html": "Structural checks, 0.2 each: single file, IntersectionObserver present, count-up targets 0 from 61, background-safe mechanism (rAF loop or visibilitychange guard), zero external URLs.",
+  "code_art": "Deterministic SVG inspection, 0.1 each (10 checks): valid XML; \u22656 distinct fills; \u22656 mirrored element pairs; head outline present; eye pair at eye level; vertical facial ordering; nose-region element; hair mass (\u22656 paths); neck/shoulders; gradients or \u22654 shading opacities.",
+  "med_neo": "Exact key match: B (duodenal obstruction workup). One letter, blind key.",
+  "med_surg": "Exact key match: D (both cystic structures, nothing else).",
+  "med_pharm": "Exact key match: C (hold + assess, classic citrate toxicity sign).",
+  "trade_expect": "Both numbers within \u00b10.03 of the blind key (expectancy 0.147R, PF 2.48). 0.5 each. No partial credit for vibes.",
+  "trade_logic": "0.25 each: states A expectancy +0.50R; states B expectancy -0.10R; picks A; no more than 3 sentences.",
+  "trade_sizing": "Both within tolerance: 0.40 lots and $100 risk. 0.5 each.",
+  "long_privacy": "0.34 each: \u2264120 words; zero bullet lines; zero hedging tokens (might/perhaps/maybe/'I think').",
+  "long_pf": "0.34 each: exactly 3 sentences; names both terms; zero numeric examples."
+ },
+ "runs": [
+  {
+   "model": "qwen3.8-flash",
+   "task": "code_html",
+   "domain": "coding",
+   "text": "```html\n<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>61 \u2192 0 \u00b7 Scroll Countdown</title>\n<style>\n  :root{\n    --bg-0:#060b10; --bg-1:#0c151c; --bg-2:#122129;\n    --ink:#eaf2f1; --ink-dim:#a9bdc2;\n    --amber:#ffb066; --amber-hot:#ff7a45; --amber-deep:#c8621f;\n    --ember:#e0542a;\n    --line:rgba(255,255,255,.085);\n    --line-hot:rgba(255,150,90,.5);\n    --display:\"Impact\",\"Haettenschweiler\",\"Franklin Gothic Heavy\",\"Arial Black\",\"Arial Narrow\",sans-serif;\n    --sans:\"Bahnschrift\",\"DIN Alternate\",\"Oswald\",\"Franklin Gothic Medium\",\"Arial Narrow\",system-ui,sans-serif;\n    --mono:\"SFMono-Regular\",\"SF Mono\",\"JetBrains Mono\",\"Roboto Mono\",Consolas,Menlo,monospace;\n  }\n  *{box-sizing:border-box}\n  html{scroll-behavior:smooth}\n  body{\n    margin:0;color:var(--ink);background:var(--bg-0);\n    font-family:var(--sans);line-height:1.5;letter-spacing:.01em;\n    overflow-x:hidden;-webkit-font-smoothing:antialiased;\n  }\n\n  /* ---------- layered ambient background ---------- */\n  .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;\n      background:\n        radial-gradient(120% 90% at 82% -10%, #12242e 0%, transparent 55%),\n        radial-gradient;\n      background-color:var(--bg-0);\n  }\n  .bg{background:\n      radial-gradient(120% 90% at 84% -8%, rgba(28,52,66,.55) 0%, transparent 55%),\n      radial-gradient;}\n  .bg{background:\n      radial-gradient(130% 100% at 82% -12%, rgba(30,56,70,.6) 0%, transparent 52%),\n      radial-gradient(120% 90% at 8% 112%, rgba(64,30,18,.4) 0%, transparent 55%),\n      linear-gradient(180deg,var(--bg-0),var(--bg-1) 55%,var(--bg-0));}\n  .bg::before{content:\"\";position:absolute;inset:-2px;\n      background-image:\n        linear-gradient(to right,var(--line) 1px,transparent 1px),\n        linear-gradient;}\n  .bg::before{content:\"\";position:absolute;inset:-2px;\n      background-image:\n        linear-gradient(to right,var(--line) 1px,transparent 1px);}\n  .bg::before{content:\"\";position:absolute;inset:-2px;\n      background-image:\n        linear-gradient(to right,var(--line) 1px,transparent 1px),\n        linear-gradient(to bottom,var(--line) 1px,transparent 1px);\n      background-size:64px 64px;\n      mask-image:radial-gradient(80% 70% at 50% 40%,#000 0%,transparent 85%);\n      opacity:.5;}\n  .bg::after{content:\"\";position:absolute;inset:0;\n      background:radial-gradient(60% 55% at var(--mx,50%) var(--my,38%),rgba(255,150,90,.10),transparent 60%);}\n  .embers{position:absolute;inset:0;overflow:hidden}\n  .embers span{position:absolute;bottom:-8%;left:var(--x);width:var(--sz);height:var(--sz);\n      border-radius:50%;background:var(--amber);\n      box-shadow:0 0 8px 1px rgba(255,150,80,.6);\n      animation:rise var(--dur) linear infinite;animation-delay:var(--del);opacity:0}\n  @keyframes rise{0%{transform:translateY(0) translateX(0) scale(.6);opacity:0}\n      12%{opacity:var(--op)}\n      80%{opacity:var(--op)}\n      100%{transform:translateY(-115vh) translateX(24px) scale(1);opacity:0}}\n\n  /* ---------- fixed stage panel ---------- */\n  .stage{position:fixed;top:0;left:0;height:100vh;width:min(56%,660px);z-index:1;\n      padding:clamp(20px,3.5vw,48px);display:flex;flex-direction:column;\n      border-right:1px solid var(--line);\n      background:linear-gradient(100deg,rgba(7,13,18,.9),rgba(7,13,18,.4) 78%,transparent);\n      backdrop-filter:blur(1px);}\n  .stage-inner{display:flex;flex-direction:column;justify-content:space-between;height:100%}\n\n  .mark{display:flex;align-items:center;gap:10px;font-family:var(--mono);\n      font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-dim)}\n  .mark i{width:10px;height:10px;border-radius:50%;background:var(--ember);\n      box-shadow:0 0 12px var(--ember);animation:blink 1.6s steps(1) infinite}\n  @keyframes blink{50%{opacity:.25}}\n\n  .numwrap{position:relative;display:flex;align-items:center;}\n  .num{position:relative;font-family:var(--display);font-weight:400;\n      ",
+   "latency_s": 68.4,
+   "thinking_chars": 0,
+   "tokens_est": 6376,
+   "reasoning": "medium",
+   "correctness": 1.0,
+   "token_eff": 0.0
+  },
+  {
+   "model": "qwen3.8-flash",
+   "task": "med_pharm",
+   "domain": "medicine",
+   "text": "C",
+   "latency_s": 7.9,
+   "thinking_chars": 0,
+   "tokens_est": 1,
+   "reasoning": "medium",
+   "correctness": 1.0,
+   "token_eff": 1.0
+  }
+ ]
+}

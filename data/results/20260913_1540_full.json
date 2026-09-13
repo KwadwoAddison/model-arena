@@ -1,0 +1,71 @@
+{
+ "suite": "full",
+ "reasoning": "default",
+ "stamp": "20260913_1540",
+ "grading_rules": {
+  "code_algo": "Code executed against 7 fixed secret cases (incl. edge cases). 1.0 = all pass, 0.5 = \u22655/7, else 0.",
+  "code_pine": "Structural checks, each weighted 0.2: defines f_room(highs, lows, atr); uses pivothigh/pivotlow; uses ta.atr or atr param; no request.security (lookahead ban); returns a float expression.",
+  "code_html": "Structural checks, 0.2 each: single file, IntersectionObserver present, count-up targets 0 from 61, background-safe mechanism (rAF loop or visibilitychange guard), zero external URLs.",
+  "code_art": "Deterministic SVG inspection, 0.1 each (10 checks): valid XML; \u22656 distinct fills; \u22656 mirrored element pairs; head outline present; eye pair at eye level; vertical facial ordering; nose-region element; hair mass (\u22656 paths); neck/shoulders; gradients or \u22654 shading opacities.",
+  "med_neo": "Exact key match: B (duodenal obstruction workup). One letter, blind key.",
+  "med_surg": "Exact key match: D (both cystic structures, nothing else).",
+  "med_pharm": "Exact key match: C (hold + assess, classic citrate toxicity sign).",
+  "trade_expect": "Both numbers within \u00b10.03 of the blind key (expectancy 0.147R, PF 2.48). 0.5 each. No partial credit for vibes.",
+  "trade_logic": "0.25 each: states A expectancy +0.50R; states B expectancy -0.10R; picks A; no more than 3 sentences.",
+  "trade_sizing": "Both within tolerance: 0.40 lots and $100 risk. 0.5 each.",
+  "long_privacy": "0.34 each: \u2264120 words; zero bullet lines; zero hedging tokens (might/perhaps/maybe/'I think').",
+  "long_pf": "0.34 each: exactly 3 sentences; names both terms; zero numeric examples."
+ },
+ "runs": [
+  {
+   "model": "qwen3.8-flash",
+   "task": "code_pine",
+   "domain": "coding",
+   "text": "```pine\n// Returns 0.0 if no qualifying confirmed swing is found within the lookback.\nf_room(series float highs, series float lows, series float atr) =>\n    int lookback = 20\n    float dist = na\n\n    float ph = ta.pivothigh(highs, 1, 1)\n    float pl = ta.pivotlow(lows, 1, 1)\n\n    for i = 0 to lookback - 1\n        if not na(ph[i])\n            if ph[i] > close\n                float dHigh = ph[i] - close\n                dist := na(dist) ? dHigh : math.min(dist, dHigh)\n\n        if not na(pl[i])\n            if pl[i] < close\n                float dLow = close - pl[i]\n                dist := na(dist) ? dLow : math.min(dist, dLow)\n\n    float room = 0.0\n    if not na(dist)\n        if not na(atr)\n            if atr > 0\n                room := dist / atr\n\n    room\n```",
+   "latency_s": 614.5,
+   "thinking_chars": 0,
+   "tokens_est": 192,
+   "reasoning": "medium",
+   "correctness": 0.8,
+   "token_eff": 1.0
+  },
+  {
+   "model": "qwen3.8-flash",
+   "task": "code_html",
+   "domain": "coding",
+   "text": "",
+   "latency_s": 251.8,
+   "thinking_chars": 0,
+   "tokens_est": 1,
+   "reasoning": "medium",
+   "error": "[Errno 54] Connection reset by peer",
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "qwen3.8-flash",
+   "task": "med_pharm",
+   "domain": "medicine",
+   "text": "",
+   "latency_s": 7.7,
+   "thinking_chars": 0,
+   "tokens_est": 1,
+   "reasoning": "medium",
+   "error": "[Errno 54] Connection reset by peer",
+   "correctness": 0.0,
+   "token_eff": null
+  },
+  {
+   "model": "qwen3.8-flash",
+   "task": "long_pf",
+   "domain": "longform",
+   "text": "Profit factor is the ratio of aggregate winning dollars to aggregate losing dollars, so it shows whether the reviewed book is net profitable. Expectancy is the average net dollars per trade, so it shows whether each additional trade has positive edge. Expectancy survives a long tail because it weights rare extremes by their frequency, while profit factor can overstate tail-driven performance.",
+   "latency_s": 187.7,
+   "thinking_chars": 0,
+   "tokens_est": 99,
+   "reasoning": "medium",
+   "correctness": 1.0,
+   "token_eff": 1.0
+  }
+ ]
+}

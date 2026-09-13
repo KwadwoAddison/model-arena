@@ -19,10 +19,10 @@
    "tok": 572
   },
   "code_art": {
-   "grade": 1.0,
-   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 640\" role=\"img\" aria-label=\"Head-and-shoulders portrait of a front-facing woman with fair skin and brown hair\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#d9e1e5\"/>\n      <stop offset=\"1\" stop-color=\"#aebbc3\"/>\n    </linearGradient>\n    <radialGradient id=\"skin\" cx=\"48%\" cy=\"35%\" r=\"70%\">\n      <stop offset=\"0\" stop-color=\"#f7d8c7\"/>\n      <stop offset=\".58\" stop-color=\"#ecc1ad\"/>\n      <stop offset=\"1\" stop-color=\"#d59e89\"/>\n    </radialGradient>\n    <linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"0\">\n      <stop offset=\"0\" stop-color=\"#d69f8b\"/>\n      <stop offset=\".24\" st",
-   "lat": 88.5,
-   "tok": 2230
+   "grade": 0.9,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 700\" role=\"img\" aria-label=\"Front-facing head-and-shoulders portrait of a middle-aged blonde white woman\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#d8e1e4\"/>\n      <stop offset=\"1\" stop-color=\"#879ca4\"/>\n    </linearGradient>\n    <radialGradient id=\"skin\" cx=\"48%\" cy=\"34%\" r=\"68%\">\n      <stop offset=\"0\" stop-color=\"#f7d8c5\"/>\n      <stop offset=\".58\" stop-color=\"#e8bca5\"/>\n      <stop offset=\"1\" stop-color=\"#bb806b\"/>\n    </radialGradient>\n    <linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".2\">\n      <stop offset=\"0\" stop-color=\"#bd806d\"/>\n      <stop offset=\".24\" stop-c",
+   "lat": 96.5,
+   "tok": 2603
   },
   "med_neo": {
    "grade": 1.0,
@@ -111,10 +111,10 @@
    "tok": 1036
   },
   "code_art": {
-   "grade": 1.0,
-   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 720\" width=\"600\" height=\"720\" role=\"img\" aria-labelledby=\"title desc\">\n  <title id=\"title\">Portrait of a woman</title>\n  <desc id=\"desc\">A front-facing, 36-year-old woman with fair skin, shaded brown hair, hazel eyes, and a softly smiling mouth, shown from the shoulders up.</desc>\n  <defs>\n    <radialGradient id=\"bg\" cx=\"45%\" cy=\"35%\" r=\"75%\">\n      <stop stop-color=\"#eee7dc\"/>\n      <stop offset=\"1\" stop-color=\"#b7b7ad\"/>\n    </radialGradient>\n    <linearGradient id=\"hair\" x1=\"0\" x2=\"1\" y2=\".3\">\n      <stop stop-color=\"#29201d\"/>\n      <stop offset=\".23\" stop-color=\"#594033\"/>\n      <stop offset=\".48\" stop-color=\"#755340\"/>\n      <sto",
-   "lat": 176.7,
-   "tok": 3460
+   "grade": 0.9,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 560\" role=\"img\" aria-labelledby=\"title desc\">\n  <title id=\"title\">Portrait of a middle-aged blonde woman</title>\n  <desc id=\"desc\">A front-facing head-and-shoulders portrait with softly shaded fair skin, blue-gray eyes, fine expression lines, and layered blonde hair.</desc>\n  <defs>\n    <radialGradient id=\"background\" cx=\"45%\" cy=\"35%\" r=\"75%\">\n      <stop stop-color=\"#edf0ec\"/>\n      <stop offset=\"1\" stop-color=\"#a7b8b5\"/>\n    </radialGradient>\n    <linearGradient id=\"hairBase\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\".7\">\n      <stop stop-color=\"#766044\"/>\n      <stop offset=\".25\" stop-color=\"#c3a36a\"/>\n      <stop offset=\".48\" stop-color=\"#ecdaa0\"/",
+   "lat": 182.7,
+   "tok": 3425
   },
   "med_neo": {
    "grade": 1.0,
@@ -204,9 +204,9 @@
   },
   "code_art": {
    "grade": 0.8,
-   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"500\" viewBox=\"0\nviewBox=\"0 0 400 500\">\n  <title>Portrait of a woman, front-facing</title>\n  <defs>\n    <radialGradient id=\"bg\" cx=\"50%\" cy=\"40%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#F3ECE1\"/><stop offset=\"55%\" stop-color\nstop-color=\"#DFD3C1\"/><stop offset=\"100%\" stop-color=\"#B9AA96\"/>\n    </radialGradient>\n    <radialGradient id=\"sk\" gradientUnits=\"userSpaceOnUse\" cx=\"200\" cy=\"205\ncy=\"205\" r=\"210\">\n      <stop offset=\"0%\" stop-color=\"#F9E5CE\"/><stop offset=\"45%\" stop-color\nstop-color=\"#F3D4B8\"/><stop offset=\"80%\" stop-color=\"#E7BB97\"/><stop offset\noffset=\"100%\" stop-color=\"#E0AF89\"/>\n    </radialGradient>\n    <linearGradien",
-   "lat": 593.0,
-   "tok": 59908
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"500\" viewBox=\"0\nviewBox=\"0 0 400 500\">\n  <defs>\n    <radialGradient id=\"bg\" cx=\"0.5\" cy=\"0.4\" r=\"0.8\">\n      <stop offset=\"0\" stop-color=\"#FAF4E8\"/>\n      <stop offset=\"1\" stop-color=\"#DCD2BF\"/>\n    </radialGradient>\n    <radialGradient id=\"skin\" cx=\"0.5\" cy=\"0.4\" r=\"0.75\">\n      <stop offset=\"0\" stop-color=\"#F9E6CE\"/>\n      <stop offset=\"0.55\" stop-color=\"#F1D4B4\"/>\n      <stop offset=\"1\" stop-color=\"#E0B58C\"/>\n    </radialGradient>\n    <linearGradient id=\"skin2\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#F0D0AE\"/>\n      <stop offset=\"1\" stop-color=\"#DDB28A\"/>\n    </linearGradient>\n    <linearGradient id=\"hair",
+   "lat": 517.3,
+   "tok": 28222
   },
   "med_neo": {
    "grade": 1.0,
@@ -387,10 +387,10 @@
    "tok": 11771
   },
   "code_art": {
-   "grade": 0.8,
-   "text": "I\u2019ll generate an inline SVG portrait of a 36-year-old woman with fair skin \nand brown hair, keeping the composition head-and-shoulders and facing forwa\nforward.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Glow -->\n    <radialGradient id=\"bgGlow\" cx=\"50%\" cy=\"40%\" r=\"60%\">\n      <stop offset=\"0%\" stop-color=\"#fdfbf9\" />\n      <stop offset=\"100%\" stop-color=\"#e8e4e1\" />\n    </radialGradient>\n    <!-- Skin Shading Gradients -->\n    <radialGradient id=\"cheekGlowL\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"rgba(196, 139, 106, 0.4)\" />\n      <stop offset=\"100%\" stop-color=\"rgba(196, 139, 106, 0)",
-   "lat": 66.0,
-   "tok": 12777
+   "grade": 0.9,
+   "text": "Here\u2019s an inline SVG portrait of a front-facing middle-aged woman with blon\nblonde hair, built with layered shading and facial structure.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bgGradient\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#fdfbf7\"/>\n      <stop offset=\"100%\" stop-color=\"#e2e8f0\"/>\n    </radialGradient>\n\n    <!-- Skin Gradients -->\n    <linearGradient id=\"skinBase\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#fdf4ec\"/>\n      <stop offset=\"100%\" stop-color=\"#f0d9c8\"/>\n    </linearGradient>\n    <linearGradient id=",
+   "lat": 91.8,
+   "tok": 13218
   },
   "med_neo": {
    "grade": 1.0,
@@ -479,10 +479,10 @@
    "tok": 9596
   },
   "code_art": {
-   "grade": 0.8,
-   "text": "Here is an inline SVG portrait of a 36-year-old woman with fair skin and br\nbrown hair, shown front-facing and built entirely from code.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 500\" width=\"400\" h\nheight=\"500\">\n  <defs>\n    <radialGradient id=\"bg\" cx=\"50%\" cy=\"34%\" r=\"82%\">\n      <stop offset=\"0\" stop-color=\"#edf2f5\"/>\n      <stop offset=\"1\" stop-color=\"#a7b8c2\"/>\n    </radialGradient>\n\n    <radialGradient id=\"skinGrad\" cx=\"46%\" cy=\"34%\" r=\"68%\">\n      <stop offset=\"0\" stop-color=\"#fdeade\"/>\n      <stop offset=\"0.45\" stop-color=\"#f8dbc8\"/>\n      <stop offset=\"0.78\" stop-color=\"#e8bfa6\"/>\n      <stop offset=\"1\" stop-color=\"#c99276\"/>\n    </radialGradient>\n\n    <linearGr",
-   "lat": 206.7,
-   "tok": 20260
+   "grade": 0.9,
+   "text": "I\u2019ll generate an inline SVG head-and-shoulders portrait of a front-facing m\nmiddle-aged white woman with blonde hair, using structured facial features \nand soft shading.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"40%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#3a5a6a\" />\n      <stop offset=\"100%\" stop-color=\"#1a2a3a\" />\n    </radialGradient>\n\n    <!-- Skin Gradients -->\n    <radialGradient id=\"faceGlow\" cx=\"50%\" cy=\"35%\" r=\"60%\">\n      <stop offset=\"0%\" stop-color=\"#fdf0eb\" />\n      <stop offset=\"40%\" stop-color=\"#f5d3c6\" />\n      <stop offset=\"85%\"",
+   "lat": 62.0,
+   "tok": 9992
   },
   "med_neo": {
    "grade": 1.0,
@@ -513,24 +513,6 @@
    "text": "Thinking...\nWe need answer. Need parse. Need answer in 3 sentences. Need determine expe\nexpectation. Strategy A: wins 30% with 4R targets, loses -1R. So expectancy\nexpectancy = 0.30*4 + 0.70*(-1) = 1.2 -0.7 = +0.5R per trade.\n\nStrategy B: wins 75% with -1R stops and +0.2R scratches. Need interpret: 75\n75% wins? with -1R stops and +0.2R scratches. Could mean win rate 75%, loss\nlosses -1R, scratches +0.2R? Need know proportions? \"wins 75% with -1R stop\nstops and +0.2R scratches\" Ambiguous. Maybe B: 75% win rate, -1R stops, +0.\n+0.2R scratches. If wins are? Maybe \"wins 75%\" means non-loss? Hmm. Need in\ninfer: Strategy B wins 75% with -1R stops and +0.2R scratches. Same risk pe\nper trade. Which ",
    "lat": 93.5,
    "tok": 386
-  },
-  "trade_sizing": {
-   "grade": 0.0,
-   "text": "",
-   "lat": 0.2,
-   "tok": 1
-  },
-  "long_privacy": {
-   "grade": 1.0,
-   "text": "",
-   "lat": 0.0,
-   "tok": 1
-  },
-  "long_pf": {
-   "grade": 0.33,
-   "text": "",
-   "lat": 0.0,
-   "tok": 1
   },
   "code_b1": {
    "grade": 1.0,
@@ -663,10 +645,10 @@
    "tok": 6081
   },
   "code_art": {
-   "grade": 0.0,
-   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 600\" width=\"480\" h\nheight=\"600\">\n<defs>\n<radialGradient id=\"bg\" cx=\"50%\" cy=\"38%\" r=\"75%\">\n<stop offset=\"0%\" stop-color=\"#f5efe8\"/><stop offset=\"100%\" stop-color=\"#d6\nstop-color=\"#d6ccbf\"/>\n</radialGradient>\n<radialGradient id=\"skin\" cx=\"50%\" cy=\"40%\" r=\"68%\">\n<stop offset=\"0%\" stop-color=\"#f9ddc8\"/><stop offset=\"60%\" stop-color=\"#efc\nstop-color=\"#efc4a4\"/><stop offset=\"100%\" stop-color=\"#dfa77f\"/>\n</radialGradient>\n<linearGradient id=\"neckS\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#e3ad88\"/><stop offset=\"100%\" stop-color=\"#c5\nstop-color=\"#c5855e\"/>\n</linearGradient>\n<linearGradient id=\"hair\" x1=\"0\" y1=\"0\" x2=\"0\" y2=",
-   "lat": 128.7,
-   "tok": 11891
+   "grade": 0.9,
+   "text": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 750\" width=\"600\" h\nheight=\"750\">\n  <defs>\n    <radialGradient id=\"bgG\" cx=\"50%\" cy=\"42%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#F1EBE3\"/>\n      <stop offset=\"60%\" stop-color=\"#DCD3C8\"/>\n      <stop offset=\"100%\" stop-color=\"#C2B7AA\"/>\n    </radialGradient>\n    <radialGradient id=\"skinG\" cx=\"46%\" cy=\"38%\" r=\"68%\">\n      <stop offset=\"0%\" stop-color=\"#F7D4B2\"/>\n      <stop offset=\"60%\" stop-color=\"#F0C19B\"/>\n      <stop offset=\"100%\" stop-color=\"#DEA47D\"/>\n    </radialGradient>\n    <linearGradient id=\"neckG\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#EDBC93\"/>\n      <stop offset=\"100%\" stop-color=\"#D8",
+   "lat": 253.7,
+   "tok": 19876
   },
   "med_neo": {
    "grade": 1.0,
@@ -777,6 +759,36 @@
    "text": "In a small NICU, a 24-week-gestation baby who died on 4 March is a quasi-identifier because that combination is rare and locally salient. Your audit population is small enough that staff, clinicians, and families can recognise the case without a name or number. Date of death plus gestational age can reconstruct identity, breaching confidentiality and harming families. Remove or aggregate these details unless explicit consent is given, and report the case within grouped data rather than as a uniquely locatable narrative.",
    "lat": 20.2,
    "tok": 131
+  },
+  "code_art": {
+   "grade": 1.0,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 750\">\n<defs>\n<linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#f6f2ec\"/>\n<stop offset=\"1\" stop-color=\"#c9d2d8\"/>\n</linearGradient>\n<radialGradient id=\"cheek\" cx=\"0.5\" cy=\"0.5\" r=\"0.5\">\n<stop offset=\"0\" stop-color=\"#e78c74\" stop-opacity=\"0.38\"/>\n<stop offset=\"1\" stop-color=\"#e78c74\" stop-opacity=\"0\"/>\n</radialGradient>\n<linearGradient id=\"skin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#f7dfc8\"/>\n<stop offset=\"0.5\" stop-color=\"#f0c9ad\"/>\n<stop offset=\"1\" stop-color=\"#dca98a\"/>\n</linearGradient>\n<linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#d8a485\"/>\n",
+   "lat": 414.3,
+   "tok": 3204
+  },
+  "code_pine": {
+   "grade": 0.8,
+   "text": "```pine\n// Returns 0.0 if no qualifying confirmed swing is found within the lookback.\nf_room(series float highs, series float lows, series float atr) =>\n    int lookback = 20\n    float dist = na\n\n    float ph = ta.pivothigh(highs, 1, 1)\n    float pl = ta.pivotlow(lows, 1, 1)\n\n    for i = 0 to lookback - 1\n        if not na(ph[i])\n            if ph[i] > close\n                float dHigh = ph[i] - close\n                dist := na(dist) ? dHigh : math.min(dist, dHigh)\n\n        if not na(pl[i])\n            if pl[i] < close\n                float dLow = close - pl[i]\n                dist := na(dist) ? dLow : math.min(dist, dLow)\n\n    float room = 0.0\n    if not na(dist)\n        if not na(atr)\n    ",
+   "lat": 614.5,
+   "tok": 192
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "Profit factor is the ratio of aggregate winning dollars to aggregate losing dollars, so it shows whether the reviewed book is net profitable. Expectancy is the average net dollars per trade, so it shows whether each additional trade has positive edge. Expectancy survives a long tail because it weights rare extremes by their frequency, while profit factor can overstate tail-driven performance.",
+   "lat": 187.7,
+   "tok": 99
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "```html\n<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>61 \u2192 0 \u00b7 Scroll Countdown</title>\n<style>\n  :root{\n    --bg-0:#060b10; --bg-1:#0c151c; --bg-2:#122129;\n    --ink:#eaf2f1; --ink-dim:#a9bdc2;\n    --amber:#ffb066; --amber-hot:#ff7a45; --amber-deep:#c8621f;\n    --ember:#e0542a;\n    --line:rgba(255,255,255,.085);\n    --line-hot:rgba(255,150,90,.5);\n    --display:\"Impact\",\"Haettenschweiler\",\"Franklin Gothic Heavy\",\"Arial Black\",\"Arial Narrow\",sans-serif;\n    --sans:\"Bahnschrift\",\"DIN Alternate\",\"Oswald\",\"Franklin Gothic Medium\",\"Arial Narrow\",system-ui,sans-serif;\n    --mono:\"SFMono-Regular\",\"SF Mono\"",
+   "lat": 68.4,
+   "tok": 6376
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 7.9,
+   "tok": 1
   }
  },
  "hy4-preview": {
@@ -800,9 +812,9 @@
   },
   "code_art": {
    "grade": 1.0,
-   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 640\" width=\"480\" height=\"640\">\n<defs>\n<linearGradient id=\"bgGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#f7f0ea\"/>\n<stop offset=\"1\" stop-color=\"#e6d8ce\"/>\n</linearGradient>\n<linearGradient id=\"skin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#fce6d5\"/>\n<stop offset=\"0.5\" stop-color=\"#f4cdb2\"/>\n<stop offset=\"1\" stop-color=\"#e0aa88\"/>\n</linearGradient>\n<linearGradient id=\"neckSkin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#e9bb9b\"/>\n<stop offset=\"1\" stop-color=\"#d79b78\"/>\n</linearGradient>\n<linearGradient id=\"hairGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#7c5136\"/>",
-   "lat": 370.0,
-   "tok": 2123
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 600 800\" width=\"600\" height=\"800\">\n  <defs>\n    <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#efeaf1\"/>\n      <stop offset=\"1\" stop-color=\"#c6c0ce\"/>\n    </linearGradient>\n\n    <linearGradient id=\"skin\" x1=\"0.2\" y1=\"0\" x2=\"0.8\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#fdeadb\"/>\n      <stop offset=\"0.45\" stop-color=\"#f6d4c0\"/>\n      <stop offset=\"1\" stop-color=\"#e3b096\"/>\n    </linearGradient>\n\n    <linearGradient id=\"neckSkin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n      <stop offset=\"0\" stop-color=\"#edc3ab\"/>\n      <stop offset=\"0.55\" stop-color=\"#e6bba3\"/>\n   ",
+   "lat": 968.7,
+   "tok": 3375
   },
   "med_neo": {
    "grade": 1.0,
