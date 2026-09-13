@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-13T16:35:01",
+ "generated": "2026-09-13T19:21:58",
  "weights": {
   "correctness": 0.4,
   "reasoning": 0.2,
@@ -1412,5 +1412,8 @@
    "tok": 3204,
    "lat": 414.3
   }
- }
+ },
+ "benchmark_status": "withdrawn_unreliable",
+ "ranking_valid": false,
+ "withdrawal_reason": "Legacy rankings mixed structural proxies, malformed/truncated visual artifacts, unmatched reasoning settings, sparse single runs, and missing first-class website/investment outcome review."
 }

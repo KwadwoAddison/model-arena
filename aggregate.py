@@ -53,6 +53,8 @@ def runs_for(eff, current_only=True):
     for r in out:
         if r["task"] == "code_art":
             r["correctness"] = _bmod2.grade_dispatch("code_art", r.get("text","") or "")
+        if r["model"] == "gpt-5.6-sol-pro":
+            r["model"] = "gpt-5.6-sol"  # corrected label: codex default IS gpt-5.6-sol (pro slug unsupported)
     return out
 
 def agg(rows):
@@ -175,6 +177,8 @@ arts = art_artifacts(med_rows + high_rows)
 import statistics as _st
 _pars = [v.get("tok") for v in med.values() if v.get("pct", 0) >= 50 and v.get("tok")]
 res = {"generated": datetime.datetime.now().isoformat(timespec="seconds"),
+       "benchmark_status": "withdrawn_unreliable", "ranking_valid": False,
+       "withdrawal_reason": "Legacy rankings mixed structural proxies, malformed/truncated visual artifacts, unmatched reasoning settings, sparse single runs, and missing first-class website/investment outcome review.",
        "weights": WEIGHTS, "grading_rules": GRADING_RULES, "par": (_st.median(_pars) if _pars else None),
        "low": low, "medium": med, "high": high,
        "domains": per_dom, "best_worst": bw, "composite": comp, "art": arts}

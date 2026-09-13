@@ -111,9 +111,12 @@ def call_ollama(model_tag, prompt):
         out = re.sub(r"(?:Thinking\.\.\.|thinking\.\.\.).*?done thinking\.\n*", "", out, flags=re.S).strip()
     return {"text": out, "thinking_chars": len(thinking), "latency_s": round(dt, 1)}
 
-def call_codex(model_flag, prompt):
+def call_codex(model_flag, prompt, effort="medium"):
     t0 = time.time()
-    args = ["codex", "exec", "--skip-git-repo-check"] + (["-m", model_flag] if model_flag else []) + [prompt]
+    eff_map = {"low": "low", "medium": "medium", "high": "high"}
+    args = ["codex", "exec", "--skip-git-repo-check",
+            "-c", f'model_reasoning_effort="{eff_map.get(effort, "medium")}"'] \
+          + (["-m", model_flag] if model_flag else []) + [prompt]
     p = subprocess.run(args, capture_output=True, text=True, timeout=900)
     dt = time.time() - t0
     return {"text": p.stdout.strip(), "thinking_chars": 0, "latency_s": round(dt, 1)}
@@ -320,7 +323,8 @@ def run(models=None, suite="quick", reasoning=None, only=None):
             try:
                 prov = entry.get("provider", "")
                 if prov.startswith("openai"):
-                    r = call_codex(entry["command"].split()[-1] if "-m" in entry["command"] else None, t["prompt"])
+                    r = call_codex(entry["command"].split()[-1] if "-m" in entry["command"] else None,
+                                   t["prompt"], effort=eff)
                     r["text"] = sanitize(r["text"])
                 elif prov == "openrouter":
                     slug = entry["command"].split("openrouter:", 1)[1]
@@ -336,7 +340,7 @@ def run(models=None, suite="quick", reasoning=None, only=None):
                     tag = entry["command"].split()[2]
                     r = call_ollama(tag, t["prompt"])
                     r["text"] = sanitize(r["text"])
-                res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:40000] if tid == "code_art" else r["text"][:4000],
+                res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:120000] if tid == "code_art" else r["text"][:4000],
                        "latency_s": r["latency_s"], "thinking_chars": r["thinking_chars"],
                        "tokens_est": tokens_estimate(r["text"]) + r["thinking_chars"] // 4, "reasoning": eff}
                 if prov_err: res["error"] = prov_err

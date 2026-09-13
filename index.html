@@ -204,7 +204,8 @@ tr:first-child td.model{font-size:1.3rem}
 }
 </style>
 </head>
-<body>
+<body data-benchmark-status="withdrawn">
+<div style="position:relative;z-index:100;background:#8c2f39;color:#fff;padding:14px 6vw;font:600 .82rem/1.45 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.02em"><strong>Rankings withdrawn — audit in progress.</strong> The published scores below are preserved as an unreliable legacy baseline and must not be used to rank models. The evaluation system is being rebuilt around rendered outcomes, blind review, matched runs, coverage, and uncertainty.</div>
 <div id="progress"></div>
 
 <!-- ═══ CH1: THE ARENA (dark, lamp-lit) ═══ -->
@@ -331,7 +332,7 @@ const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 
 const FAMILY=[
- ["gpt-5.6-sol-pro","GPT-5.6 Sol Pro","Vision lead & synthesis — sees the screenshots",null],
+ ["gpt-5.6-sol-pro","GPT-5.6 Sol","Vision lead & synthesis — sees the screenshots",null],
  ["gpt-6-astra","GPT-6 Astra","Final reviewer, budget-gated, never builds",null],
  ["glm-5.3","GLM-5.3","Devil's advocate — kills weak claims",null],
  ["glm-5.3-flash","GLM-5.3 Flash","Orchestrator runtime (Addis itself)",null],
@@ -383,8 +384,8 @@ new IntersectionObserver((es,io)=>es.forEach(e=>{if(e.isIntersecting){fb.querySe
 
 // DATA BRIDGE — live from aggregate.py output, bundled fallback behind it
 const FALLBACK_MED={"gpt-5.6-sol-pro":[100,126,23.6],"glm-5.3":[100,1958,15.2],"glm-5.3-flash":[100,1279,12.3],"deepseek-v4-pro":[100,1390,14.0],"deepseek-v4.1-flash":[100,1825,9.6],"gpt-6-astra":[67,117,22.1],"kimi-k3":[67,1159,15.8],"gemini-3.8-flash":[67,184,19.5]};
-const NAME={gpt5:"GPT-5.6 Sol Pro"};
-const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol Pro","gpt-6-astra":"GPT-6 Astra","glm-5.3":"GLM-5.3","glm-5.3-flash":"GLM-5.3 Flash","deepseek-v4-pro":"DeepSeek V4 Pro","deepseek-v4.1-flash":"DeepSeek V4.1 Flash","gemini-3.8-flash":"Gemini 3.8 Flash","kimi-k3":"Kimi K3"};
+const NAME={gpt5:"GPT-5.6 Sol"};
+const DISP={"gpt-5.6-sol-pro":"GPT-5.6 Sol","gpt-6-astra":"GPT-6 Astra","glm-5.3":"GLM-5.3","glm-5.3-flash":"GLM-5.3 Flash","deepseek-v4-pro":"DeepSeek V4 Pro","deepseek-v4.1-flash":"DeepSeek V4.1 Flash","gemini-3.8-flash":"Gemini 3.8 Flash","kimi-k3":"Kimi K3"};
 
 (async function(){
   let live=null;
