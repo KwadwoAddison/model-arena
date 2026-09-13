@@ -1,0 +1,6 @@
+{
+  "20260913_1927_full.json": {
+    "status": "excluded",
+    "reason": "GPT-5.6 Sol run started before the native reasoning-effort fix; medium label did not prove matched medium setting."
+  }
+}
