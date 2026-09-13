@@ -158,6 +158,19 @@
         "new candidate \u2014 pending first run"
       ],
       "joined": "2026-09"
+    },
+    {
+      "id": "hy4-preview",
+      "display": "Hunyuan Hy4 Preview",
+      "provider": "openrouter",
+      "command": "openrouter:tencent/hy4-preview",
+      "multimodal": [
+        "code"
+      ],
+      "roles": [
+        "new candidate \u2014 pending first run"
+      ],
+      "joined": "2026-09"
     }
   ],
   "panel_roles_current": {

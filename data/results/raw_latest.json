@@ -734,5 +734,123 @@
    "lat": 5.7,
    "tok": 354
   }
+ },
+ "qwen3.8-flash": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "def solve(s):\n    k = 2\n    freq = {}\n    left = 0\n    max_len = 0\n\n    for right, char in enumerate(s):\n        freq[char] = freq.get(char, 0) + 1\n\n        while len(freq) > k:\n            left_char = s[left]\n            freq[left_char] -= 1\n            if freq[left_char] == 0:\n                del freq[left_char]\n            left += 1\n\n        max_len = max(max_len, right - left + 1)\n\n    return max_len",
+   "lat": 11.6,
+   "tok": 102
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 21.7,
+   "tok": 1
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 5.8,
+   "tok": 1
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "# Trade-Journal Statistics\n\n## 1 \u2013 Verify the population\n\n| Bucket | Count | Avg / Total per unit |\n|---|---|---|\n| Wins | 80 | +0.459 R |\n| Losses | 36 | \u22120.416 R |\n| Partial wins | 7 | +0.44 R **(aggregate)** |\n| Breakeven scratches | 28 | 0.0 R |\n| **Total** | **151** | |\n\n80 + 36 + 7 + 28 = 151 \u2713\n\n---\n\n## 2 \u2013 Total R (net P&L in R multiples)\n\n| Bucket | Arithmetic | R contribution |\n|---|---|---|\n| Wins | 80 \u00d7 0.459 | **+36.720 R** |\n| Losses | 36 \u00d7 (\u22120.416) | **\u221214.976 R** |\n| Partial wins | given total | **+0.440 R** |\n| Breakevens | 28 \u00d7 0.000 | **0.000 R** |\n\n$$\\text{Net R} = 36.720 - 14.976 + 0.440 + 0.000 = \\mathbf{+22.184\\;R}$$\n\n---\n\n## 3 \u2013 Expectancy per trade\n\n$$\\text{Expectancy",
+   "lat": 22.6,
+   "tok": 486
+  },
+  "trade_logic": {
+   "grade": 0.5,
+   "text": "Strategy A's expectancy is **+0.5R** (0.30 \u00d7 4R \u2212 0.70 \u00d7 1R), while Strategy B's is **\u22120.1R** (0.75 \u00d7 0.2R \u2212 0.25 \u00d7 1R), so Strategy A wins decisively despite its far lower hit rate. Strategy B is a classic high-win-rate trap: its 75% \"wins\" only net 0.2R, which can't cover the 25% full \u22121R losses, producing a negative expectancy. The key insight is that expectancy depends on the *product* of probability and size, not on win rate alone\u2014A's 4R winners more than pay for its frequent 1R losses, whereas B's tiny scratches are too small to offset its stops.",
+   "lat": 9.4,
+   "tok": 140
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "0.40 lots\n\nWorking:\n\nRisk amount = 1% \u00d7 $10,000 = $100  \nStop risk = 25 pips \u00d7 $10 per lot = $250 per 1.00 lot  \n\nPosition size = $100 \u00f7 $250 = 0.40 lots",
+   "lat": 9.2,
+   "tok": 38
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "In a small NICU, a 24-week-gestation baby who died on 4 March is a quasi-identifier because that combination is rare and locally salient. Your audit population is small enough that staff, clinicians, and families can recognise the case without a name or number. Date of death plus gestational age can reconstruct identity, breaching confidentiality and harming families. Remove or aggregate these details unless explicit consent is given, and report the case within grouped data rather than as a uniquely locatable narrative.",
+   "lat": 20.2,
+   "tok": 131
+  }
+ },
+ "hy4-preview": {
+  "code_algo": {
+   "grade": 1.0,
+   "text": "def solve(s: str) -> int:\n    counts = {}\n    left = 0\n    best = 0\n\n    for right, ch in enumerate(s):\n        counts[ch] = counts.get(ch, 0) + 1\n\n        while len(counts) > 2:\n            left_ch = s[left]\n            counts[left_ch] -= 1\n            if counts[left_ch] == 0:\n                del counts[left_ch]\n            left += 1\n\n        best = max(best, right - left + 1)\n\n    return best",
+   "lat": 12.0,
+   "tok": 99
+  },
+  "code_pine": {
+   "grade": 0.6,
+   "text": "```pine\n// highs/lows: chronological array<float> of swing levels, oldest -> newest\n// Returns positive ATR distance to nearest valid level; na if none/invalid.\nf_room(array<float> highs, array<float> lows, float atr) =>\n    int   lookback = 20\n    float px       = close // use close[1] if you want last confirmed close\n    float upRoom   = na\n    float dnRoom   = na\n\n    if not na(atr) and atr > 0.0\n        if array.size(highs) > 0\n            int hLast  = array.size(highs) - 1\n            int hFirst = math.max(0, hLast - lookback + 1)\n            for i = hFirst to hLast\n                float h = array.get(highs, i)\n                if not na(h) and h > px\n                    float d = (h - p",
+   "lat": 322.6,
+   "tok": 328
+  },
+  "code_html": {
+   "grade": 1.0,
+   "text": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>61 to 0 Scroll Counter</title>\n<style>\n  :root {\n    color-scheme: dark;\n  }\n\n  * {\n    box-sizing: border-box;\n  }\n\n  body {\n    margin: 0;\n    min-height: 100vh;\n    font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n    background: radial-gradient(circle at top, #172554, #020617 60%);\n    color: #e5e7eb;\n  }\n\n  .spacer {\n    min-height: 115vh;\n    display: grid;\n    place-items: center;\n    padding: 2rem;\n    text-align: center;\n  }\n\n  .stage {\n    min-height: 100vh;\n    display: grid;\n    place-items: center;\n    paddin",
+   "lat": 328.4,
+   "tok": 1482
+  },
+  "code_art": {
+   "grade": 1.0,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 640\" width=\"480\" height=\"640\">\n<defs>\n<linearGradient id=\"bgGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#f7f0ea\"/>\n<stop offset=\"1\" stop-color=\"#e6d8ce\"/>\n</linearGradient>\n<linearGradient id=\"skin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#fce6d5\"/>\n<stop offset=\"0.5\" stop-color=\"#f4cdb2\"/>\n<stop offset=\"1\" stop-color=\"#e0aa88\"/>\n</linearGradient>\n<linearGradient id=\"neckSkin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#e9bb9b\"/>\n<stop offset=\"1\" stop-color=\"#d79b78\"/>\n</linearGradient>\n<linearGradient id=\"hairGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#7c5136\"/>",
+   "lat": 370.0,
+   "tok": 2123
+  },
+  "med_neo": {
+   "grade": 1.0,
+   "text": "B",
+   "lat": 140.8,
+   "tok": 1
+  },
+  "med_surg": {
+   "grade": 1.0,
+   "text": "D",
+   "lat": 18.9,
+   "tok": 1
+  },
+  "med_pharm": {
+   "grade": 1.0,
+   "text": "C",
+   "lat": 8.9,
+   "tok": 1
+  },
+  "trade_expect": {
+   "grade": 1.0,
+   "text": "Assuming **\u201c7 partial wins totaling +0.44R\u201d** means all 7 partial wins combined contributed **+0.44R**:\n\n### Trade count check\n\\[\n80 + 36 + 7 + 28 = 151\n\\]\n\n## 1. Expectancy per trade\n\nSum all R outcomes:\n\n\\[\n\\text{Wins} = 80 \\times 0.459R = 36.72R\n\\]\n\n\\[\n\\text{Losses} = 36 \\times (-0.416R) = -14.976R\n\\]\n\n\\[\n\\text{Partial wins} = +0.44R\n\\]\n\n\\[\n\\text{Breakevens} = 28 \\times 0R = 0R\n\\]\n\nNet R:\n\n\\[\n36.72R - 14.976R + 0.44R + 0R = 22.184R\n\\]\n\nExpectancy per trade:\n\n\\[\n\\frac{22.184R}{151} = 0.1469R\n\\]\n\n\\[\n\\boxed{\\text{Expectancy} \\approx +0.147R \\text{ per trade}}\n\\]\n\n## 2. Profit factor\n\nGross profit:\n\n\\[\n36.72R + 0.44R = 37.16R\n\\]\n\nGross loss, using absolute value:\n\n\\[\n|{-14.976R}| = 14.976R\n\\]",
+   "lat": 36.6,
+   "tok": 224
+  },
+  "trade_logic": {
+   "grade": 0.75,
+   "text": "Strategy A has the higher expectancy: its average trade is 0.30(4R) + 0.70(-1R) = +0.5R, while Strategy B\u2019s is 0.75(0.2R) + 0.25(-1R) = -0.1R. Although B wins far more often, its winners are only 0.2R against 1R losses, leaving its 75% hit rate below the ~83% breakeven required by that payoff ratio. Expectancy depends on both win rate and reward-to-risk, and A\u2019s large 4R winners more than compensate for its lower hit rate.",
+   "lat": 82.6,
+   "tok": 106
+  },
+  "trade_sizing": {
+   "grade": 1.0,
+   "text": "Risk amount:\n\n\\[\n\\$10{,}000 \\times 1\\% = \\$100\n\\]\n\nRisk per 1.00 lot for a 25-pip stop:\n\n\\[\n25 \\text{ pips} \\times \\$10 = \\$250\n\\]\n\nPosition size:\n\n\\[\n\\frac{\\$100}{\\$250} = 0.40 \\text{ lots}\n\\]\n\n**Answer: 0.40 lots**",
+   "lat": 14.8,
+   "tok": 54
+  },
+  "long_privacy": {
+   "grade": 1.0,
+   "text": "A 24-week gestation baby who died on March 4 is a quasi-identifier because neither the gestational age nor the date alone names the infant, but together they narrow the cohort to a single patient in a small NICU. In a unit with few extreme-preterm deaths, that pair matches one clinical course known to staff and families. Anyone reviewing the audit who recalls the March death at 24 weeks re-identifies the child, even without name or MRN. Small denominators turn neutral fields into identifiers, so this combination must be treated as identifiable data and suppressed or generalized before release.",
+   "lat": 39.2,
+   "tok": 150
+  },
+  "long_pf": {
+   "grade": 1.0,
+   "text": "As a new prop reviewer, you must understand that profit factor measures the ratio of gross profit to gross loss to show the capital generated relative to capital lost, though it is highly vulnerable to distortion by massive outliers. Expectancy calculates the average expected return per trade by mathematically combining a strategy's win rate with the average magnitudes of its wins and losses. Expectancy is the metric that truly survives a long tail because it incorporates trade frequency, preventing you from being fooled by a single extreme event that artificially inflates a flawed system.",
+   "lat": 67.5,
+   "tok": 149
+  }
  }
 }

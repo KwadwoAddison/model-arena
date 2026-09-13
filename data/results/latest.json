@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-13T14:35:46",
+ "generated": "2026-09-13T15:18:55",
  "weights": {
   "correctness": 0.4,
   "reasoning": 0.2,
@@ -21,7 +21,7 @@
   "long_privacy": "0.34 each: \u2264120 words; zero bullet lines; zero hedging tokens (might/perhaps/maybe/'I think').",
   "long_pf": "0.34 each: exactly 3 sentences; names both terms; zero numeric examples."
  },
- "par": 2900.5,
+ "par": 1857.0,
  "low": {
   "gpt-5.6-sol-pro": {
    "n": 3,
@@ -136,6 +136,20 @@
    "lat": 30.3,
    "tok": 2967,
    "pct": 88
+  },
+  "qwen3.8-flash": {
+   "n": 7,
+   "corr": 6.5,
+   "lat": 14.4,
+   "tok": 128,
+   "pct": 93
+  },
+  "hy4-preview": {
+   "n": 12,
+   "corr": 11.35,
+   "lat": 120.2,
+   "tok": 393,
+   "pct": 95
   }
  },
  "high": {
@@ -1012,6 +1026,180 @@
     },
     "pct": 100
    }
+  },
+  "qwen3.8-flash": {
+   "coding": {
+    "n": 1,
+    "corr": 1.0,
+    "tasks": {
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 11.6,
+      "tok": 102,
+      "chars": 407
+     }
+    },
+    "pct": 100
+   },
+   "medicine": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "med_neo": {
+      "corr": 1.0,
+      "lat": 21.7,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 5.8,
+      "tok": 1,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.5,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 22.6,
+      "tok": 486,
+      "chars": 1943
+     },
+     "trade_logic": {
+      "corr": 0.5,
+      "lat": 9.4,
+      "tok": 140,
+      "chars": 558
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 9.2,
+      "tok": 38,
+      "chars": 153
+     }
+    },
+    "pct": 83
+   },
+   "longform": {
+    "n": 1,
+    "corr": 1.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 20.2,
+      "tok": 131,
+      "chars": 525
+     }
+    },
+    "pct": 100
+   }
+  },
+  "hy4-preview": {
+   "coding": {
+    "n": 4,
+    "corr": 3.6,
+    "tasks": {
+     "code_algo": {
+      "corr": 1.0,
+      "lat": 12.0,
+      "tok": 99,
+      "chars": 397
+     },
+     "code_pine": {
+      "corr": 0.6,
+      "lat": 322.6,
+      "tok": 328,
+      "chars": 1313
+     },
+     "code_html": {
+      "corr": 1.0,
+      "lat": 328.4,
+      "tok": 1482,
+      "chars": 4000
+     },
+     "code_art": {
+      "corr": 1.0,
+      "lat": 370.0,
+      "tok": 2123,
+      "chars": 8491
+     }
+    },
+    "pct": 90
+   },
+   "medicine": {
+    "n": 3,
+    "corr": 3.0,
+    "tasks": {
+     "med_neo": {
+      "corr": 1.0,
+      "lat": 140.8,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_surg": {
+      "corr": 1.0,
+      "lat": 18.9,
+      "tok": 1,
+      "chars": 1
+     },
+     "med_pharm": {
+      "corr": 1.0,
+      "lat": 8.9,
+      "tok": 1,
+      "chars": 1
+     }
+    },
+    "pct": 100
+   },
+   "trading": {
+    "n": 3,
+    "corr": 2.75,
+    "tasks": {
+     "trade_expect": {
+      "corr": 1.0,
+      "lat": 36.6,
+      "tok": 224,
+      "chars": 898
+     },
+     "trade_logic": {
+      "corr": 0.75,
+      "lat": 82.6,
+      "tok": 106,
+      "chars": 426
+     },
+     "trade_sizing": {
+      "corr": 1.0,
+      "lat": 14.8,
+      "tok": 54,
+      "chars": 216
+     }
+    },
+    "pct": 92
+   },
+   "longform": {
+    "n": 2,
+    "corr": 2.0,
+    "tasks": {
+     "long_privacy": {
+      "corr": 1.0,
+      "lat": 39.2,
+      "tok": 150,
+      "chars": 600
+     },
+     "long_pf": {
+      "corr": 1.0,
+      "lat": 67.5,
+      "tok": 149,
+      "chars": 596
+     }
+    },
+    "pct": 100
+   }
   }
  },
  "best_worst": {
@@ -1062,6 +1250,18 @@
    "weakest": "coding",
    "strongest_pct": 100,
    "weakest_pct": 75
+  },
+  "qwen3.8-flash": {
+   "strongest": "medicine",
+   "weakest": "trading",
+   "strongest_pct": 100,
+   "weakest_pct": 83
+  },
+  "hy4-preview": {
+   "strongest": "medicine",
+   "weakest": "coding",
+   "strongest_pct": 100,
+   "weakest_pct": 90
   }
  },
  "composite": {
@@ -1084,34 +1284,34 @@
   "glm-5.3": {
    "correctness": 94,
    "reasoning": 87,
-   "token_eff": 23,
+   "token_eff": 15,
    "latency": 0,
    "adherence": 100,
-   "total": 73.5
+   "total": 72.2
   },
   "glm-5.3-flash": {
    "correctness": 82,
    "reasoning": 93,
-   "token_eff": 52,
+   "token_eff": 33,
    "latency": 0,
    "adherence": 100,
-   "total": 74.2
+   "total": 71.4
   },
   "deepseek-v4-pro": {
    "correctness": 96,
    "reasoning": 100,
-   "token_eff": 100,
+   "token_eff": 66,
    "latency": 65,
    "adherence": 100,
-   "total": 94.9
+   "total": 89.8
   },
   "deepseek-v4.1-flash": {
    "correctness": 79,
    "reasoning": 100,
-   "token_eff": 74,
+   "token_eff": 47,
    "latency": 17,
    "adherence": 66,
-   "total": 74.3
+   "total": 70.2
   },
   "gemini-3.8-flash": {
    "correctness": 92,
@@ -1124,10 +1324,26 @@
   "kimi-k3": {
    "correctness": 88,
    "reasoning": 87,
-   "token_eff": 98,
+   "token_eff": 63,
    "latency": 33,
    "adherence": 100,
-   "total": 85.6
+   "total": 80.4
+  },
+  "qwen3.8-flash": {
+   "correctness": 93,
+   "reasoning": 93,
+   "token_eff": 100,
+   "latency": 68,
+   "adherence": 100,
+   "total": 92.6
+  },
+  "hy4-preview": {
+   "correctness": 95,
+   "reasoning": 95,
+   "token_eff": 100,
+   "latency": 0,
+   "adherence": 100,
+   "total": 87.0
   }
  },
  "art": {
@@ -1178,6 +1394,12 @@
    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 600\" width=\"480\" h\nheight=\"600\">\n<defs>\n<radialGradient id=\"bg\" cx=\"50%\" cy=\"38%\" r=\"75%\">\n<stop offset=\"0%\" stop-color=\"#f5efe8\"/><stop offset=\"100%\" stop-color=\"#d6\nstop-color=\"#d6ccbf\"/>\n</radialGradient>\n<radialGradient id=\"skin\" cx=\"50%\" cy=\"40%\" r=\"68%\">\n<stop offset=\"0%\" stop-color=\"#f9ddc8\"/><stop offset=\"60%\" stop-color=\"#efc\nstop-color=\"#efc4a4\"/><stop offset=\"100%\" stop-color=\"#dfa77f\"/>\n</radialGradient>\n<linearGradient id=\"neckS\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#e3ad88\"/><stop offset=\"100%\" stop-color=\"#c5\nstop-color=\"#c5855e\"/>\n</linearGradient>\n<linearGradient id=\"hair\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#5d3b22\"/><stop offset=\"55%\" stop-color=\"#472\nstop-color=\"#472a16\"/><stop offset=\"100%\" stop-color=\"#2e1a0d\"/>\n</linearGradient>\n<linearGradient id=\"hairTop\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#6f4627\"/><stop offset=\"100%\" stop-color=\"#42\nstop-color=\"#422712\"/>\n</linearGradient>\n<radialGradient id=\"iris\" cx=\"50%\" cy=\"45%\" r=\"60%\">\n<stop offset=\"0%\" stop-color=\"#7c5636\"/><stop offset=\"70%\" stop-color=\"#523\nstop-color=\"#523520\"/><stop offset=\"100%\" stop-color=\"#30200f\"/>\n</radialGradient>\n<linearGradient id=\"lips\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#a7534b\"/><stop offset=\"48%\" stop-color=\"#ba6\nstop-color=\"#ba6055\"/><stop offset=\"100%\" stop-color=\"#cf7e6e\"/>\n</linearGradient>\n<linearGradient id=\"shirt\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#4c7e7a\"/><stop offset=\"100%\" stop-color=\"#2d\nstop-color=\"#2d504d\"/>\n</linearGradient>\n<filter id=\"f2\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\"><feGaussianBlu\nheight=\"220%\"><feGaussianBlur stdDeviation=\"2\"/></filter>\n<filter id=\"f4\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\"><feGaussianBlu\nheight=\"220%\"><feGaussianBlur stdDeviation=\"4\"/></filter>\n<filter id=\"f6\" x=\"-80%\" y=\"-80%\" width=\"260%\" height=\"260%\"><feGaussianBlu\nheight=\"260%\"><feGaussianBlur stdDeviation=\"6\"/></filter>\n<filter id=\"f8\" x=\"-80%\" y=\"-80%\" width=\"260%\" height=\"260%\"><feGaussianBlu\nheight=\"260%\"><feGaussianBlur stdDeviation=\"8\"/></filter>\n</defs>\n\n<rect x=\"0\" y=\"0\" width=\"480\" height=\"600\" fill=\"url(#bg)\"/>\n\n<path d=\"M240,46 C160,46 116,104 112,196 C109,252 120,306 116,360 C113,404 \n104,436 96,470 C140,462 170,438 178,404 C172,368 163,330 160,290 C156,246 1\n156,210 162,180 C172,140 200,112 240,112 C280,112 308,140 318,180 C324,210 \n324,246 320,290 C317,330 308,368 302,404 C310,438 340,462 384,470 C376,436 \n367,404 364,360 C360,306 371,252 368,196 C364,104 320,46 240,46 Z\" fill=\"ur\nfill=\"url(#hair)\"/>\n<path d=\"M130,160 C122,240 128,330 118,430\" stroke=\"#7c4e2c\" stroke-width=\"\nstroke-width=\"8\" fill=\"none\" opacity=\"0.45\" filter=\"url(#f4)\"/>\n<path d=\"M350,160 C358,240 352,330 362,430\" stroke=\"#7c4e2c\" stroke-width=\"\nstroke-width=\"8\" fill=\"none\" opacity=\"0.45\" filter=\"url(#f4)\"/>\n<path d=\"M152,200 C146,270 150,350 140,430\" stroke=\"#8a5630\" stroke-width=\"\nstroke-width=\"4\" fill=\"none\" opacity=\"0.35\" filter=\"url(#f4)\"/>\n<path d=\"M328,200 C334,270 330,350 340,430\" stroke=\"#8a5630\" stroke-width=\"\nstroke-width=\"4\" fill=\"none\" opacity=\"0.35\" filter=\"url(#f4)\"/>\n<path d=\"M180,92 C210,62 270,62 300,92\" stroke=\"#7c4e2c\" stroke-width=\"9\" f\nfill=\"none\" opacity=\"0.4\" filter=\"url(#f4)\"/>\n\n<path d=\"M153,244 C141,240 133,250 135,266 C137,284 146,294 156,293 C150,29\nC150,290 147,278 146,266 C146,255 148,248 153,244 Z\" fill=\"#e2ac86\"/>\n<path d=\"M146,256 C143,262 143,272 147,280\" stroke=\"#b07653\" stroke-width=\"\nstroke-width=\"2\" fill=\"none\" opacity=\"0.6\"/>\n<path d=\"M327,244 C339,240 347,250 345,266 C343,284 334,294 324,293 C330,29\nC330,290 333,278 334,266 C334,255 332,248 327,244 Z\" fill=\"#e2ac86\"/>\n<path d=\"M334,256 C337,262 337,272 333,280\" stroke=\"#b07653\" stroke-width=\"\nstroke-width=\"2\" fill=\"none\" opacity=\"0.6\"/>\n\n<path d=\"M55,600 C62,525 120,480 178,466 C195,480 216,492 240,492 C264,492 \n285,480 302,466 C360,480 418,525 425,600 Z\" fill=\"url(#shirt)\"/>\n<path d=\"M178,466 C195,480 216,492 240,492 C264,492 285,480 302,466\" stroke\nstroke=\"#23403e\" stroke-width=\"4\" fill=\"none\" opacity=\"0.6\" filter=\"url(#f2\nfilter=\"url(#f2)\"/>\n<path d=\"M150,520 C160,545 168,570 172,595\" stroke=\"#26443f\" stroke-width=\"\nstroke-width=\"5\" fill=\"none\" opacity=\"0.35\" filter=\"url(#f4)\"/>\n<path d=\"M330,520 C320,545 312,570 308,595\" stroke=\"#26443f\" stroke-width=\"\nstroke-width=\"5\" fill=\"none\" opacity=\"0.35\" filter=\"url(#f4)\"/>\n<ellipse cx=\"240\" cy=\"500\" rx=\"40\" ry=\"10\" fill=\"#1f3a38\" opacity=\"0.3\" fil\nfilter=\"url(#f4)\"/>\n\n<path d=\"M150,398 C136,436 130,486 136,536 C147,528 158,510 163,488 C169,45\nC169,458 166,424 156,400 Z\" fill=\"url(#hair)\"/>\n<path d=\"M330,398 C344,436 350,486 344,536 C333,528 322,510 317,488 C311,45\nC311,458 314,424 324,400 Z\" fill=\"url(#hair)\"/>\n<path d=\"M148,420 C140,458 138,494 142,524\" stroke=\"#7c4e2c\" stroke-width=\"\nstroke-width=\"4\" fill=\"none\" opacity=\"0.55\" filter=\"url(#f2)\"/>\n<path d=\"M332,420 C340,458 342,494 338,524\" stroke=\"#7c4e2c\" stroke-width=\"\nstroke-width=\"4\" fill=\"none\" opacity=\"0.55\" filter=\"url(#f2)\"/>\n\n<path d=\"M206,378 C204,410 202,440 202,458 C202,478 220,492 240,492 C260,49\nC260,492 278,478 278,458 C278,440 276,410 274,378 C264,400 254,410 240,410 \nC226,410 216,400 206,378 Z\" fill=\"url(#neckS)\"/>\n<path d=\"M212,410 C210,440 212,464 218,482\" stroke=\"#a96f4b\" stroke-width=\"\nstroke-width=\"6\" fill=\"none\" opacity=\"0.3\" filter=\"url(#f4)\"/>\n<path d=\"M268,410 C270,440 268,464 262,482\" stroke=\"#a96f4b\" stroke-width=\"\nstroke-width=\"6\" fill=\"none\" opacity=\"0.3\" filter=\"url(#f4)\"/>\n\n<path d=\"M240,112 C190,112 156,150 152,205 C149,240 154,278 162,312 C174,36\nC174,362 203,410 240,412 C277,410 306,362 318,312 C326,278 331,240 328,205 \nC324,150 290,112 240,112 Z\" fill=\"url(#skin)\"/>\n\n<ellipse cx=\"240\" cy=\"415\" rx=\"42\" ry=\"13\" fill=\"#a96f4b\" opacity=\"0.5\" fil\nfilter=\"url(#f4)\"/>\n\n<ellipse cx=\"238\" cy=\"252\" rx=\"62\" ry=\"84\" fill=\"#fbe4d2\" opacity=\"0.25\" fi\nfilter=\"url(#f8)\"/>\n<ellipse cx=\"163\" cy=\"300\" rx=\"14\" ry=\"34\" fill=\"#cf9268\" opacity=\"0.28\" fi\nfilter=\"url(#f8)\" transform=\"rotate(8 163 300)\"/>\n<ellipse cx=\"317\" cy=\"300\" rx=\"14\" ry=\"34\" fill=\"#cf9268\" opacity=\"0.28\" fi\nfilter=\"url(#f8)\" transform=\"rotate(-8 317 300)\"/>\n<path d=\"M168,318 C178,358 204,398 236,408\" stroke=\"#c98e6d\" stroke-width=\"\nstroke-width=\"7\" fill=\"none\" opacity=\"0.22\" filter=\"url(#f6)\"/>\n<path d=\"M312,318 C302,358 276,398 244,408\" stroke=\"#c98e6d\" stroke-width=\"\nstroke-width=\"7\" fill=\"none\" opacity=\"0.22\" filter=\"url(#f6)\"/>\n<ellipse cx=\"186\" cy=\"302\" rx=\"25\" ry=\"15\" fill=\"#e58d74\" opacity=\"0.2\" fil\nfilter=\"url(#f8)\"/>\n<ellipse cx=\"294\" cy=\"302\" rx=\"25\" ry=\"15\" fill=\"#e58d74\" opacity=\"0.2\" fil\nfilter=\"url(#f8)\"/>\n<ellipse cx=\"240\" cy=\"392\" rx=\"15\" ry=\"9\" fill=\"#f8dcc8\" opacity=\"0.55\" fil\nfilter=\"url(#f4)\"/>\n\n<path d=\"M224,324 C219,336 216,346 218,355\" stroke=\"#cf9268\" stroke-width=\"\nstroke-width=\"2.5\" fill=\"none\" opacity=\"0.3\" filter=\"url(#f2)\"/>\n<path d=\"M256,324 C261,336 264,346 262,355\" stroke=\"#cf9268\" stroke-width=\"\nstroke-width=\"2.5\" fill=\"none\" opacity=\"0.3\" filter=\"url(#f2)\"/>\n\n<path d=\"M161,225 C170,210 196,203 227,213 C230,214 229,219 226,219 C199,21\nC199,210 176,215 165,229 C162,230 160,227 161,225 Z\" fill=\"#452712\"/>\n<path d=\"M319,225 C310,210 284,203 253,213 C250,214 251,219 254,219 C281,21\nC281,210 304,215 315,229 C318,230 320,227 319,225 Z\" fill=\"#452712\"/>\n\n<path d=\"M171,251 C176,242 185,237 195,237 C206,237 215,243 221,251 C215,25\nC215,258 206,262 196,262 C186,262 177,258 171,251 Z\" fill=\"#fdfbf7\"/>\n<path d=\"M259,251 C265,243 274,237 285,237 C295,237 304,242 309,251 C303,25\nC303,258 294,262 284,262 C274,262 265,258 259,251 Z\" fill=\"#fdfbf7\"/>\n<circle cx=\"196\" cy=\"252\" r=\"10.5\" fill=\"url(#iris)\"/>\n<circle cx=\"284\" cy=\"252\" r=\"10.5\" fill=\"url(#iris)\"/>\n<circle cx=\"196\" cy=\"252\" r=\"10.5\" fill=\"none\" stroke=\"#2c1a0d\" stroke-widt\nstroke-width=\"1.2\"/>\n<circle cx=\"284\" cy=\"252\" r=\"10.5\" fill=\"none\" stroke=\"#2c1a0d\" stroke-widt\nstroke-width=\"1.2\"/>\n<circle cx=\"196\" cy=\"252\" r=\"5\" fill=\"#1d0f05\"/>\n<circle cx=\"284\" cy=\"252\" r=\"5\" fill=\"#1d0f05\"/>\n<circle cx=\"192\" cy=\"247\" r=\"3\" fill=\"#ffffff\" opacity=\"0.95\"/>\n<circle cx=\"280\" cy=\"247\" r=\"3\" fill=\"#ffffff\" opacity=\"0.95\"/>\n<circle cx=\"200\" cy=\"256\" r=\"1.4\" fill=\"#ffffff\" opacity=\"0.55\"/>\n<circle cx=\"288\" cy=\"256\" r=\"1.4\" fill=\"#ffffff\" opacity=\"0.55\"/>\n\n<path d=\"M169,251 C176,239.5 187,234.5 197,235\n</svg><!-- [capture truncated; closed for display] -->",
    "tok": 11891,
    "lat": 128.7
+  },
+  "hy4-preview": {
+   "corr": 1.0,
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 640\" width=\"480\" height=\"640\">\n<defs>\n<linearGradient id=\"bgGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#f7f0ea\"/>\n<stop offset=\"1\" stop-color=\"#e6d8ce\"/>\n</linearGradient>\n<linearGradient id=\"skin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#fce6d5\"/>\n<stop offset=\"0.5\" stop-color=\"#f4cdb2\"/>\n<stop offset=\"1\" stop-color=\"#e0aa88\"/>\n</linearGradient>\n<linearGradient id=\"neckSkin\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#e9bb9b\"/>\n<stop offset=\"1\" stop-color=\"#d79b78\"/>\n</linearGradient>\n<linearGradient id=\"hairGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#7c5136\"/>\n<stop offset=\"0.45\" stop-color=\"#5b3823\"/>\n<stop offset=\"1\" stop-color=\"#332015\"/>\n</linearGradient>\n<linearGradient id=\"clothGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#4a626c\"/>\n<stop offset=\"1\" stop-color=\"#28373d\"/>\n</linearGradient>\n<radialGradient id=\"iris\" cx=\"0.4\" cy=\"0.35\" r=\"0.7\">\n<stop offset=\"0\" stop-color=\"#8a5a33\"/>\n<stop offset=\"0.6\" stop-color=\"#5c3618\"/>\n<stop offset=\"1\" stop-color=\"#2f1b0c\"/>\n</radialGradient>\n<linearGradient id=\"lipUpper\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#c07a6c\"/>\n<stop offset=\"1\" stop-color=\"#a85a4e\"/>\n</linearGradient>\n<linearGradient id=\"lipLower\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0\" stop-color=\"#d2837a\"/>\n<stop offset=\"1\" stop-color=\"#b36659\"/>\n</linearGradient>\n<clipPath id=\"faceClip\">\n<path d=\"M 240 128 C 200 128, 172 152, 164 190 C 156 214, 152 240, 160 266 C 168 292, 200 312, 240 312 C 280 312, 312 292, 320 266 C 328 240, 324 214, 316 190 C 308 152, 280 128, 240 128 Z\"/>\n</clipPath>\n</defs>\n\n<rect width=\"480\" height=\"640\" fill=\"url(#bgGrad)\"/>\n\n<path d=\"M 240 78 C 180 78, 140 120, 128 190 C 116 250, 112 330, 118 420 C 124 500, 150 560, 240 560 C 330 560, 356 500, 362 420 C 368 330, 364 250, 352 190 C 340 120, 300 78, 240 78 Z\" fill=\"url(#hairGrad)\"/>\n<path d=\"M 138 240 C 150 300, 150 400, 136 500\" fill=\"none\" stroke=\"#6b452c\" stroke-width=\"5\" opacity=\".5\"/>\n<path d=\"M 342 240 C 330 300, 330 400, 344 500\" fill=\"none\" stroke=\"#6b452c\" stroke-width=\"5\" opacity=\".5\"/>\n\n<path d=\"M 210 288 C 204 320, 200 350, 202 380 C 204 410, 214 430, 240 430 C 266 430, 276 410, 278 380 C 280 350, 276 320, 270 288 C 260 306, 220 306, 210 288 Z\" fill=\"url(#neckSkin)\"/>\n<path d=\"M 208 300 C 224 330, 256 330, 272 300 L 274 350 C 256 370, 224 370, 206 350 Z\" fill=\"#b7745a\" opacity=\".35\"/>\n\n<path d=\"M 70 640 L 70 540 C 70 500, 100 470, 150 456 C 180 448, 205 440, 210 418 C 212 408, 220 402, 240 402 C 260 402, 268 408, 270 418 C 275 440, 300 448, 330 456 C 380 470, 410 500, 410 540 L 410 640 Z\" fill=\"url(#clothGrad)\"/>\n<path d=\"M 210 418 C 225 440, 255 440, 270 418\" fill=\"none\" stroke=\"#1d2a2f\" stroke-width=\"3\" opacity=\".5\"/>\n<path d=\"M 216 416 C 228 434, 252 434, 264 416\" fill=\"none\" stroke=\"#5a7580\" stroke-width=\"2\" opacity=\".5\"/>\n<path d=\"M 120 520 C 140 500, 160 500, 180 516\" fill=\"none\" stroke=\"#1f2c31\" stroke-width=\"4\" opacity=\".4\"/>\n<path d=\"M 300 516 C 320 500, 340 500, 360 520\" fill=\"none\" stroke=\"#1f2c31\" stroke-width=\"4\" opacity=\".4\"/>\n<path d=\"M 240 440 L 240 470\" fill=\"none\" stroke=\"#1f2c31\" stroke-width=\"3\" opacity=\".2\"/>\n\n<path d=\"M 240 128 C 200 128, 172 152, 164 190 C 156 214, 152 240, 160 266 C 168 292, 200 312, 240 312 C 280 312, 312 292, 320 266 C 328 240, 324 214, 316 190 C 308 152, 280 128, 240 128 Z\" fill=\"url(#skin)\"/>\n\n<g clip-path=\"url(#faceClip)\">\n<ellipse cx=\"240\" cy=\"170\" rx=\"42\" ry=\"20\" fill=\"#ffffff\" opacity=\".12\"/>\n<path d=\"M 166 182 C 190 164, 216 156, 240 156 C 264 156, 290 164, 314 182 L 314 192 C 288 174, 264 168, 240 168 C 216 168, 192 174, 166 192 Z\" fill=\"#c98d6b\" opacity=\".25\"/>\n<ellipse cx=\"192\" cy=\"252\" rx=\"24\" ry=\"14\" fill=\"#e8a58c\" opacity=\".3\"/>\n<ellipse cx=\"288\" cy=\"252\" rx=\"24\" ry=\"14\" fill=\"#e8a58c\" opacity=\".3\"/>\n<path d=\"M 160 240 C 158 270, 170 296, 190 308 L 190 316 L 150 316 Z\" fill=\"#c98d6b\" opacity=\".22\"/>\n<path d=\"M 320 240 C 322 270, 310 296, 290 308 L 290 316 L 330 316 Z\" fill=\"#c98d6b\" opacity=\".22\"/>\n<ellipse cx=\"240\" cy=\"306\" rx=\"22\" ry=\"8\" fill=\"#cf9578\" opacity=\".2\"/>\n</g>\n\n<path d=\"M 170 212 C 180 200, 204 196, 222 206 C 214 202, 192 204, 180 214 C 176 216, 172 216, 170 212 Z\" fill=\"#4a2f20\"/>\n<path d=\"M 310 212 C 300 200, 276 196, 258 206 C 266 202, 288 204, 300 214 C 304 216, 308 216, 310 212 Z\" fill=\"#4a2f20\"/>\n\n<path d=\"M 182 232 C 188 220, 210 219, 220 231 C 210 243, 190 243, 182 232 Z\" fill=\"#f9f6f4\"/>\n<path d=\"M 182 232 C 190 242, 212 242, 220 232\" fill=\"none\" stroke=\"#9c6b52\" stroke-width=\"1\" opacity=\".8\"/>\n<path d=\"M 182 232 C 190 218, 212 218, 220 232\" fill=\"none\" stroke=\"#3b2820\" stroke-width=\"2.5\"/>\n<circle cx=\"201\" cy=\"233\" r=\"9\" fill=\"url(#iris)\"/>\n<circle cx=\"201\" cy=\"233\" r=\"4\" fill=\"#18110e\"/>\n<circle cx=\"197\" cy=\"229\" r=\"2.2\" fill=\"#ffffff\" opacity=\".9\"/>\n<path d=\"M 184 226 C 192 214, 210 213, 222 226\" fill=\"none\" stroke=\"#c99478\" stroke-width=\"1.5\" opacity=\".7\"/>\n\n<path d=\"M 298 232 C 292 220, 270 219, 260 231 C 270 243, 290 243, 298 232 Z\" fill=\"#f9f6f4\"/>\n<path d=\"M 298 232 C 290 242, 268 242, 260 232\" fill=\"none\" stroke=\"#9c6b52\" stroke-width=\"1\" opacity=\".8\"/>\n<path d=\"M 298 232 C 290 218, 268 218, 260 232\" fill=\"none\" stroke=\"#3b2820\" stroke-width=\"2.5\"/>\n<circle cx=\"279\" cy=\"233\" r=\"9\" fill=\"url(#iris)\"/>\n<circle cx=\"279\" cy=\"233\" r=\"4\" fill=\"#18110e\"/>\n<circle cx=\"275\" cy=\"229\" r=\"2.2\" fill=\"#ffffff\" opacity=\".9\"/>\n<path d=\"M 296 226 C 288 214, 270 213, 258 226\" fill=\"none\" stroke=\"#c99478\" stroke-width=\"1.5\" opacity=\".7\"/>\n\n<path d=\"M 238 216 C 234 234, 234 248, 238 258\" fill=\"none\" stroke=\"#fdf0e4\" stroke-width=\"3\" opacity=\".5\"/>\n<path d=\"M 243 216 C 247 234, 249 248, 245 258\" fill=\"none\" stroke=\"#cf9d80\" stroke-width=\"3\" opacity=\".6\"/>\n<ellipse cx=\"240\" cy=\"262\" rx=\"12\" ry=\"9\" fill=\"#e8b393\"/>\n<ellipse cx=\"240\" cy=\"259\" rx=\"8\" ry=\"5\" fill=\"#f6d6c0\" opacity=\".8\"/>\n<ellipse cx=\"229\" cy=\"265\" rx=\"3.6\" ry=\"2.2\" fill=\"#8a5a44\"/>\n<ellipse cx=\"251\" cy=\"265\" rx=\"3.6\" ry=\"2.2\" fill=\"#8a5a44\"/>\n<path d=\"M 228 269 C 234 275, 246 275, 252 269\" fill=\"none\" stroke=\"#b57a5c\" stroke-width=\"2\" opacity=\".8\"/>\n<path d=\"M 224 258 C 219 262, 219 268, 226 271\" fill=\"none\" stroke=\"#c99174\" stroke-width=\"2\"/>\n<path d=\"M 256 258 C 261 262, 261 268, 254 271\" fill=\"none\" stroke=\"#c99174\" stroke-width=\"2\"/>\n\n<path d=\"M 218 293 C 226 285, 234 286, 240 290 C 246 286, 254 285, 262 293 C 254 299, 246 300, 240 297 C 234 300, 226 299, 218 293 Z\" fill=\"url(#lipUpper)\"/>\n<path d=\"M 218 293 C 222 308, 232 314, 240 314 C 248 314, 258 308, 262 293 C 254 299, 246 300, 240 297 C 234 300, 226 299, 218 293 Z\" fill=\"url(#lipLower)\"/>\n<ellipse cx=\"240\" cy=\"306\" rx=\"11\" ry=\"3.5\" fill=\"#e6a79c\" opacity=\".7\"/>\n<path d=\"M 218 293 C 226 299, 234 300, 240 297 C 246 300, 254 299, 262 293\" fill=\"none\" stroke=\"#7d4038\" stroke-width=\"1\" opacity=\".6\"/>\n<path d=\"M 236 282 C 237 286, 237 288, 236 290\" fill=\"none\" stroke=\"#d99f84\" stroke-width=\"1\" opacity=\".6\"/>\n<path d=\"M 244 282 C 243 286, 243 288, 244 290\" fill=\"none\" stroke=\"#d99f84\" stroke-width=\"1\" opacity=\".6\"/>\n<ellipse cx=\"240\" cy=\"317\" rx=\"14\" ry=\"4\" fill=\"#c9856c\" opacity=\".25\"/>\n<path d=\"M 231 319 C 236 323, 244 323, 249 319\" fill=\"none\" stroke=\"#cf9578\" stroke-width=\"1.5\" opacity=\".5\"/>\n\n<path d=\"M 162 180 C 186 160, 214 150, 240 150 C 266 150, 294 160, 318 180 C 330 150, 336 110, 318 92 C 300 74, 268 70, 240 70 C 212 70, 180 74, 162 92 C 144 110, 150 150, 162 180 Z\" fill=\"url(#hairGrad)\"/>\n<path d=\"M 180 100 C 210 84, 270 84, 300 100 C 280 92, 200 92, 180 100 Z\" fill=\"#a9744c\" opacity=\".5\"/>\n<path d=\"M 192 122 C 220 110, 260 110, 288 122 C 270 116, 210 116, 192 122 Z\" fill=\"#8a5a3a\" opacity=\".5\"/>\n<path d=\"M 162 180 C 186 160, 214 150, 240 150 C 266 150, 294 160, 318 180\" fill=\"none\" stroke=\"#2f1d13\" stroke-width=\"2\" opacity=\".8\"/>\n\n<path d=\"M 160 182 C 148 210, 138 250, 132 300 C 126 360, 124 440, 132 520 C 136 550, 156 562, 178 556 C 172 540, 164 510, 162 470 C 160 420, 158 360, 160 300 C 162 260, 164 215, 160 182 Z\" fill=\"url(#hairGrad)\"/>\n<path d=\"M 320 182 C 332 210, 342 250, 348 300 C 354 360, 356 440, 348 520 C 344 550, 324 562, 302 556 C 308 540, 316 510, 318 470 C 320 420, 322 360, 320 300 C 318 260, 316 215, 320 182 Z\" fill=\"url(#hairGrad)\"/>\n<path d=\"M 150 200 C 142 240, 136 300, 134 360\" fill=\"none\" stroke=\"#8a5a3a\" stroke-width=\"3\" opacity=\".5\"/>\n<path d=\"M 330 200 C 338 240, 344 300, 346 360\" fill=\"none\" stroke=\"#8a5a3a\" stroke-width=\"3\" opacity=\".5\"/>\n\n</svg>",
+   "tok": 2123,
+   "lat": 370.0
   }
  }
 }

@@ -81,6 +81,8 @@ EFFORT_WRAPPERS = {
 def call_openrouter(model_slug, prompt):
     import os, json as _json, urllib.request
     key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not key and os.path.exists(os.path.expanduser("~/.openrouter_key")):
+        key = open(os.path.expanduser("~/.openrouter_key")).read().strip()
     if not key:
         return {"text": "", "thinking_chars": 0, "latency_s": 0.0, "error": "OPENROUTER_API_KEY not set"}
     t0 = time.time()
