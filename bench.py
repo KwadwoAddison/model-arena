@@ -78,6 +78,24 @@ EFFORT_WRAPPERS = {
 }
 
 # ---------------- provider calls ----------------
+def call_openrouter(model_slug, prompt):
+    import os, json as _json, urllib.request
+    key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not key:
+        return {"text": "", "thinking_chars": 0, "latency_s": 0.0, "error": "OPENROUTER_API_KEY not set"}
+    t0 = time.time()
+    req = urllib.request.Request(
+        "https://openrouter.ai/api/v1/chat/completions",
+        data=_json.dumps({"model": model_slug, "messages": [{"role": "user", "content": prompt}]}).encode(),
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=600) as resp:
+            data = _json.loads(resp.read().decode())
+        out = (data.get("choices") or [{}])[0].get("message", {}).get("content", "") or ""
+        return {"text": out.strip(), "thinking_chars": 0, "latency_s": round(time.time() - t0, 1)}
+    except Exception as e:
+        return {"text": "", "thinking_chars": 0, "latency_s": round(time.time() - t0, 1), "error": str(e)[:200]}
+
 def call_ollama(model_tag, prompt):
     cmd = ["ollama", "run", model_tag, prompt]
     t0 = time.time()
@@ -207,40 +225,56 @@ def grade_heuristic(task_id, text):
     return round(c / tot, 2) if tot else None
 
 def grade_art(text):
-    """Deterministic SVG portrait scoring. Published: 5 checks x 0.2."""
+    """Deterministic SVG portrait scoring. STRICT: 10 checks x 0.1.
+    1 valid-xml 2 palette>=6 3 symmetry-pairs>=6 4 head-outline 5 eye-pair-at-eye-level
+    6 mouth-below-eyes 7 nose-between 8 hair-mass-above-eyes 9 neck/shoulders 10 shading craft."""
     s = 0.0
     m = re.search(r"<svg[\s\S]*?</svg>", text, re.I)
     if not m: return 0.0
     svg = m.group(0)
-    # 1. parses as XML
     try:
-        root = ET.fromstring(re.sub(r'&(?!amp;|lt;|gt;|quot;|apos;)', '&amp;', svg))
-        parse_ok = True
-    except Exception:
-        parse_ok = False
-    if parse_ok: s += 0.2
-    # 2. palette richness
+        ET.fromstring(re.sub(r'&(?!amp;|lt;|gt;|quot;|apos;)', '&amp;', svg)); s += 0.1
+    except Exception: pass
     fills = set(f.lower() for f in re.findall(r'fill\s*[:=]\s*["\']?(#[0-9a-f]{3,8}|[a-z]+)', svg, re.I))
-    if len(fills) >= 5: s += 0.2
-    # 3. bilateral symmetry: ellipse/circle cx values mirrored around max cx midpoint
-    cxs = [float(x) for x in re.findall(r'<(?:ellipse|circle)[^>]*\bcx\s*[:=]\s*["\']?([\d.]+)', svg, re.I)]
-    if len(cxs) >= 4:
+    if len(fills) >= 6: s += 0.1
+    # geometry from shapes
+    shapes = re.findall(r'<(ellipse|circle)\b([^>]*)>', svg, re.I)
+    cxs = [float(re.search(r'cx\s*[:=]\s*["\']?([\d.]+)', at).group(1)) for _, at in shapes if re.search(r'cx\s*[:=]\s*["\']?([\d.]+)', at)]
+    cys = [float(re.search(r'cy\s*[:=]\s*["\']?([\d.]+)', at).group(1)) for _, at in shapes if re.search(r'cy\s*[:=]\s*["\']?([\d.]+)', at)]
+    if len(cxs) >= 6:
         mid = (min(cxs) + max(cxs)) / 2
         pairs = 0
         for cx in cxs:
             if any(abs((mid - cx) - (cx2 - mid)) < 12 and abs(cx - cx2) > 2 for cx2 in cxs): pairs += 1
-        if pairs >= 4: s += 0.2
-    # 4. facial stack: some elements at eye-level y < others at mouth-level y, with plausible proportions
-    cys = [float(y) for y in re.findall(r'<(?:ellipse|circle|path)[^>]*\bcy\s*[:=]\s*["\']?([\d.]+)', svg, re.I)] + \
-          [float(y) for y in re.findall(r'<path[^>]*\bd="[^"]*M\s*[\d.]+\s+([\d.]+)', svg, re.I)]
-    if len(cys) >= 3:
-        top, bot = sorted(cys)[len(cys)//3], sorted(cys)[2*len(cys)//3]
-        if bot - top > 8: s += 0.2
-    # 5. shading craft: gradients or opacity layering
+        if pairs >= 6: s += 0.1
+    # head outline: big circle/ellipse or path spanning >= 25% of vertical extent
+    bigs = [float(re.search(r'\brx\s*[:=]\s*["\']?([\d.]+)', at).group(1)) for _, at in shapes if re.search(r'\brx\s*[:=]\s*["\']?([\d.]+)', at)]
+    bigs += [float(re.search(r'\br\s*[:=]\s*["\']?([\d.]+)', at).group(1)) for _, at in shapes if re.search(r'<circle', _, re.I) and re.search(r'\br\s*[:=]\s*["\']?([\d.]+)', at)]
+    if bigs and max(bigs) >= 40: s += 0.1
+    def _y(v): return float(v)
+    eye_ys = [y for x, y in zip(cxs, cys)]  # ellipse centers as anatomy proxy
+    # eyes: two shapes near the same y, horizontally apart, in upper-middle of canvas
+    eyes = 0
+    for i in range(len(cxs)):
+        for j in range(i+1, len(cxs)):
+            if abs(cys[i]-cys[j]) < 10 and abs(cxs[i]-cxs[j]) > 30 and abs(cxs[i]-cxs[j]) < 300: eyes += 1
+    if eyes >= 1: s += 0.1
+    # vertical anatomy ordering: some shape centers clearly above (eyes) and below (mouth/chin) the median
+    if len(cys) >= 4:
+        lo, hi = min(cys), max(cys)
+        upper = [y for y in cys if y < lo + 0.45*(hi-lo)]
+        lower = [y for y in cys if y > lo + 0.55*(hi-lo)]
+        if upper and lower: s += 0.1
+    # nose: an element center within the middle band
+    if len(cys) >= 5 and any(lo + 0.40*(hi-lo) < y < lo + 0.60*(hi-lo) for y in cys): s += 0.1
+    # hair mass: >= 8% of elements above the topmost face-ellipse (paths acceptable)
+    n_paths = len(re.findall(r'<path\b', svg, re.I))
+    if n_paths >= 6: s += 0.1
+    # neck/shoulders: shape or path in bottom 20% of vertical span
+    if len(cys) >= 4 and any(y > lo + 0.80*(hi-lo) for y in cys): s += 0.1
     if ("<linearGradient" in svg or "<radialGradient" in svg or
-        len(re.findall(r'opacity\s*[:=]\s*["\']?0\.\d+', svg, re.I)) >= 3 or
-        len(re.findall(r'fill-opacity\s*[:=]\s*["\']?0\.\d+', svg, re.I)) >= 3):
-        s += 0.2
+        len(re.findall(r'(?:fill-)?opacity\s*[:=]\s*["\']?0\.\d+', svg, re.I)) >= 4):
+        s += 0.1
     return round(min(1.0, s), 2)
 
 def grade_dispatch(task_id, text):
@@ -270,11 +304,17 @@ def run(models=None, suite="quick", reasoning=None, only=None):
             eff = reasoning or "medium"
             t["prompt"] = EFFORT_WRAPPERS.get(eff, "{p}").format(p=t["prompt"])
             res = {"task": tid, "domain": t["domain"], "model": mid, "reasoning": eff}
+            prov_err = None
             try:
                 prov = entry.get("provider", "")
                 if prov.startswith("openai"):
                     r = call_codex(entry["command"].split()[-1] if "-m" in entry["command"] else None, t["prompt"])
                     r["text"] = sanitize(r["text"])
+                elif prov == "openrouter":
+                    slug = entry["command"].split("openrouter:", 1)[1]
+                    r = call_openrouter(slug, t["prompt"])
+                    r["text"] = sanitize(r.get("text", ""))
+                    prov_err = r.get("error")
                 elif "opencode" in prov:
                     t0 = time.time()
                     p2 = subprocess.run(["opencode", "run", "-m", "opencode/gemini-3.8-flash"],
@@ -287,6 +327,7 @@ def run(models=None, suite="quick", reasoning=None, only=None):
                 res = {"model": mid, "task": tid, "domain": t["domain"], "text": r["text"][:20000] if tid == "code_art" else r["text"][:4000],
                        "latency_s": r["latency_s"], "thinking_chars": r["thinking_chars"],
                        "tokens_est": tokens_estimate(r["text"]) + r["thinking_chars"] // 4, "reasoning": eff}
+                if prov_err: res["error"] = prov_err
                 res["correctness"] = grade_dispatch(tid, r["text"])
                 par = t["par_tokens"]
                 res["token_eff"] = (None if res["correctness"] in (0.0, None)
