@@ -121,7 +121,7 @@ def _complete_svg(text):
     if m:
         frag = m.group(0)
         if len(frag) > 400:  # a real drawing, not a stray tag
-            return frag + "\n</svg><!-- [capture truncated; closed for display] -->"
+            return frag[:19900] + "\n</svg><!-- [capture truncated; closed for display] -->"
     return None
 
 def art_artifacts(rows):
@@ -142,7 +142,7 @@ def art_artifacts(rows):
                                       len(_complete_svg(r.get("text","") or "") or ""),
                                       len(r.get("text","") or "")))
         svg = _complete_svg(best.get("text","") or "")
-        arts[m] = {"corr": best["correctness"], "svg": (svg or "")[:6000],
+        arts[m] = {"corr": best["correctness"], "svg": (svg or "")[:20000],
                    "tok": best.get("tokens_est"), "lat": best.get("latency_s")}
     return arts
 
