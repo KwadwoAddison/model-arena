@@ -388,9 +388,9 @@
   },
   "code_art": {
    "grade": 0.8,
-   "text": "I\u2019ll generate a front-facing SVG portrait of a 36-year-old woman with fair \nskin and brown hair, using only inline vector shapes and layered shading fo\nfor facial structure.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n    <defs>\n        <!-- Background Gradients -->\n        <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n            <stop offset=\"0%\" stop-color=\"#4a5a6a\"/>\n            <stop offset=\"100%\" stop-color=\"#1a1a2e\"/>\n        </radialGradient>\n        <radialGradient id=\"vignette\" cx=\"50%\" cy=\"50%\" r=\"70%\">\n            <stop offset=\"60%\" stop-color=\"#000\" stop-opacity=\"0\"/>\n            <stop offset=\"100%\" stop-color=\"#000\"",
-   "lat": 68.9,
-   "tok": 11527
+   "text": "I\u2019ll generate an inline SVG portrait of a 36-year-old woman with fair skin \nand brown hair, keeping the composition head-and-shoulders and facing forwa\nforward.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Glow -->\n    <radialGradient id=\"bgGlow\" cx=\"50%\" cy=\"40%\" r=\"60%\">\n      <stop offset=\"0%\" stop-color=\"#fdfbf9\" />\n      <stop offset=\"100%\" stop-color=\"#e8e4e1\" />\n    </radialGradient>\n    <!-- Skin Shading Gradients -->\n    <radialGradient id=\"cheekGlowL\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"rgba(196, 139, 106, 0.4)\" />\n      <stop offset=\"100%\" stop-color=\"rgba(196, 139, 106, 0)",
+   "lat": 66.0,
+   "tok": 12777
   },
   "med_neo": {
    "grade": 1.0,
@@ -480,9 +480,9 @@
   },
   "code_art": {
    "grade": 0.8,
-   "text": "```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 600\" width=\"100%\" \nheight=\"100%\">\n  <defs>\n    <!-- Background Gradient -->\n    <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\" />\n      <stop offset=\"100%\" stop-color=\"#dce1e6\" />\n    </radialGradient>\n    \n    <!-- Face Gradient -->\n    <radialGradient id=\"faceGrad\" cx=\"50%\" cy=\"40%\" r=\"55%\">\n      <stop offset=\"0%\" stop-color=\"#fef4f0\" />\n      <stop offset=\"70%\" stop-color=\"#fceee9\" />\n      <stop offset=\"100%\" stop-color=\"#e8c8c0\" />\n    </radialGradient>\n    \n    <!-- Hair Gradient -->\n    <linearGradient id=\"hairGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offs",
-   "lat": 70.1,
-   "tok": 12381
+   "text": "Here is an inline SVG portrait of a 36-year-old woman with fair skin and br\nbrown hair, shown front-facing and built entirely from code.\n```svg\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 500\" width=\"400\" h\nheight=\"500\">\n  <defs>\n    <radialGradient id=\"bg\" cx=\"50%\" cy=\"34%\" r=\"82%\">\n      <stop offset=\"0\" stop-color=\"#edf2f5\"/>\n      <stop offset=\"1\" stop-color=\"#a7b8c2\"/>\n    </radialGradient>\n\n    <radialGradient id=\"skinGrad\" cx=\"46%\" cy=\"34%\" r=\"68%\">\n      <stop offset=\"0\" stop-color=\"#fdeade\"/>\n      <stop offset=\"0.45\" stop-color=\"#f8dbc8\"/>\n      <stop offset=\"0.78\" stop-color=\"#e8bfa6\"/>\n      <stop offset=\"1\" stop-color=\"#c99276\"/>\n    </radialGradient>\n\n    <linearGr",
+   "lat": 206.7,
+   "tok": 20260
   },
   "med_neo": {
    "grade": 1.0,
@@ -663,10 +663,10 @@
    "tok": 6081
   },
   "code_art": {
-   "grade": 0.8,
-   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 700\" width=\"600\" h\nheight=\"700\">\n<defs>\n<radialGradient id=\"bg\" cx=\"300\" cy=\"250\" r=\"430\" gradientUnits=\"userSpaceO\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#ece5db\"/><stop offset=\"0.65\" stop-color=\"#ded\nstop-color=\"#ded4c7\"/><stop offset=\"1\" stop-color=\"#c9b9a9\"/>\n</radialGradient>\n<linearGradient id=\"faceSkin\" x1=\"0\" y1=\"140\" x2=\"0\" y2=\"440\" gradientUnits\ngradientUnits=\"userSpaceOnUse\">\n<stop offset=\"0\" stop-color=\"#f9e3cb\"/><stop offset=\"0.5\" stop-color=\"#f3d3\nstop-color=\"#f3d3ae\"/><stop offset=\"1\" stop-color=\"#e7b489\"/>\n</linearGradient>\n<linearGradient id=\"neckSkin\" x1=\"0\" y1=\"398\" x2=\"0\" y2=\"526\" gradientUnits",
-   "lat": 228.1,
-   "tok": 17951
+   "grade": 0.0,
+   "text": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 600\" width=\"480\" h\nheight=\"600\">\n<defs>\n<radialGradient id=\"bg\" cx=\"50%\" cy=\"38%\" r=\"75%\">\n<stop offset=\"0%\" stop-color=\"#f5efe8\"/><stop offset=\"100%\" stop-color=\"#d6\nstop-color=\"#d6ccbf\"/>\n</radialGradient>\n<radialGradient id=\"skin\" cx=\"50%\" cy=\"40%\" r=\"68%\">\n<stop offset=\"0%\" stop-color=\"#f9ddc8\"/><stop offset=\"60%\" stop-color=\"#efc\nstop-color=\"#efc4a4\"/><stop offset=\"100%\" stop-color=\"#dfa77f\"/>\n</radialGradient>\n<linearGradient id=\"neckS\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">\n<stop offset=\"0%\" stop-color=\"#e3ad88\"/><stop offset=\"100%\" stop-color=\"#c5\nstop-color=\"#c5855e\"/>\n</linearGradient>\n<linearGradient id=\"hair\" x1=\"0\" y1=\"0\" x2=\"0\" y2=",
+   "lat": 128.7,
+   "tok": 11891
   },
   "med_neo": {
    "grade": 1.0,

@@ -3,7 +3,7 @@
 Effort = newest run per effort bucket ('default' counts as medium).
 Dossiers carry: per-task results, per-domain aggregates, grading rules, reasoning ladder,
 composite score with the published weights, and the actual code_art SVG artifact."""
-import json, glob, os, datetime
+import json, glob, re, os, datetime
 BASE = os.path.dirname(os.path.abspath(__file__))
 
 ROSTER = {m["id"]: m for m in json.load(open(f"{BASE}/data/roster.json"))["models"]}
@@ -109,16 +109,41 @@ def composite(med, high, low, lat_all):
         comp[m]["total"] = round(sum(comp[m][k]*w for k, w in WEIGHTS.items() if k in comp[m]), 1)
     return comp
 
+def _complete_svg(text):
+    """last complete <svg>...</svg> block; if the capture was truncated mid-svg,
+    salvage from <svg to end and close it (browsers repair unclosed tags; we mark it truncated upstream)."""
+    if not text: return None
+    best = None
+    for m in re.finditer(r'<svg[\s\S]*?</svg>', text, re.I):
+        best = m.group(0)
+    if best: return best
+    m = re.search(r'<svg[\s\S]*', text, re.I)
+    if m:
+        frag = m.group(0)
+        if len(frag) > 400:  # a real drawing, not a stray tag
+            return frag + "\n</svg><!-- [capture truncated; closed for display] -->"
+    return None
+
 def art_artifacts(rows):
-    """best code_art submission per model (for dossier showcase)"""
-    arts = {}
+    """best code_art submission per model (for dossier showcase).
+    Rank candidates: complete-svg rows first (newest among equals), then by corr, then by text length."""
+    cands = {}
     for r in rows:
-        if r["task"] != "code_art": continue
-        if "error" in r: continue
-        cur = arts.get(r["model"])
-        if cur is None or r["correctness"] > cur["corr"]:
-            arts[r["model"]] = {"corr": r["correctness"], "svg": r.get("text","")[:6000],
-                                "tok": r.get("tokens_est"), "lat": r.get("latency_s")}
+        if r["task"] != "code_art" or "error" in r: continue
+        cands.setdefault(r["model"], []).append(r)
+    arts = {}
+    for m, rs in cands.items():
+        def key(r):
+            svg = _complete_svg(r.get("text","") or "")
+            return (svg is not None, r["correctness"] if svg is not None else -1,
+                    len(svg or ""), len(r.get("text","") or ""))
+        best = max(rs, key=lambda r: (_complete_svg(r.get("text","") or "") is not None,
+                                      (r["correctness"] if _complete_svg(r.get("text","") or "") else -1),
+                                      len(_complete_svg(r.get("text","") or "") or ""),
+                                      len(r.get("text","") or "")))
+        svg = _complete_svg(best.get("text","") or "")
+        arts[m] = {"corr": best["correctness"], "svg": (svg or "")[:6000],
+                   "tok": best.get("tokens_est"), "lat": best.get("latency_s")}
     return arts
 
 med_rows = runs_for("medium")                      # current suite (composite basis)
