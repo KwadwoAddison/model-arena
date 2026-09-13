@@ -36,7 +36,7 @@ TASKS = {
   "code_art": dict(domain="coding", par_tokens=3500, suite="full",
     prompt="Using ONLY inline SVG code (no <image>, no base64, no external assets), draw a head-and-shoulders portrait of a middle-aged white woman with blonde hair, front-facing. Craft the face with real structure: eyes, nose, mouth, blonde hair with shading. Output only the <svg> code.",
     grade="art",
-    rule="Deterministic SVG inspection, 0.1 each (10 checks): valid XML; ≥6 distinct fills; ≥6 mirrored element pairs; head outline present; eye pair at eye level; vertical facial ordering; nose-region element; hair mass (≥6 paths); neck/shoulders; gradients or ≥4 shading opacities."),
+    rule="Deterministic SVG inspection: valid XML +≥6 fills +≥6 mirror pairs +head outline +eye pair +facial ordering +nose +hair mass +neck/shoulders (0.08 each); gradients/shading 0.1; BLONDE-hair check (blonde-family ≥15% of all colors) 0.1."),
   # --- medicine: curriculum MCQs with keys ---
   "med_neo": dict(domain="medicine", par_tokens=1800, suite="full",
     prompt="A 2-day-old term baby, APGAR 9/10, bilious vomiting, no anal fistula. Abdominal X-ray: double bubble, no distal gas. Next step? A) contrast enema B) OGT + duodenoduodenostomy workup C) rectal biopsy D) urgent laparotomy E) observe 6h. Reply with the letter only.",
@@ -227,9 +227,9 @@ def grade_heuristic(task_id, text):
     return round(c / tot, 2) if tot else None
 
 def grade_art(text):
-    """Deterministic SVG portrait scoring. STRICT: 10 checks x 0.1.
-    1 valid-xml 2 palette>=6 3 symmetry-pairs>=6 4 head-outline 5 eye-pair-at-eye-level
-    6 mouth-below-eyes 7 nose-between 8 hair-mass-above-eyes 9 neck/shoulders 10 shading craft."""
+    """Deterministic SVG portrait scoring. STRICT: 11 checks; blonde check 0.2, others 0.08 except shading 0.1.
+    1 valid-xml 2 palette>=6 3 symmetry-pairs>=6 4 head-outline 5 eye-pair 6 facial ordering
+    7 nose 8 hair-mass 9 neck/shoulders 10 shading 11 BLONDE hair present (spec: blonde hair)."""
     s = 0.0
     m = re.search(r"<svg[\s\S]*?</svg>", text, re.I)
     if not m: return 0.0
@@ -277,6 +277,14 @@ def grade_art(text):
     if ("<linearGradient" in svg or "<radialGradient" in svg or
         len(re.findall(r'(?:fill-)?opacity\s*[:=]\s*["\']?0\.\d+', svg, re.I)) >= 4):
         s += 0.1
+    # 11. BLONDE hair (prompt spec): blonde-family colors (fills AND gradient stops) >= 15% of all colors
+    hexes = [h.lower() for h in re.findall(r'#[0-9a-fA-F]{6}\b', svg)]
+    if hexes:
+        def _blonde(h):
+            r, g, b = int(h[1:3], 16), int(h[3:5], 16), int(h[5:7], 16)
+            return r > 180 and g > 140 and b < 160 and r >= g >= b and (r - b) > 60
+        if sum(1 for h in hexes if _blonde(h)) / len(hexes) >= 0.15:
+            s += 0.1
     return round(min(1.0, s), 2)
 
 def grade_dispatch(task_id, text):

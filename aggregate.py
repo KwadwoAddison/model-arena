@@ -45,8 +45,15 @@ def runs_for(eff, current_only=True):
             if prev is not None and prev.get("text","").strip() and not r.get("text","").strip():
                 continue
             merged[key] = r
-    # a model+task whose ONLY capture is an empty reply is excluded entirely (not scored 0)
-    return [r for r in merged.values() if r.get("text","").strip()]
+    out = [r for r in merged.values() if r.get("text","").strip()]
+    # re-grade code_art under the CURRENT published grader so old captures aren't scored by dead rules
+    import importlib.util as _ilu2
+    _bspec2 = _ilu2.spec_from_file_location("bench_regrade2", f"{BASE}/bench.py")
+    _bmod2 = _ilu2.module_from_spec(_bspec2); _bspec2.loader.exec_module(_bmod2)
+    for r in out:
+        if r["task"] == "code_art":
+            r["correctness"] = _bmod2.grade_dispatch("code_art", r.get("text","") or "")
+    return out
 
 def agg(rows):
     out = {}
@@ -148,7 +155,12 @@ def art_artifacts(rows):
         else:
             best = max(rs, key=lambda r: r["correctness"])
         svg = _complete_svg(best.get("text","") or "")
-        arts[m] = {"corr": best["correctness"], "svg": (svg or "")[:20000],
+        # RE-GRADE with the CURRENT grader (stored correctness may come from an older rule set)
+        import importlib.util as _ilu
+        _bspec = _ilu.spec_from_file_location("bench_regrade", f"{BASE}/bench.py")
+        _bmod = _ilu.module_from_spec(_bspec); _bspec.loader.exec_module(_bmod)
+        corr_now = _bmod.grade_dispatch("code_art", best.get("text","") or "")
+        arts[m] = {"corr": corr_now, "svg": (svg or "")[:20000],
                    "tok": best.get("tokens_est"), "lat": best.get("latency_s")}
     return arts
 
